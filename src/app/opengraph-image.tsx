@@ -1,0 +1,44 @@
+import { ImageResponse } from "next/og";
+
+export const size = { width: 1200, height: 630 };
+export const contentType = "image/png";
+export const alt = "Kavish Global — Premium Porcelain & Ceramic Exports";
+
+export default async function Image() {
+  return new ImageResponse(
+    (
+      <div
+        style={{
+          width: "100%",
+          height: "100%",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "flex-start",
+          padding: "80px",
+          backgroundColor: "#0a0a0a",
+          backgroundImage: "linear-gradient(135deg, #0a0a0a 0%, #1c1712 60%, #332c23 100%)",
+        }}
+      >
+        <div style={{ display: "flex", fontSize: 28, color: "#cfae6b", letterSpacing: 6 }}>KAVISH GLOBAL</div>
+        <div
+          style={{
+            display: "flex",
+            marginTop: 24,
+            fontSize: 72,
+            color: "#f7f5f2",
+            fontWeight: 600,
+            maxWidth: 900,
+            lineHeight: 1.1,
+          }}
+        >
+          Porcelain, exported to the world.
+        </div>
+        <div style={{ display: "flex", marginTop: 32, fontSize: 28, color: "#a89a83" }}>
+          Ceramic · Porcelain · GVT · Large-Format Slabs — Morbi, India
+        </div>
+      </div>
+    ),
+    { ...size }
+  );
+}

@@ -11,7 +11,7 @@ export function Footer() {
     <footer className="border-t border-border-subtle bg-surface">
       <Container className="grid grid-cols-1 gap-12 py-20 md:grid-cols-2 lg:grid-cols-5 lg:py-28">
         <div className="lg:col-span-2">
-          <span className="font-display text-2xl tracking-[0.15em]">GLOBAL KAVISH</span>
+          <span className="font-display text-2xl tracking-[0.15em]">KAVISH GLOBAL</span>
           <p className="mt-6 max-w-sm text-sm leading-relaxed text-foreground/60">
             {company.tagline} Manufactured in {company.founded} and exported to{" "}
             {String(company.stats[0].value)}+ countries.

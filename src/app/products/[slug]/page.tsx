@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!product) return buildMetadata({ title: "Collection", description: "Collection not found." });
   return buildMetadata({
     title: product.name,
-    description: `${product.description} Request an export quote from Global Kavish.`,
+    description: `${product.description} Request an export quote from Kavish Global.`,
     path: `/products/${product.slug}`,
   });
 }

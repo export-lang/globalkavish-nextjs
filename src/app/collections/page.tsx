@@ -6,7 +6,7 @@ import { buildMetadata } from "@/lib/seo";
 export const metadata = buildMetadata({
   title: "All Collections",
   description:
-    "Browse Global Kavish's full catalogue of ceramic, porcelain, GVT and large-format slab tiles — filter by category, size, finish and application.",
+    "Browse Kavish Global's full catalogue of ceramic, porcelain, GVT and large-format slab tiles — filter by category, size, finish and application.",
   path: "/collections",
 });
 

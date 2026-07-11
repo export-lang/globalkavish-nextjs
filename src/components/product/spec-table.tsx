@@ -11,7 +11,10 @@ export function SpecTable({ product }: { product: Product }) {
     { label: "Available Sizes", value: product.sizes.length ? product.sizes.map((s) => `${s} mm`).join(", ") : "On request" },
     { label: "Surface Finish", value: product.finish.length ? product.finish.join(", ") : "See catalogue" },
     { label: "Application", value: product.application.join(", ") },
-    { label: "Catalogue Editions", value: "Lyca · Global Kavish · White Label" },
+    {
+      label: "Kavish Catalogues",
+      value: product.kavishCatalogueCount > 0 ? `${product.kavishCatalogueCount} available on request` : "On request",
+    },
   ];
 
   return (
@@ -24,7 +27,7 @@ export function SpecTable({ product }: { product: Product }) {
       ))}
       <p className="pt-4 text-xs text-foreground/40">
         Full technical datasheets, packing details and test certificates are shared by our export team with each
-        catalogue — request them with the buttons below.
+        catalogue — request them with the button below.
       </p>
     </div>
   );

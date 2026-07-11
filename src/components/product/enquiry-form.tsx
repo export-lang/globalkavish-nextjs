@@ -37,7 +37,7 @@ export function EnquiryForm({ productName }: { productName?: string }) {
         </Button>
         {submitted && (
           <p className="mt-3 text-sm text-foreground/60">
-            Your email client should have opened — send it through and our export team will reply within 24 hours.
+            Your email client should have opened — send it through and our export team will get back to you.
           </p>
         )}
       </div>

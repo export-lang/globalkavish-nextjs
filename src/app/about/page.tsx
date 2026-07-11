@@ -8,7 +8,7 @@ import { buildMetadata } from "@/lib/seo";
 export const metadata = buildMetadata({
   title: "About Us",
   description:
-    "Global Kavish is a leading Indian manufacturer and exporter of premium ceramic tiles and sanitaryware, delivering world-class surfaces to 52+ countries.",
+    "Kavish Global is a leading Indian manufacturer and exporter of premium ceramic tiles and sanitaryware, delivering world-class surfaces to 52+ countries.",
   path: "/about",
 });
 
@@ -17,7 +17,7 @@ export default function AboutPage() {
     <div className="pt-32 pb-24 md:pt-40 md:pb-32">
       <Container>
         <SectionHeading
-          eyebrow="About Global Kavish"
+          eyebrow="About Kavish Global"
           title="Indian ceramic excellence, exported worldwide."
           description={company.story.whoWeAre}
         />

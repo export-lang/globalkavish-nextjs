@@ -17,7 +17,7 @@ const STAGES = [
   { range: [0, 0.22], label: "Kaolin. Feldspar. Silica. Clay.", sub: "Raw minerals, gathered from the earth." },
   { range: [0.22, 0.48], label: "Pressed on advanced Italian machinery.", sub: "Compacted into a single dense body." },
   { range: [0.48, 0.75], label: "Digitally printed. Kiln fired.", sub: "High-definition inkjet design, vitrified at high temperature." },
-  { range: [0.75, 1], label: "Global Kavish.", sub: "Premium ceramic, exported to 52+ countries." },
+  { range: [0.75, 1], label: "Kavish Global.", sub: "Premium ceramic, exported to 52+ countries." },
 ];
 
 export function Hero() {
@@ -49,7 +49,7 @@ export function Hero() {
             transition={{ delay: 0.4, duration: 1 }}
             className="text-xs font-medium uppercase tracking-[0.35em] text-gold-300"
           >
-            Global Kavish — Morbi, India
+            Kavish Global — Morbi, India
           </motion.p>
 
           <div className="relative min-h-[220px] max-w-3xl pointer-events-none">

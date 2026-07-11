@@ -1,6 +1,6 @@
-# Global Kavish — Premium Ceramic Tiles & Sanitaryware Export Website
+# Kavish Global — Premium Ceramic Tiles & Sanitaryware Export Website
 
-A cinematic, Awwwards-grade marketing site for Global Kavish, a ceramic tile and
+A cinematic, Awwwards-grade marketing site for Kavish Global, a ceramic tile and
 sanitaryware export house based in Morbi, Gujarat. Built with Next.js 15 (App Router),
 React Three Fiber, Framer Motion, GSAP and Lenis smooth scroll.
 
@@ -40,7 +40,7 @@ src/
   codes are real. Finish tags appear only where the sheet states them; colour data and
   datasheets are pending (see TODO.md).
 - **Company data** (`lib/data/company.ts`): story, mission/vision/values, statistics,
-  certifications, contact details and export markets supplied directly by Global Kavish.
+  certifications, contact details and export markets supplied directly by Kavish Global.
 - **Product imagery** (`lib/data/designs.ts`): five real designs load from the company's
   publicly shared Google Drive (Gaios, Armani Rich Bianco, Adobe Emprador, Rome Black,
   Electra Almond Beige). All other collections show a generated `ProductSwatch` placeholder

@@ -9,7 +9,7 @@ import { buildMetadata } from "@/lib/seo";
 export const metadata = buildMetadata({
   title: "Export Services",
   description:
-    "Global Kavish exports to 52+ countries with full documentation support — shipping bills, BRC, BL, OEM and private-label programs for ceramic tiles and sanitaryware.",
+    "Kavish Global exports to 52+ countries with full documentation support — shipping bills, BRC, BL, OEM and private-label programs for ceramic tiles and sanitaryware.",
   path: "/export",
 });
 
@@ -103,7 +103,7 @@ export default function ExportPage() {
             <p className="font-display text-2xl">Private Label</p>
             <p className="mt-4 leading-relaxed text-foreground/70">
               Custom box design, branding and catalogue production for distributors who want a dedicated product
-              line — as reflected in our Lyca, Kavish and white-label catalogue tiers.
+              line under their own name.
             </p>
           </FadeIn>
         </div>

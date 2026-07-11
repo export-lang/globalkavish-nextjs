@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
-export const alt = "Global Kavish — Premium Ceramic Tiles & Sanitaryware Exports";
+export const alt = "Kavish Global — Premium Ceramic Tiles & Sanitaryware Exports";
 
 export default async function Image() {
   return new ImageResponse(
@@ -20,7 +20,7 @@ export default async function Image() {
           backgroundImage: "linear-gradient(135deg, #0a0a0a 0%, #1c1712 60%, #332c23 100%)",
         }}
       >
-        <div style={{ display: "flex", fontSize: 28, color: "#cfae6b", letterSpacing: 6 }}>GLOBAL KAVISH</div>
+        <div style={{ display: "flex", fontSize: 28, color: "#cfae6b", letterSpacing: 6 }}>KAVISH GLOBAL</div>
         <div
           style={{
             display: "flex",

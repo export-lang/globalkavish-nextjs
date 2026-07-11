@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     template: `%s | ${company.brandName}`,
   },
   description:
-    "Global Kavish exports premium ceramic tiles, GVT, large-format slabs and sanitaryware from Morbi, India to 52+ countries — engineered surfaces for architects, distributors and OEM partners.",
+    "Kavish Global exports premium ceramic tiles, GVT, large-format slabs and sanitaryware from Morbi, India to 52+ countries — engineered surfaces for architects, distributors and OEM partners.",
   keywords: [
     "ceramic tiles exporter",
     "porcelain tiles India",
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     "Morbi tiles export",
     "vitrified tiles supplier",
     "sanitaryware export",
-    "Global Kavish",
+    "Kavish Global",
   ],
   robots: { index: true, follow: true },
 };

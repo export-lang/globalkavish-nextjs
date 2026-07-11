@@ -1,5 +1,5 @@
 /**
- * Real tile designs supplied via the Global Kavish Google Drive folder
+ * Real tile designs supplied via the Kavish Global Google Drive folder
  * (publicly shared, "anyone with link" — verified). Images are served from
  * Google's CDN; names, sizes and finishes come from the folder titles only.
  */

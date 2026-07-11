@@ -1,12 +1,12 @@
 import type { Country } from "@/lib/types";
 
 /**
- * Company data supplied directly by Global Kavish (July 2026).
+ * Company data supplied directly by Kavish Global (July 2026).
  * Anything still missing is tracked in TODO.md rather than invented.
  */
 export const company = {
-  legalName: "Global Kavish",
-  brandName: "Global Kavish",
+  legalName: "Kavish Global",
+  brandName: "Kavish Global",
   domain: "globalkavish.com",
   tagline: "Premium ceramic tiles and sanitaryware, exported worldwide.",
   founded: "Morbi, Gujarat — the ceramic capital of India",
@@ -26,7 +26,7 @@ export const company = {
   },
   story: {
     whoWeAre:
-      "Global Kavish is a leading Indian exporter of premium ceramic tiles and sanitaryware, delivering world-class surfaces to customers across international markets. We combine advanced manufacturing technology, strict quality control and innovative designs to create products that meet the highest global standards.",
+      "Kavish Global is a leading Indian exporter of premium ceramic tiles and sanitaryware, delivering world-class surfaces to customers across international markets. We combine advanced manufacturing technology, strict quality control and innovative designs to create products that meet the highest global standards.",
     experience:
       "With years of experience in the ceramic industry, we have built long-term relationships with distributors, wholesalers, retailers, builders, architects and importers around the world.",
     promise: ["Premium Quality", "Competitive Pricing", "Reliable Delivery", "Long-Term Partnership"],
@@ -146,24 +146,3 @@ export const exportCountries: Country[] = [
   { code: "NP", name: "Nepal", region: "Asia" },
 ];
 
-export const manufacturingTimeline = [
-  { step: "01", title: "Raw Material Selection", detail: "Kaolin, feldspar and silica sourced and lab-tested for purity." },
-  { step: "02", title: "Body Preparation", detail: "Ball-milled slurry spray-dried into a consistent powder body." },
-  { step: "03", title: "Pressing", detail: "Advanced Italian hydraulic presses form each tile body." },
-  { step: "04", title: "Digital Inkjet Printing", detail: "High-resolution inkjet printing lays down the visual and glaze." },
-  { step: "05", title: "High Temperature Firing", detail: "Kilned to vitrify the body into a dense, durable slab." },
-  { step: "06", title: "Polishing & Finishing", detail: "Nano-polished and honed ranges finished to a sealed surface." },
-  { step: "07", title: "Strict Quality Inspection", detail: "Every batch is checked for calibre, shade, and surface defects." },
-  { step: "08", title: "Export Standard Loading", detail: "Premium packaging and professional container loading for ocean freight." },
-];
-
-export const qualityChecks = [
-  "Dimensional & calibre inspection",
-  "Shade batching under standard light",
-  "Water absorption testing",
-  "Abrasion resistance testing",
-  "Breaking strength & impact testing",
-  "Surface defect & pinhole inspection",
-  "Pre-loading container inspection",
-  "Third-party pre-shipment inspection (SGS / Intertek, on request)",
-];

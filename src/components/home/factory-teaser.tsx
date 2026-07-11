@@ -5,7 +5,7 @@ import { useRef } from "react";
 
 import { Container } from "@/components/shared/container";
 import { SectionHeading } from "@/components/shared/section-heading";
-import { manufacturingTimeline } from "@/lib/data/company";
+import { company } from "@/lib/data/company";
 
 export function FactoryTeaser() {
   const ref = useRef<HTMLDivElement>(null);
@@ -16,9 +16,9 @@ export function FactoryTeaser() {
     <section className="relative overflow-hidden border-t border-border-subtle bg-ink py-24 text-stone-50 md:py-32">
       <Container>
         <SectionHeading
-          eyebrow="Inside The Factory"
-          title="From mineral to mirror finish."
-          description="Every collection moves through eight controlled stages — from raw material testing to pre-shipment inspection."
+          eyebrow="Manufacturing"
+          title="How our surfaces are made."
+          description="Six commitments that run through every Kavish Global shipment."
           className="[&_p]:text-stone-300"
         />
 
@@ -26,9 +26,9 @@ export function FactoryTeaser() {
           <div className="absolute left-[7px] top-2 hidden h-full w-px bg-white/10 md:block">
             <motion.div style={{ scaleY }} className="h-full w-full origin-top bg-gold-400" />
           </div>
-          {manufacturingTimeline.map((item, i) => (
+          {company.manufacturing.map((item, i) => (
             <motion.div
-              key={item.step}
+              key={item.title}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-10% 0px" }}
@@ -36,7 +36,7 @@ export function FactoryTeaser() {
               className="relative pl-10 md:pl-12"
             >
               <span className="absolute left-0 top-1 hidden h-3.5 w-3.5 rounded-full border-2 border-gold-400 bg-ink md:block" />
-              <span className="font-display text-sm text-gold-400">{item.step}</span>
+              <span className="font-display text-sm text-gold-400">{String(i + 1).padStart(2, "0")}</span>
               <h3 className="mt-2 font-display text-2xl">{item.title}</h3>
               <p className="mt-2 max-w-sm text-sm text-stone-300">{item.detail}</p>
             </motion.div>

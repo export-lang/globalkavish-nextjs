@@ -10,7 +10,7 @@ import { buildMetadata } from "@/lib/seo";
 export const metadata = buildMetadata({
   title: "Contact Us",
   description:
-    "Get in touch with Global Kavish for export enquiries, OEM programs and catalogue requests. Factory in Morbi and office in Rajkot, Gujarat, India.",
+    "Get in touch with Kavish Global for export enquiries, OEM programs and catalogue requests. Factory in Morbi and office in Rajkot, Gujarat, India.",
   path: "/contact",
 });
 
@@ -21,7 +21,7 @@ export default function ContactPage() {
         <SectionHeading
           eyebrow="Contact"
           title="Let's talk export."
-          description="Reach our export desk directly — by email, WhatsApp, or the form below. We typically respond within one business day."
+          description="Reach our export desk directly — by email, WhatsApp, or the form below."
         />
 
         <div className="mt-20 grid grid-cols-1 gap-16 lg:grid-cols-2">
@@ -63,7 +63,7 @@ export default function ContactPage() {
 
             <div className="mt-8 aspect-video overflow-hidden rounded-2xl border border-border-subtle">
               <iframe
-                title="Global Kavish factory location"
+                title="Kavish Global factory location"
                 src="https://www.google.com/maps?q=Nichi+Mandal,+Morbi,+Gujarat+363642,+India&output=embed"
                 className="h-full w-full grayscale"
                 loading="lazy"

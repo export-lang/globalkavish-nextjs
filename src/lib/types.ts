@@ -11,21 +11,26 @@ export type Application = "Floor" | "Wall" | "Outdoor" | "Facade" | "Bathroom";
 
 export type Material = "Ceramic" | "Porcelain" | "Acrylic" | "Sanitaryware";
 
+/**
+ * Public product model. Contains no factory/supplier identity — products are
+ * aggregated by product type + size from Kavish catalogue rows only.
+ */
 export interface Product {
   slug: string;
+  /** Neutral public display name, e.g. "600×1200 mm GVT". */
   name: string;
+  /** Sheet "Type" column value. */
+  productType: string;
   categorySlugs: string[];
   material: Material;
   sizes: string[];
   finish: string[];
   application: Application[];
-  color: string[];
+  /** Genuine catalogue design name, only when verified (e.g. Drive design photos). */
+  designName?: string;
   description: string;
-  catalogueCodes: {
-    lyca?: string;
-    kavish?: string;
-    whiteLabel?: string;
-  };
+  /** Count of distinct Kavish catalogue references available for this product. */
+  kavishCatalogueCount: number;
   featured?: boolean;
 }
 

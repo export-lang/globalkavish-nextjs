@@ -21,9 +21,6 @@ const NAV_LINKS = [
   { label: "Contact", href: "/contact" },
 ];
 
-const LANGUAGES = ["EN", "AR", "FR", "ES"];
-const CURRENCIES = ["USD", "EUR", "AED", "INR"];
-
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -63,7 +60,7 @@ export function Navbar() {
       >
         <Container className="flex h-20 items-center justify-between md:h-24">
           <Link href="/" className="font-display text-xl tracking-[0.15em] md:text-2xl">
-            GLOBAL KAVISH
+            KAVISH GLOBAL
           </Link>
 
           <nav className="hidden items-center gap-10 lg:flex">
@@ -159,27 +156,6 @@ export function Navbar() {
                 <span className="h-[18px] w-[18px]" />
               )}
             </button>
-            <div className="hidden items-center gap-1 pl-2 text-xs text-foreground/60 xl:flex">
-              <select
-                aria-label="Language"
-                className="cursor-pointer bg-transparent outline-none"
-                defaultValue="EN"
-              >
-                {LANGUAGES.map((l) => (
-                  <option key={l} value={l} className="bg-background text-foreground">
-                    {l}
-                  </option>
-                ))}
-              </select>
-              <span className="opacity-30">/</span>
-              <select aria-label="Currency" className="cursor-pointer bg-transparent outline-none" defaultValue="USD">
-                {CURRENCIES.map((c) => (
-                  <option key={c} value={c} className="bg-background text-foreground">
-                    {c}
-                  </option>
-                ))}
-              </select>
-            </div>
             <button
               aria-label="Open menu"
               onClick={() => setMenuOpen(true)}
@@ -200,7 +176,7 @@ export function Navbar() {
             className="fixed inset-0 z-[60] bg-background lg:hidden"
           >
             <Container className="flex h-20 items-center justify-between">
-              <span className="font-display text-xl tracking-[0.15em]">GLOBAL KAVISH</span>
+              <span className="font-display text-xl tracking-[0.15em]">KAVISH GLOBAL</span>
               <button
                 aria-label="Close menu"
                 onClick={() => setMenuOpen(false)}
@@ -237,9 +213,6 @@ export function Navbar() {
                 placeholder="Search collections — try “marble”, “outdoor”, “GVT”…"
                 className="w-full bg-transparent text-base outline-none placeholder:text-foreground/40"
               />
-              <span className="rounded-full border border-border-subtle px-2 py-0.5 text-[10px] uppercase tracking-widest text-foreground/40">
-                AI search — coming soon
-              </span>
             </div>
             <div className="max-h-80 overflow-y-auto p-2">
               {results.map((p) => (

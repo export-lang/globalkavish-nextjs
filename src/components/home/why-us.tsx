@@ -10,7 +10,7 @@ export function WhyUs() {
     <section className="border-t border-border-subtle py-24 md:py-32">
       <Container>
         <SectionHeading
-          eyebrow="Why Global Kavish"
+          eyebrow="Why Kavish Global"
           title="Manufacturing scale, export discipline."
           description={company.story.whoWeAre}
         />

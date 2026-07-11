@@ -72,7 +72,7 @@ export default function ContactPage() {
             </div>
           </div>
 
-          <div className="rounded-3xl border border-border-subtle p-8 md:p-10">
+          <div className="rounded-3xl border border-border-subtle bg-background/70 p-8 shadow-2xl shadow-black/10 backdrop-blur-sm md:p-10">
             <p className="mb-8 font-display text-2xl">Export Enquiry Form</p>
             <EnquiryForm />
           </div>

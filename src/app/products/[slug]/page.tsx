@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
+import { DepthCard } from "@/components/motion/depth-card";
 import { Container } from "@/components/shared/container";
 import { FadeIn } from "@/components/shared/reveal-text";
 import { ProductCard } from "@/components/shared/product-card";
@@ -92,7 +93,9 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
 
         <div className="grid grid-cols-1 gap-14 lg:grid-cols-2">
           <FadeIn>
-            <Gallery slug={product.slug} name={product.name} />
+            <DepthCard>
+              <Gallery slug={product.slug} name={product.name} />
+            </DepthCard>
           </FadeIn>
 
           <FadeIn delay={0.1}>
@@ -125,7 +128,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
               </Button>
             </div>
 
-            <div className="mt-12">
+            <div className="mt-12 rounded-2xl border border-border-subtle bg-background/60 p-6 shadow-xl shadow-black/5 backdrop-blur-sm md:p-8">
               <p className="mb-4 font-display text-xl">Technical Specifications</p>
               <SpecTable product={product} />
             </div>
@@ -141,8 +144,8 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
           <div className="mt-32">
             <p className="mb-10 font-display text-3xl">You may also like</p>
             <div className="grid grid-cols-1 gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-4">
-              {related.map((p) => (
-                <ProductCard key={p.slug} product={p} />
+              {related.map((p, i) => (
+                <ProductCard key={p.slug} product={p} driftDelay={i * 0.6} />
               ))}
             </div>
           </div>

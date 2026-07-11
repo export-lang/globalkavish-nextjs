@@ -1,39 +1,114 @@
 "use client";
 
-import { Canvas, useFrame } from "@react-three/fiber";
-import { Environment, Float, Lightformer } from "@react-three/drei";
+import { Canvas, useFrame, useThree } from "@react-three/fiber";
+import { ContactShadows, Environment, Lightformer } from "@react-three/drei";
 import type { MotionValue } from "framer-motion";
-import { useMemo, useRef } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import * as THREE from "three";
 
-function Tile({ progress }: { progress: MotionValue<number> }) {
-  const ref = useRef<THREE.Mesh>(null);
+import { driveImageUrl, tileDesigns } from "@/lib/data/designs";
 
-  useFrame((_, delta) => {
-    const mesh = ref.current;
-    if (!mesh) return;
+/** Armani Rich Bianco 600x1200 — verified Kavish design used as the hero surface. */
+const HERO_TEXTURE_ID = tileDesigns[1].imageIds[0];
+
+/**
+ * The hero slab: glazed printed face, matte compressed-ceramic body on the
+ * edges and back — floating with slow micro-rotation, pointer parallax and
+ * scroll-driven formation.
+ */
+function CeramicTile({ progress, interactive }: { progress: MotionValue<number>; interactive: boolean }) {
+  const group = useRef<THREE.Group>(null);
+  const mesh = useRef<THREE.Mesh>(null);
+  const [faceTexture, setFaceTexture] = useState<THREE.Texture | null>(null);
+
+  useEffect(() => {
+    const loader = new THREE.TextureLoader();
+    loader.setCrossOrigin("anonymous");
+    let disposed = false;
+    loader.load(
+      driveImageUrl(HERO_TEXTURE_ID, 1024),
+      (texture) => {
+        if (disposed) {
+          texture.dispose();
+          return;
+        }
+        texture.colorSpace = THREE.SRGBColorSpace;
+        texture.anisotropy = 4;
+        setFaceTexture(texture);
+      },
+      undefined,
+      () => {
+        /* CORS/network failure — glazed ivory fallback keeps the scene alive */
+      }
+    );
+    return () => {
+      disposed = true;
+    };
+  }, []);
+
+  const materials = useMemo(() => {
+    // Matte compressed-ceramic body for edges & back — never plastic/metal/glass.
+    const body = new THREE.MeshStandardMaterial({
+      color: "#cfc5b4",
+      roughness: 0.94,
+      metalness: 0,
+      transparent: true,
+    });
+    // Glazed printed face.
+    const face = new THREE.MeshPhysicalMaterial({
+      color: faceTexture ? "#ffffff" : "#ece5d8",
+      map: faceTexture ?? null,
+      roughness: 0.85,
+      clearcoat: 0,
+      clearcoatRoughness: 0.12,
+      metalness: 0,
+      transparent: true,
+    });
+    // BoxGeometry material order: +x, -x, +y, -y, +z (face), -z (back)
+    return [body, body, body, body, face, body];
+  }, [faceTexture]);
+
+  useFrame((state, delta) => {
+    const g = group.current;
+    const m = mesh.current;
+    if (!g || !m) return;
     const p = progress.get();
-    mesh.rotation.y += delta * (0.12 + p * 0.1);
-    const scale = THREE.MathUtils.lerp(0.55, 1, p);
-    mesh.scale.setScalar(scale);
-    const material = mesh.material as THREE.MeshPhysicalMaterial;
-    material.roughness = THREE.MathUtils.lerp(0.85, 0.12, p);
-    material.clearcoat = THREE.MathUtils.lerp(0, 1, p);
-    material.opacity = THREE.MathUtils.clamp(p * 1.6, 0.15, 1);
+    const t = state.clock.getElapsedTime();
+
+    // Slow natural float + micro-rotation — never fast.
+    g.position.y = Math.sin(t * 0.4) * 0.08;
+    g.rotation.z = Math.sin(t * 0.22) * 0.02;
+    m.rotation.y += delta * (0.06 + p * 0.05);
+
+    // Gentle pointer parallax (desktop only).
+    if (interactive) {
+      const targetX = state.pointer.y * 0.12;
+      const targetY = state.pointer.x * 0.18;
+      g.rotation.x = THREE.MathUtils.lerp(g.rotation.x, 0.32 + targetX, 0.04);
+      g.rotation.y = THREE.MathUtils.lerp(g.rotation.y, 0.18 + targetY, 0.04);
+    } else {
+      g.rotation.x = THREE.MathUtils.lerp(g.rotation.x, 0.32, 0.04);
+      g.rotation.y = THREE.MathUtils.lerp(g.rotation.y, 0.18, 0.04);
+    }
+
+    // Scroll formation: raw body → glazed finished surface.
+    const scale = THREE.MathUtils.lerp(0.6, 1, p);
+    m.scale.setScalar(scale);
+    const face = materials[4] as THREE.MeshPhysicalMaterial;
+    face.roughness = THREE.MathUtils.lerp(0.85, 0.16, p);
+    face.clearcoat = THREE.MathUtils.lerp(0, 0.9, p);
+    const opacity = THREE.MathUtils.clamp(0.25 + p * 1.4, 0.25, 1);
+    materials.forEach((mat) => {
+      mat.opacity = opacity;
+    });
   });
 
   return (
-    <mesh ref={ref} rotation={[0.45, 0.3, 0]}>
-      <boxGeometry args={[2.7, 2.7, 0.14]} />
-      <meshPhysicalMaterial
-        color="#eee6d8"
-        roughness={0.8}
-        clearcoatRoughness={0.08}
-        metalness={0.05}
-        transparent
-        opacity={0.2}
-      />
-    </mesh>
+    <group ref={group}>
+      <mesh ref={mesh} material={materials}>
+        <boxGeometry args={[1.6, 3.2, 0.08]} />
+      </mesh>
+    </group>
   );
 }
 
@@ -41,13 +116,14 @@ function MineralCluster({
   color,
   offset,
   progress,
+  count,
 }: {
   color: string;
   offset: number;
   progress: MotionValue<number>;
+  count: number;
 }) {
   const meshRef = useRef<THREE.InstancedMesh>(null);
-  const count = 28;
   const dummy = useMemo(() => new THREE.Object3D(), []);
   const seeds = useMemo(
     () =>
@@ -58,7 +134,7 @@ function MineralCluster({
         speed: 0.15 + Math.random() * 0.3,
         scale: 0.06 + Math.random() * 0.1,
       })),
-    [offset]
+    [offset, count]
   );
 
   useFrame(({ clock }) => {
@@ -89,13 +165,30 @@ function MineralCluster({
   );
 }
 
-export function HeroScene({ progress }: { progress: MotionValue<number> }) {
+/** Pauses the render loop while the hero is offscreen. */
+function FrameGate({ active }: { active: boolean }) {
+  const { invalidate, setFrameloop } = useThree();
+  useEffect(() => {
+    setFrameloop(active ? "always" : "never");
+    if (active) invalidate();
+  }, [active, setFrameloop, invalidate]);
+  return null;
+}
+
+export function HeroScene({ progress, active = true }: { progress: MotionValue<number>; active?: boolean }) {
+  const [isDesktop, setIsDesktop] = useState(true);
+  useEffect(() => {
+    setIsDesktop(window.matchMedia("(min-width: 768px) and (pointer: fine)").matches);
+  }, []);
+  const clusterCount = isDesktop ? 26 : 12;
+
   return (
     <Canvas
       dpr={[1, 1.5]}
       camera={{ position: [0, 0, 9], fov: 32 }}
       gl={{ antialias: true, alpha: true }}
     >
+      <FrameGate active={active} />
       <ambientLight intensity={0.7} />
       <directionalLight position={[5, 6, 5]} intensity={1.4} />
       <directionalLight position={[-6, -3, -4]} intensity={0.5} color="#cfae6b" />
@@ -104,13 +197,12 @@ export function HeroScene({ progress }: { progress: MotionValue<number> }) {
         <Lightformer intensity={1.5} color="#cfae6b" position={[-5, 1, 3]} rotation={[0, Math.PI / 2, 0]} scale={[6, 2, 1]} />
         <Lightformer intensity={1.2} color="#ffffff" position={[5, -1, 3]} rotation={[0, -Math.PI / 2, 0]} scale={[6, 2, 1]} />
       </Environment>
-      <Float speed={1.1} rotationIntensity={0.25} floatIntensity={0.5}>
-        <Tile progress={progress} />
-      </Float>
-      <MineralCluster color="#cdc2b0" offset={0} progress={progress} />
-      <MineralCluster color="#a89a83" offset={1} progress={progress} />
-      <MineralCluster color="#e6d5ab" offset={2} progress={progress} />
-      <MineralCluster color="#6b5f4e" offset={3} progress={progress} />
+      <CeramicTile progress={progress} interactive={isDesktop} />
+      <MineralCluster color="#cdc2b0" offset={0} progress={progress} count={clusterCount} />
+      <MineralCluster color="#a89a83" offset={1} progress={progress} count={clusterCount} />
+      <MineralCluster color="#e6d5ab" offset={2} progress={progress} count={clusterCount} />
+      <MineralCluster color="#6b5f4e" offset={3} progress={progress} count={clusterCount} />
+      <ContactShadows position={[0, -2.4, 0]} opacity={0.4} scale={9} blur={2.6} far={4} resolution={256} color="#000000" />
     </Canvas>
   );
 }

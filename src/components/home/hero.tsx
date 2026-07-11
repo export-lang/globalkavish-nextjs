@@ -23,6 +23,7 @@ const STAGES = [
 export function Hero() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [canRender3d, setCanRender3d] = useState(false);
+  const [inView, setInView] = useState(true);
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -34,15 +35,26 @@ export function Hero() {
     setCanRender3d(!reduced);
   }, []);
 
+  // Pause the WebGL loop when the hero scrolls out of the viewport.
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(([entry]) => setInView(entry.isIntersecting), {
+      rootMargin: "10% 0px",
+    });
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section ref={sectionRef} className="relative h-[340vh]">
       <div className="sticky top-0 h-screen overflow-hidden bg-black">
         <div className="absolute inset-0">
-          {canRender3d && <HeroScene progress={scrollYProgress} />}
+          {canRender3d && <HeroScene progress={scrollYProgress} active={inView} />}
           <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black" />
         </div>
 
-        <Container className="relative flex h-full flex-col justify-between py-10 text-stone-50 md:py-16">
+        <Container className="relative flex h-full flex-col justify-between pb-10 pt-28 text-stone-50 md:pb-16 md:pt-36">
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}

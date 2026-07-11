@@ -4,6 +4,7 @@ import { Fraunces, Manrope } from "next/font/google";
 import { AppProviders } from "@/components/providers/app-providers";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
+import { AmbientLight } from "@/components/motion/ambient-light";
 import { WhatsAppButton } from "@/components/shared/whatsapp-button";
 import { CookieBanner } from "@/components/shared/cookie-banner";
 import { organizationJsonLd, siteUrl } from "@/lib/seo";
@@ -52,8 +53,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd()) }}
         />
         <AppProviders>
+          <AmbientLight />
           <Navbar />
-          <main className="flex-1">{children}</main>
+          <main className="relative z-[1] flex-1">{children}</main>
           <Footer />
           <WhatsAppButton />
           <CookieBanner />

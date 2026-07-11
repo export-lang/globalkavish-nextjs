@@ -9,11 +9,16 @@ Nothing here blocks the site; each item either improves it or needs your sign-of
    containers/month, 350,000 sqm annual production, 1200+ customers, 15+ years,
    1000+ collections, 10,000+ designs, 500+ dealers, 100,000 sqm factory area).
    Confirm these remain accurate; any you don't want public will be removed.
-2. **Certifications** — displayed as you supplied them: ISO 9001, ISO 14001, CE, BIS,
-   SGS, Intertek, Green Product Certification. Please provide certificate copies or
-   numbers so they can be substantiated (and shown) on the Quality page. "GVT" from
-   your list was treated as a product type, not a certificate — confirm.
-   "Any Export Certifications" — please name them specifically.
+2. **Certifications — REMOVED from public display** per your instruction until
+   supporting evidence exists. Your supplied list (ISO 9001, ISO 14001, CE, BIS, SGS,
+   Intertek, Green Product Certification) is preserved here; send certificate copies
+   or numbers and they will be restored to the Quality page. "GVT" from your list was
+   treated as a product type, not a certificate — confirm. "Any Export
+   Certifications" — please name them specifically.
+2b. **"Factory Area: 100,000 sqm" — withheld from public display** because a factory
+   area figure implies direct factory ownership, and Kavish Global is positioned as
+   an export/supply partner. Confirm how you'd like this presented (e.g., "partner
+   production area") or that it should stay hidden.
 3. **Manufacturer vs exporter wording** — per your brief the site says
    "Manufacturer & Exporter". Confirm this is the legally accurate description.
 4. **Manufacturing claims** — "Advanced Italian Machinery", "Digital Inkjet Printing",
@@ -40,8 +45,11 @@ Nothing here blocks the site; each item either improves it or needs your sign-of
    size, share them (or the PDFs) and product pages can list real designs.
 10. **Technical datasheets** — water absorption, breaking strength, PEI class,
     packing details (pcs/box, sqm/box, weight) per product type and size.
-11. **Factory / installation video** — the Media page holds an honest "in production"
-    note; send real video files or YouTube links to publish.
+11. **Video and operational media — none exists in the supplied Drive folder**
+    (verified: 15 images, 0 videos). To complete the visual story, share:
+    factory/production footage, container loading, packaging, warehouse, quality
+    inspection photos or clips, corporate/team imagery. The Media page structure will
+    grow sections automatically as real assets arrive.
 12. **Founding year** — for the About story ("15+ years" is shown).
 13. **Exact Google Maps pin** — a Maps share-link for the Nichi Mandal factory.
 14. **Missing product categories** — you listed Polished Vitrified Tiles, Parking

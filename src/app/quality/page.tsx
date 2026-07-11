@@ -1,13 +1,15 @@
 import { Container } from "@/components/shared/container";
 import { FadeIn } from "@/components/shared/reveal-text";
 import { SectionHeading } from "@/components/shared/section-heading";
+import { TileImage } from "@/components/shared/tile-image";
 import { company } from "@/lib/data/company";
+import { tileDesigns } from "@/lib/data/designs";
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata = buildMetadata({
-  title: "Quality & Certifications",
+  title: "Quality",
   description:
-    "Every Kavish Global shipment passes strict quality inspection, backed by ISO 9001, ISO 14001, CE, BIS, SGS, Intertek and Green Product certification.",
+    "Every Kavish Global shipment passes strict quality inspection, premium packaging and export-standard container loading.",
   path: "/quality",
 });
 
@@ -35,18 +37,26 @@ export default function QualityPage() {
         </div>
 
         <div className="mt-32">
-          <p className="mb-10 font-display text-3xl">Certifications &amp; Compliance</p>
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {company.certifications.map((cert) => (
-              <div key={cert.name} className="rounded-2xl border border-border-subtle p-6">
-                <p className="font-display text-xl">{cert.name}</p>
-                <p className="mt-2 text-sm text-foreground/60">{cert.detail}</p>
-              </div>
+          <p className="mb-3 font-display text-3xl">Shade Consistency, Face by Face</p>
+          <p className="mb-10 max-w-2xl text-sm text-foreground/60">
+            Five production faces of one design (Electra Almond Beige, 800×800 mm) — the controlled, natural
+            variation our shade batching keeps within tolerance across a full order.
+          </p>
+          <div className="grid grid-cols-2 gap-4 sm:grid-cols-5 md:gap-6">
+            {tileDesigns[4].imageIds.slice(5, 10).map((imageId, i) => (
+              <FadeIn key={imageId} delay={i * 0.05}>
+                <div className="group relative aspect-square overflow-hidden rounded-xl">
+                  <TileImage
+                    imageId={imageId}
+                    alt={`Production face ${i + 6} of ten — shade variation within tolerance`}
+                    fallbackSeed={`quality-face-${i}`}
+                    width={800}
+                    className="transition-transform duration-700 ease-out group-hover:scale-105"
+                  />
+                </div>
+              </FadeIn>
             ))}
           </div>
-          <p className="mt-6 text-xs text-foreground/40">
-            Certificate copies are available to buyers on request through our export team.
-          </p>
         </div>
       </Container>
     </div>

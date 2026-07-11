@@ -133,8 +133,8 @@ export function CollectionExplorer({ initialCategory }: { initialCategory?: stri
 
         {filtered.length > 0 ? (
           <div className="grid grid-cols-1 gap-x-8 gap-y-14 sm:grid-cols-2 xl:grid-cols-3">
-            {filtered.map((product) => (
-              <ProductCard key={product.slug} product={product} />
+            {filtered.map((product, i) => (
+              <ProductCard key={product.slug} product={product} driftDelay={(i % 6) * 0.5} />
             ))}
           </div>
         ) : (

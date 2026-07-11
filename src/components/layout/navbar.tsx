@@ -52,13 +52,22 @@ export function Navbar() {
 
   return (
     <>
-      <header
-        className={cn(
-          "fixed inset-x-0 top-0 z-50 transition-all duration-500",
-          scrolled ? "bg-background/80 backdrop-blur-xl border-b border-border-subtle" : "bg-transparent"
-        )}
+      <motion.header
+        initial={{ y: -32, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+        className={cn("fixed inset-x-0 z-50 transition-all duration-500", scrolled ? "top-2 md:top-3" : "top-4 md:top-6")}
       >
-        <Container className="flex h-20 items-center justify-between md:h-24">
+        <div
+          className={cn(
+            "mx-auto max-w-[1680px] rounded-full border transition-all duration-500 px-2",
+            "supports-[backdrop-filter]:backdrop-blur-xl",
+            scrolled
+              ? "mx-3 border-border-subtle bg-background/75 shadow-xl shadow-black/10 md:mx-6"
+              : "mx-4 border-transparent bg-background/30 md:mx-10"
+          )}
+        >
+        <Container className={cn("flex items-center justify-between transition-all duration-500", scrolled ? "h-14 md:h-16" : "h-16 md:h-20")}>
           <Link href="/" className="font-display text-xl tracking-[0.15em] md:text-2xl">
             KAVISH GLOBAL
           </Link>
@@ -165,7 +174,8 @@ export function Navbar() {
             </button>
           </div>
         </Container>
-      </header>
+        </div>
+      </motion.header>
 
       <AnimatePresence>
         {menuOpen && (

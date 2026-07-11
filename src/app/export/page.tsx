@@ -1,3 +1,4 @@
+import { ScrollFloat } from "@/components/motion/scroll-float";
 import { Container } from "@/components/shared/container";
 import { FadeIn } from "@/components/shared/reveal-text";
 import { SectionHeading } from "@/components/shared/section-heading";
@@ -79,7 +80,9 @@ export default function ExportPage() {
           </div>
           <div>
             <p className="mb-10 font-display text-3xl">Container Loading</p>
-            <ContainerLoadAnimation />
+            <ScrollFloat depth={0.35}>
+              <ContainerLoadAnimation />
+            </ScrollFloat>
             <p className="mt-8 mb-4 font-display text-xl">Export Documents We Handle</p>
             <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2">
               {documents.map((doc) => (

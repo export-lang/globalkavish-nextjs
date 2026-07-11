@@ -50,7 +50,9 @@ export const company = {
     { label: "Years of Experience", value: 15, suffix: "+" },
     { label: "Customers Served", value: 1200, suffix: "+" },
   ],
-  // Full stats grid for About / Why Us.
+  // Full stats grid for About / Why Us. "Factory Area" withheld from public
+  // display pending clarification (implies direct factory ownership) — see
+  // CONTENT_REQUIRED.md.
   allStats: [
     { label: "Export Countries", value: 52, suffix: "+" },
     { label: "Containers / Month", value: 100, suffix: "+" },
@@ -60,24 +62,16 @@ export const company = {
     { label: "Product Collections", value: 1000, suffix: "+" },
     { label: "Designs", value: 10000, suffix: "+" },
     { label: "Dealer Network", value: 500, suffix: "+" },
-    { label: "Factory Area", value: 100000, suffix: " sqm" },
   ],
-  certifications: [
-    { name: "ISO 9001", detail: "Quality Management Systems" },
-    { name: "ISO 14001", detail: "Environmental Management" },
-    { name: "CE", detail: "European Conformity" },
-    { name: "BIS", detail: "Bureau of Indian Standards" },
-    { name: "SGS", detail: "Third-Party Inspection & Testing" },
-    { name: "Intertek", detail: "Third-Party Quality Assurance" },
-    { name: "Green Product Certification", detail: "Sustainable Manufacturing" },
-  ],
+  // Certifications intentionally not displayed publicly until supporting
+  // documents are supplied — see CONTENT_REQUIRED.md.
   manufacturing: [
-    { title: "Advanced Italian Machinery", detail: "European pressing and finishing lines for consistent calibre and flatness." },
-    { title: "Digital Inkjet Printing", detail: "High-definition digital glazing for detailed, repeat-free surface designs." },
-    { title: "High Temperature Kilns", detail: "Controlled firing that vitrifies each tile into a dense, durable body." },
-    { title: "Strict Quality Inspection", detail: "Every batch checked for size, shade and surface quality before packing." },
+    { title: "Advanced Italian Machinery", detail: "Our qualified production partners run advanced Italian lines; we select and audit every factory we buy from." },
+    { title: "Digital Inkjet Printing", detail: "High-definition digital glazing across our network for detailed, repeat-free surface designs." },
+    { title: "High Temperature Kilns", detail: "High-temperature firing vitrifies each tile into a dense, durable body." },
+    { title: "Strict Quality Inspection", detail: "Our team checks every batch for size, shade and surface quality before packing." },
     { title: "Premium Packaging", detail: "Reinforced, moisture-safe export packaging with clear batch labelling." },
-    { title: "Export Standard Loading", detail: "Professional container loading planned for safe ocean transit." },
+    { title: "Export Standard Loading", detail: "Container loading coordinated and supervised to export standard." },
   ],
   whyChooseUs: [
     "Premium Quality",

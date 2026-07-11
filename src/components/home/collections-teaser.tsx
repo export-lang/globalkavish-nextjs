@@ -24,8 +24,8 @@ export function CollectionsTeaser() {
         </div>
 
         <div className="mt-16 grid grid-cols-1 gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-4">
-          {featured.map((product) => (
-            <ProductCard key={product.slug} product={product} />
+          {featured.map((product, i) => (
+            <ProductCard key={product.slug} product={product} driftDelay={i * 0.6} />
           ))}
         </div>
       </Container>

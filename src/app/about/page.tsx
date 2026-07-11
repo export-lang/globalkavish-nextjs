@@ -1,3 +1,5 @@
+import { DepthCard } from "@/components/motion/depth-card";
+import { ScrollFloat } from "@/components/motion/scroll-float";
 import { AnimatedCounter } from "@/components/shared/animated-counter";
 import { Container } from "@/components/shared/container";
 import { FadeIn } from "@/components/shared/reveal-text";
@@ -8,7 +10,7 @@ import { buildMetadata } from "@/lib/seo";
 export const metadata = buildMetadata({
   title: "About Us",
   description:
-    "Kavish Global is a leading Indian manufacturer and exporter of premium ceramic tiles and sanitaryware, delivering world-class surfaces to 52+ countries.",
+    "Kavish Global is a leading Indian exporter and supply partner for premium ceramic tiles and sanitaryware, delivering world-class surfaces to 52+ countries.",
   path: "/about",
 });
 
@@ -43,14 +45,22 @@ export default function AboutPage() {
         </div>
 
         <div className="mt-24 grid grid-cols-1 gap-10 md:grid-cols-2">
-          <FadeIn className="rounded-3xl border border-border-subtle p-10">
-            <p className="font-display text-2xl">Our Mission</p>
-            <p className="mt-4 leading-relaxed text-foreground/70">{company.story.mission}</p>
-          </FadeIn>
-          <FadeIn delay={0.1} className="rounded-3xl border border-border-subtle p-10">
-            <p className="font-display text-2xl">Our Vision</p>
-            <p className="mt-4 leading-relaxed text-foreground/70">{company.story.vision}</p>
-          </FadeIn>
+          <ScrollFloat depth={0.35}>
+            <FadeIn>
+              <DepthCard className="rounded-3xl border border-border-subtle bg-background/60 p-10 backdrop-blur-sm">
+                <p className="font-display text-2xl">Our Mission</p>
+                <p className="mt-4 leading-relaxed text-foreground/70">{company.story.mission}</p>
+              </DepthCard>
+            </FadeIn>
+          </ScrollFloat>
+          <ScrollFloat depth={-0.25} className="md:mt-10">
+            <FadeIn delay={0.1}>
+              <DepthCard driftDelay={0.8} className="rounded-3xl border border-border-subtle bg-background/60 p-10 backdrop-blur-sm">
+                <p className="font-display text-2xl">Our Vision</p>
+                <p className="mt-4 leading-relaxed text-foreground/70">{company.story.vision}</p>
+              </DepthCard>
+            </FadeIn>
+          </ScrollFloat>
         </div>
 
         <div className="mt-32">
@@ -66,7 +76,7 @@ export default function AboutPage() {
         </div>
 
         <div className="mt-32">
-          <p className="mb-14 font-display text-3xl md:text-4xl">How We Manufacture</p>
+          <p className="mb-14 font-display text-3xl md:text-4xl">Our Production Network</p>
           <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {company.manufacturing.map((item, i) => (
               <FadeIn key={item.title} delay={i * 0.05} className="rounded-2xl border border-border-subtle p-8">

@@ -1,8 +1,11 @@
+import { DepthCard } from "@/components/motion/depth-card";
+import { ScrollFloat } from "@/components/motion/scroll-float";
 import { Container } from "@/components/shared/container";
 import { FadeIn } from "@/components/shared/reveal-text";
 import { SectionHeading } from "@/components/shared/section-heading";
 import { TileImage } from "@/components/shared/tile-image";
 import { tileDesigns } from "@/lib/data/designs";
+import { cn } from "@/lib/utils";
 
 export function SignatureDesigns() {
   return (
@@ -11,27 +14,31 @@ export function SignatureDesigns() {
         <SectionHeading
           eyebrow="Signature Designs"
           title="Real surfaces, straight from production."
-          description="A selection of current designs from our factory floor — photographed from actual production tiles."
+          description="A selection of current designs from our production network — photographed from actual production tiles."
         />
 
         <div className="mt-16 grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-6">
           {tileDesigns.slice(0, 4).map((design, i) => (
-            <FadeIn key={design.slug} delay={i * 0.08}>
-              <div className="group relative aspect-[3/4] overflow-hidden rounded-2xl">
-                <TileImage
-                  imageId={design.imageIds[0]}
-                  alt={`${design.name} — ${design.size}mm tile design`}
-                  fallbackSeed={design.slug}
-                  className="transition-transform duration-700 ease-out group-hover:scale-105"
-                />
-                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-5 pt-14">
-                  <p className="font-display text-lg text-white">{design.name}</p>
-                  <p className="text-xs uppercase tracking-[0.2em] text-white/70">
-                    {design.size} mm{design.finish ? ` · ${design.finish}` : ""}
-                  </p>
-                </div>
-              </div>
-            </FadeIn>
+            <ScrollFloat key={design.slug} depth={i % 2 === 0 ? 0.4 : -0.3} className={cn(i % 2 === 1 && "md:mt-12")}>
+              <FadeIn delay={i * 0.08}>
+                <DepthCard driftDelay={i * 0.7}>
+                  <div className="group relative aspect-[3/4] overflow-hidden rounded-2xl">
+                    <TileImage
+                      imageId={design.imageIds[0]}
+                      alt={`${design.name} — ${design.size}mm tile design`}
+                      fallbackSeed={design.slug}
+                      className="transition-transform duration-700 ease-out group-hover:scale-105"
+                    />
+                    <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-5 pt-14">
+                      <p className="font-display text-lg text-white">{design.name}</p>
+                      <p className="text-xs uppercase tracking-[0.2em] text-white/70">
+                        {design.size} mm{design.finish ? ` · ${design.finish}` : ""}
+                      </p>
+                    </div>
+                  </div>
+                </DepthCard>
+              </FadeIn>
+            </ScrollFloat>
           ))}
         </div>
 

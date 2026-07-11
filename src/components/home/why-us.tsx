@@ -41,13 +41,13 @@ export function WhyUs() {
           </div>
           <div className="lg:col-span-2">
             <p className="text-xs font-medium uppercase tracking-[0.25em] text-foreground/40">
-              Certifications &amp; Compliance
+              Key Export Markets
             </p>
             <ul className="mt-6 space-y-5">
-              {company.certifications.map((cert) => (
-                <li key={cert.name} className="flex items-start justify-between border-b border-border-subtle pb-4">
-                  <span className="font-display text-lg">{cert.name}</span>
-                  <span className="max-w-[55%] text-right text-sm text-foreground/60">{cert.detail}</span>
+              {company.exportMarkets.map((market) => (
+                <li key={market} className="flex items-center gap-3 border-b border-border-subtle pb-4">
+                  <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-gold-500" />
+                  <span className="font-display text-lg">{market}</span>
                 </li>
               ))}
             </ul>

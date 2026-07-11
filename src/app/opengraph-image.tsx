@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
-export const alt = "Kavish Global — Premium Porcelain & Ceramic Exports";
+export const alt = "Global Kavish — Premium Ceramic Tiles & Sanitaryware Exports";
 
 export default async function Image() {
   return new ImageResponse(
@@ -20,7 +20,7 @@ export default async function Image() {
           backgroundImage: "linear-gradient(135deg, #0a0a0a 0%, #1c1712 60%, #332c23 100%)",
         }}
       >
-        <div style={{ display: "flex", fontSize: 28, color: "#cfae6b", letterSpacing: 6 }}>KAVISH GLOBAL</div>
+        <div style={{ display: "flex", fontSize: 28, color: "#cfae6b", letterSpacing: 6 }}>GLOBAL KAVISH</div>
         <div
           style={{
             display: "flex",
@@ -32,10 +32,10 @@ export default async function Image() {
             lineHeight: 1.1,
           }}
         >
-          Porcelain, exported to the world.
+          Premium ceramic, exported to the world.
         </div>
         <div style={{ display: "flex", marginTop: 32, fontSize: 28, color: "#a89a83" }}>
-          Ceramic · Porcelain · GVT · Large-Format Slabs — Morbi, India
+          Ceramic · Porcelain · GVT · Slabs · Sanitaryware — Morbi, India
         </div>
       </div>
     ),

@@ -3,13 +3,13 @@ import { FadeIn } from "@/components/shared/reveal-text";
 import { SectionHeading } from "@/components/shared/section-heading";
 import { WorldMap } from "@/components/shared/world-map";
 import { ContainerLoadAnimation } from "@/components/export/container-load-animation";
-import { exportCountries } from "@/lib/data/company";
+import { company, exportCountries } from "@/lib/data/company";
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata = buildMetadata({
   title: "Export Services",
   description:
-    "Kavish Global exports to 45+ countries with full documentation support — shipping bills, BRC, BL, OEM and private-label programs for ceramic and porcelain tiles.",
+    "Global Kavish exports to 52+ countries with full documentation support — shipping bills, BRC, BL, OEM and private-label programs for ceramic tiles and sanitaryware.",
   path: "/export",
 });
 
@@ -43,7 +43,17 @@ export default function ExportPage() {
 
         <div className="mt-16">
           <WorldMap countries={exportCountries} />
-          <div className="mt-8 flex flex-wrap gap-2">
+          <p className="mt-10 mb-4 text-xs font-medium uppercase tracking-[0.25em] text-foreground/40">
+            Key Export Markets
+          </p>
+          <div className="flex flex-wrap gap-2">
+            {company.exportMarkets.map((market) => (
+              <span key={market} className="rounded-full bg-gold-500/10 px-4 py-2 text-sm font-medium text-gold-600 dark:text-gold-400">
+                {market}
+              </span>
+            ))}
+          </div>
+          <div className="mt-6 flex flex-wrap gap-2">
             {exportCountries.map((c) => (
               <span key={c.code} className="rounded-full border border-border-subtle px-4 py-1.5 text-xs text-foreground/60">
                 {c.name}

@@ -6,7 +6,7 @@ import type { Product } from "@/lib/types";
 export function Downloads({ product }: { product: Product }) {
   const labels: { key: keyof Product["catalogueCodes"]; label: string }[] = [
     { key: "lyca", label: "Lyca Catalogue" },
-    { key: "kavish", label: "Kavish Catalogue" },
+    { key: "kavish", label: "Global Kavish Catalogue" },
     { key: "whiteLabel", label: "White Label Catalogue" },
   ];
 

@@ -1,40 +1,17 @@
+import { getCategory } from "@/lib/data/categories";
 import type { Product } from "@/lib/types";
 
-const TECHNICAL_BY_MATERIAL: Record<Product["material"], { label: string; value: string }[]> = {
-  Porcelain: [
-    { label: "Water Absorption", value: "≤ 0.5% (Group BIa)" },
-    { label: "Breaking Strength", value: "≥ 1300 N" },
-    { label: "PEI Abrasion Class", value: "Class IV–V" },
-    { label: "Frost Resistance", value: "Resistant" },
-  ],
-  Ceramic: [
-    { label: "Water Absorption", value: "10–20% (Group BIII)" },
-    { label: "Breaking Strength", value: "≥ 600 N" },
-    { label: "PEI Abrasion Class", value: "Class II–III" },
-    { label: "Frost Resistance", value: "Interior use" },
-  ],
-  Acrylic: [
-    { label: "Surface", value: "High-gloss, UV-cured" },
-    { label: "Core", value: "MDF / HMR substrate" },
-    { label: "Water Resistance", value: "High" },
-  ],
-  Sanitaryware: [
-    { label: "Construction", value: "Marine plywood carcass" },
-    { label: "Finish", value: "Lacquered, water-resistant" },
-    { label: "Hardware", value: "Soft-close hinges" },
-  ],
-};
-
 export function SpecTable({ product }: { product: Product }) {
-  const technical = TECHNICAL_BY_MATERIAL[product.material];
-
   const rows: { label: string; value: string }[] = [
     { label: "Material", value: product.material },
-    { label: "Available Sizes", value: product.sizes.join(", ") },
-    { label: "Finish", value: product.finish.join(", ") },
+    {
+      label: "Category",
+      value: product.categorySlugs.map((c) => getCategory(c)?.name).filter(Boolean).join(", "),
+    },
+    { label: "Available Sizes", value: product.sizes.length ? product.sizes.map((s) => `${s} mm`).join(", ") : "On request" },
+    { label: "Surface Finish", value: product.finish.length ? product.finish.join(", ") : "See catalogue" },
     { label: "Application", value: product.application.join(", ") },
-    { label: "Colour Range", value: product.color.join(", ") },
-    ...technical,
+    { label: "Catalogue Editions", value: "Lyca · Global Kavish · White Label" },
   ];
 
   return (
@@ -46,8 +23,8 @@ export function SpecTable({ product }: { product: Product }) {
         </div>
       ))}
       <p className="pt-4 text-xs text-foreground/40">
-        Typical values by category — confirm exact test-certificate figures with our export team before order
-        confirmation.
+        Full technical datasheets, packing details and test certificates are shared by our export team with each
+        catalogue — request them with the buttons below.
       </p>
     </div>
   );

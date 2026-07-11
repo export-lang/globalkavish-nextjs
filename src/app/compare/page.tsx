@@ -12,10 +12,9 @@ import { useCollections } from "@/lib/store";
 
 const ROWS: { label: string; get: (p: (typeof products)[number]) => string }[] = [
   { label: "Material", get: (p) => p.material },
-  { label: "Sizes", get: (p) => p.sizes.join(", ") },
-  { label: "Finish", get: (p) => p.finish.join(", ") },
+  { label: "Sizes", get: (p) => (p.sizes.length ? p.sizes.join(", ") : "On request") },
+  { label: "Finish", get: (p) => (p.finish.length ? p.finish.join(", ") : "See catalogue") },
   { label: "Application", get: (p) => p.application.join(", ") },
-  { label: "Colour", get: (p) => p.color.join(", ") },
 ];
 
 export default function ComparePage() {

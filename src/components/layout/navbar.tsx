@@ -63,7 +63,7 @@ export function Navbar() {
       >
         <Container className="flex h-20 items-center justify-between md:h-24">
           <Link href="/" className="font-display text-xl tracking-[0.15em] md:text-2xl">
-            KAVISH
+            GLOBAL KAVISH
           </Link>
 
           <nav className="hidden items-center gap-10 lg:flex">
@@ -200,7 +200,7 @@ export function Navbar() {
             className="fixed inset-0 z-[60] bg-background lg:hidden"
           >
             <Container className="flex h-20 items-center justify-between">
-              <span className="font-display text-xl tracking-[0.15em]">KAVISH</span>
+              <span className="font-display text-xl tracking-[0.15em]">GLOBAL KAVISH</span>
               <button
                 aria-label="Close menu"
                 onClick={() => setMenuOpen(false)}

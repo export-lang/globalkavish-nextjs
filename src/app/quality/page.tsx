@@ -7,7 +7,7 @@ import { buildMetadata } from "@/lib/seo";
 export const metadata = buildMetadata({
   title: "Quality & Certifications",
   description:
-    "Every Kavish Global shipment is inspected against dimensional, shade and strength standards, backed by ISO, CE and SASO certifications.",
+    "Every Global Kavish shipment is inspected against dimensional, shade and strength standards, backed by ISO 9001, ISO 14001, CE, BIS, SGS and Intertek certification.",
   path: "/quality",
 });
 
@@ -54,6 +54,18 @@ export default function QualityPage() {
               handling conditions, and labelled with size, shade batch and item code for easy customs and site
               verification.
             </p>
+          </div>
+        </div>
+
+        <div className="mt-32">
+          <p className="mb-10 font-display text-3xl">Manufacturing Advantages</p>
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {company.manufacturing.map((item) => (
+              <div key={item.title} className="rounded-2xl border border-border-subtle p-6">
+                <p className="font-display text-xl">{item.title}</p>
+                <p className="mt-2 text-sm text-foreground/60">{item.detail}</p>
+              </div>
+            ))}
           </div>
         </div>
 

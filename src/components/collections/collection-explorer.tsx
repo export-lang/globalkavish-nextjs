@@ -5,11 +5,11 @@ import { useMemo, useState } from "react";
 
 import { ProductCard } from "@/components/shared/product-card";
 import { categories } from "@/lib/data/categories";
-import { allApplications, allColors, allFinishes, allSizes, products } from "@/lib/data/products";
+import { allApplications, allFinishes, allSizes, products } from "@/lib/data/products";
 import type { Application } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
-type FilterKey = "category" | "size" | "finish" | "application" | "color";
+type FilterKey = "category" | "size" | "finish" | "application";
 
 function FilterGroup({
   title,
@@ -53,7 +53,6 @@ export function CollectionExplorer({ initialCategory }: { initialCategory?: stri
     size: [],
     finish: [],
     application: [],
-    color: [],
   });
 
   function toggle(key: FilterKey, value: string) {
@@ -64,7 +63,7 @@ export function CollectionExplorer({ initialCategory }: { initialCategory?: stri
   }
 
   function clearAll() {
-    setActive({ category: [], size: [], finish: [], application: [], color: [] });
+    setActive({ category: [], size: [], finish: [], application: [] });
     setQuery("");
   }
 
@@ -77,7 +76,6 @@ export function CollectionExplorer({ initialCategory }: { initialCategory?: stri
       if (active.size.length && !p.sizes.some((s) => active.size.includes(s))) return false;
       if (active.finish.length && !p.finish.some((f) => active.finish.includes(f))) return false;
       if (active.application.length && !p.application.some((a) => active.application.includes(a))) return false;
-      if (active.color.length && !p.color.some((c) => active.color.includes(c))) return false;
       return true;
     });
   }, [query, active]);
@@ -103,7 +101,6 @@ export function CollectionExplorer({ initialCategory }: { initialCategory?: stri
           <FilterGroup title="Application" options={allApplications as Application[]} active={active.application} onToggle={(v) => toggle("application", v)} />
           <FilterGroup title="Size" options={allSizes} active={active.size} onToggle={(v) => toggle("size", v)} />
           <FilterGroup title="Finish" options={allFinishes} active={active.finish} onToggle={(v) => toggle("finish", v)} />
-          <FilterGroup title="Colour" options={allColors} active={active.color} onToggle={(v) => toggle("color", v)} />
         </div>
       </aside>
 

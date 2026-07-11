@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!product) return buildMetadata({ title: "Collection", description: "Collection not found." });
   return buildMetadata({
     title: product.name,
-    description: `${product.description} Available in ${product.sizes.join(", ")}. Request an export quote from Kavish Global.`,
+    description: `${product.description} Request an export quote from Global Kavish.`,
     path: `/products/${product.slug}`,
   });
 }
@@ -102,13 +102,15 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
             <h1 className="mt-4 font-display text-5xl leading-[1.05] md:text-6xl">{product.name}</h1>
             <p className="mt-6 max-w-lg text-lg leading-relaxed text-foreground/70">{product.description}</p>
 
-            <div className="mt-8 flex flex-wrap gap-2">
-              {product.sizes.map((size) => (
-                <span key={size} className="rounded-full border border-border-subtle px-4 py-2 text-sm">
-                  {size} mm
-                </span>
-              ))}
-            </div>
+            {product.sizes.length > 0 && (
+              <div className="mt-8 flex flex-wrap gap-2">
+                {product.sizes.map((size) => (
+                  <span key={size} className="rounded-full border border-border-subtle px-4 py-2 text-sm">
+                    {size} mm
+                  </span>
+                ))}
+              </div>
+            )}
 
             <div className="mt-10 flex flex-wrap gap-4">
               <Button asChild size="lg">

@@ -4,6 +4,7 @@ import { Heart, Scale } from "lucide-react";
 import Link from "next/link";
 
 import { ProductSwatch } from "@/components/shared/product-swatch";
+import { getCategory } from "@/lib/data/categories";
 import { useCollections } from "@/lib/store";
 import type { Product } from "@/lib/types";
 import { cn } from "@/lib/utils";
@@ -50,7 +51,10 @@ export function ProductCard({ product, className }: { product: Product; classNam
       <div className="mt-4 flex items-start justify-between gap-2">
         <div>
           <h3 className="font-display text-xl">{product.name}</h3>
-          <p className="mt-1 text-sm text-foreground/50">{product.finish.join(" · ")}</p>
+          <p className="mt-1 text-sm text-foreground/50">
+            {getCategory(product.categorySlugs[0])?.shortName}
+            {product.finish.length > 0 && ` · ${product.finish.join(" · ")}`}
+          </p>
         </div>
       </div>
     </div>

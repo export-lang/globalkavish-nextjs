@@ -10,9 +10,9 @@ export function WhyUs() {
     <section className="border-t border-border-subtle py-24 md:py-32">
       <Container>
         <SectionHeading
-          eyebrow="Why Kavish"
+          eyebrow="Why Global Kavish"
           title="Manufacturing scale, export discipline."
-          description="Four decades of Morbi's ceramic expertise, coordinated across a partner network built for consistent, on-time global export."
+          description={company.story.whoWeAre}
         />
 
         <div className="mt-16 grid grid-cols-2 gap-8 border-y border-border-subtle py-12 md:grid-cols-4">
@@ -21,6 +21,17 @@ export function WhyUs() {
               <AnimatedCounter value={stat.value} suffix={stat.suffix} />
               <p className="mt-2 text-sm text-foreground/60">{stat.label}</p>
             </FadeIn>
+          ))}
+        </div>
+
+        <div className="mt-12 flex flex-wrap gap-2">
+          {company.whyChooseUs.map((item) => (
+            <span
+              key={item}
+              className="rounded-full border border-border-subtle px-4 py-2 text-sm text-foreground/70"
+            >
+              {item}
+            </span>
           ))}
         </div>
 

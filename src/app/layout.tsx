@@ -26,11 +26,11 @@ const manrope = Manrope({
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: `${company.legalName} — Premium Porcelain & Ceramic Exports`,
+    default: `${company.legalName} — Premium Ceramic Tiles & Sanitaryware Exports`,
     template: `%s | ${company.brandName}`,
   },
   description:
-    "Kavish Global exports premium porcelain, ceramic, GVT and large-format slab tiles from Morbi, India to 45+ countries — engineered surfaces for architects, distributors and OEM partners.",
+    "Global Kavish exports premium ceramic tiles, GVT, large-format slabs and sanitaryware from Morbi, India to 52+ countries — engineered surfaces for architects, distributors and OEM partners.",
   keywords: [
     "ceramic tiles exporter",
     "porcelain tiles India",
@@ -38,6 +38,7 @@ export const metadata: Metadata = {
     "Morbi tiles export",
     "vitrified tiles supplier",
     "sanitaryware export",
+    "Global Kavish",
   ],
   robots: { index: true, follow: true },
 };

@@ -9,7 +9,7 @@ import { buildMetadata } from "@/lib/seo";
 
 export const metadata = buildMetadata({
   title: "Media & Downloads",
-  description: "Factory footage, installation videos and downloadable catalogues from Kavish Global.",
+  description: "Factory footage, installation videos and downloadable catalogues from Global Kavish.",
   path: "/media",
 });
 

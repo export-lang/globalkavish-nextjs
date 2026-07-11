@@ -10,7 +10,7 @@ import { buildMetadata } from "@/lib/seo";
 export const metadata = buildMetadata({
   title: "Contact Us",
   description:
-    "Get in touch with Kavish Global for export enquiries, OEM programs and catalogue requests. Office and factory in Morbi, Gujarat, India.",
+    "Get in touch with Global Kavish for export enquiries, OEM programs and catalogue requests. Factory in Morbi and office in Rajkot, Gujarat, India.",
   path: "/contact",
 });
 
@@ -63,8 +63,8 @@ export default function ContactPage() {
 
             <div className="mt-8 aspect-video overflow-hidden rounded-2xl border border-border-subtle">
               <iframe
-                title="Kavish Global location"
-                src="https://www.google.com/maps?q=Morbi,Gujarat,India&output=embed"
+                title="Global Kavish factory location"
+                src="https://www.google.com/maps?q=Nichi+Mandal,+Morbi,+Gujarat+363642,+India&output=embed"
                 className="h-full w-full grayscale"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"

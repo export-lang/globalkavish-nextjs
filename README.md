@@ -1,8 +1,8 @@
-# Kavish Global — Premium Porcelain & Ceramic Export Website
+# Global Kavish — Premium Ceramic Tiles & Sanitaryware Export Website
 
-A cinematic, Awwwards-grade marketing site for Kavish Global, a ceramic/porcelain export
-house based in Morbi, Gujarat. Built with Next.js 15 (App Router), React Three Fiber,
-Framer Motion, GSAP and Lenis smooth scroll.
+A cinematic, Awwwards-grade marketing site for Global Kavish, a ceramic tile and
+sanitaryware export house based in Morbi, Gujarat. Built with Next.js 15 (App Router),
+React Three Fiber, Framer Motion, GSAP and Lenis smooth scroll.
 
 ## Stack
 
@@ -36,16 +36,15 @@ src/
 ## Data sourcing
 
 - **Product catalogue** (`lib/data/products.ts`, `categories.ts`): seeded from the company's
-  real "All Catalogue Link" product register — collection names, categories and sizes are
-  real; finish/application/colour tags and marketing copy are editorial enrichment pending
-  real datasheets and photography.
-- **Company/about/export copy** (`lib/data/company.ts`): the live globalkavish.com site
-  could not be crawled automatically (it's hosted on Google Sites and blocks bot fetches),
-  so narrative copy is placeholder, built only from verified facts (Morbi/Gujarat origin,
-  export/OEM/private-label model). Replace before launch.
-- **Product imagery**: no real photography was available, so `ProductSwatch` generates a
-  deterministic gradient/grid visual per product as a placeholder. Swap in real photography
-  (ideally via a headless CMS — see below) before launch.
+  authoritative "All Catalogue Link" Google Sheet — names, categories, sizes and catalogue
+  codes are real. Finish tags appear only where the sheet states them; colour data and
+  datasheets are pending (see TODO.md).
+- **Company data** (`lib/data/company.ts`): story, mission/vision/values, statistics,
+  certifications, contact details and export markets supplied directly by Global Kavish.
+- **Product imagery** (`lib/data/designs.ts`): five real designs load from the company's
+  publicly shared Google Drive (Gaios, Armani Rich Bianco, Adobe Emprador, Rome Black,
+  Electra Almond Beige). All other collections show a generated `ProductSwatch` placeholder
+  until per-collection photography is supplied — tracked in TODO.md.
 
 ## Headless CMS migration path
 

@@ -208,6 +208,15 @@ body {
   }
 }
 
+/* Hero main slab: clay-body thickness edge, soft contact shadow, subtle ring */
+.ceramic-slab {
+  box-shadow:
+    9px 13px 0 -2px #b6a892,
+    14px 20px 0 -4px #9c8f79,
+    0 55px 100px -25px rgba(0, 0, 0, 0.6);
+  outline: 1px solid rgba(255, 255, 255, 0.06);
+}
+
 /* Site-wide floating ceramic slabs (components/motion/ambient-tile-field.tsx) */
 .ambient-slab {
   opacity: 0.07;

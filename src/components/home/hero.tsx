@@ -23,11 +23,11 @@ const STAGES = [
   { range: [0.58, 1], label: "Kavish Global.", sub: "Premium ceramic surfaces, exported to the world." },
 ];
 
-// Local, production-reliable slab textures (public/media). Swap any of these
-// files for a real Kavish product photo — same path, no code change needed.
-const MAIN_SRC = "/media/kavish-slab-white.svg";
-const FOREGROUND_SRC = "/media/kavish-slab-dark.svg";
-const BACKGROUND_SRC = "/media/kavish-slab-beige.svg";
+// Real Kavish product: Luxe Calacatta Golden (four production faces served
+// locally from public/media). Different faces per depth plane for variety.
+const MAIN_SRC = "/media/kavish-calacatta-golden-1.jpg";
+const FOREGROUND_SRC = "/media/kavish-calacatta-golden-3.jpg";
+const BACKGROUND_SRC = "/media/kavish-calacatta-golden-2.jpg";
 
 export function Hero() {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -102,7 +102,7 @@ export function Hero() {
             >
               <img
                 src={MAIN_SRC}
-                alt="Kavish Global premium porcelain slab"
+                alt="Kavish Global Luxe Calacatta Golden porcelain slab"
                 className="h-full w-full object-cover"
               />
               {/* rim light + sheen */}

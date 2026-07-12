@@ -13,8 +13,7 @@ export function Footer() {
         <div className="lg:col-span-2">
           <span className="font-display text-2xl tracking-[0.15em]">KAVISH GLOBAL</span>
           <p className="mt-6 max-w-sm text-sm leading-relaxed text-foreground/60">
-            {company.tagline} Sourced from {company.founded} and exported to{" "}
-            {String(company.stats[0].value)}+ countries.
+            {company.tagline} Sourced from {company.founded} and exported to international markets.
           </p>
           <div className="mt-8 flex gap-3">
             {[
@@ -89,7 +88,12 @@ export function Footer() {
 
       <Container className="flex flex-col items-center justify-between gap-4 border-t border-border-subtle py-8 text-xs text-foreground/40 md:flex-row">
         <p>© {new Date().getFullYear()} {company.legalName}. All rights reserved.</p>
-        <p>Designed &amp; engineered for global export.</p>
+        <p>
+          Designed &amp; engineered for global export.
+          {process.env.VERCEL_GIT_COMMIT_SHA && (
+            <span className="ml-2 opacity-60">build {process.env.VERCEL_GIT_COMMIT_SHA.slice(0, 7)}</span>
+          )}
+        </p>
       </Container>
     </footer>
   );

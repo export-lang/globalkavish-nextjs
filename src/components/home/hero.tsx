@@ -15,9 +15,9 @@ const HeroScene = dynamic(() => import("./hero-scene").then((m) => m.HeroScene),
 
 const STAGES = [
   { range: [0, 0.22], label: "Kaolin. Feldspar. Silica. Clay.", sub: "Raw minerals, gathered from the earth." },
-  { range: [0.22, 0.48], label: "Pressed on advanced Italian machinery.", sub: "Compacted into a single dense body." },
+  { range: [0.22, 0.48], label: "Pressed into a single dense body.", sub: "Compacted, calibrated, ready to fire." },
   { range: [0.48, 0.75], label: "Digitally printed. Kiln fired.", sub: "High-definition inkjet design, vitrified at high temperature." },
-  { range: [0.75, 1], label: "Kavish Global.", sub: "Premium ceramic, exported to 52+ countries." },
+  { range: [0.75, 1], label: "Kavish Global.", sub: "Premium ceramic surfaces, exported to the world." },
 ];
 
 export function Hero() {

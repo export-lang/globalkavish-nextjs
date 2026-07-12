@@ -1,4 +1,3 @@
-import { AnimatedCounter } from "@/components/shared/animated-counter";
 import { Container } from "@/components/shared/container";
 import { FadeIn } from "@/components/shared/reveal-text";
 import { SectionHeading } from "@/components/shared/section-heading";
@@ -7,19 +6,19 @@ import { company, exportCountries } from "@/lib/data/company";
 
 export function WhyUs() {
   return (
-    <section className="border-t border-border-subtle py-24 md:py-32">
+    <section className="relative py-24 md:py-32">
       <Container>
         <SectionHeading
           eyebrow="Why Kavish Global"
-          title="Manufacturing scale, export discipline."
+          title="An export partner built for scale."
           description={company.story.whoWeAre}
         />
 
-        <div className="mt-16 grid grid-cols-2 gap-8 border-y border-border-subtle py-12 md:grid-cols-4">
-          {company.stats.map((stat) => (
-            <FadeIn key={stat.label}>
-              <AnimatedCounter value={stat.value} suffix={stat.suffix} />
-              <p className="mt-2 text-sm text-foreground/60">{stat.label}</p>
+        <div className="mt-16 grid grid-cols-1 gap-8 border-y border-border-subtle py-12 sm:grid-cols-2 lg:grid-cols-4">
+          {company.strengths.map((s, i) => (
+            <FadeIn key={s.title} delay={i * 0.08}>
+              <p className="font-display text-2xl">{s.title}</p>
+              <p className="mt-2 text-sm leading-relaxed text-foreground/60">{s.detail}</p>
             </FadeIn>
           ))}
         </div>

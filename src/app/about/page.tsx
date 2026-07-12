@@ -1,6 +1,5 @@
 import { DepthCard } from "@/components/motion/depth-card";
 import { ScrollFloat } from "@/components/motion/scroll-float";
-import { AnimatedCounter } from "@/components/shared/animated-counter";
 import { Container } from "@/components/shared/container";
 import { FadeIn } from "@/components/shared/reveal-text";
 import { SectionHeading } from "@/components/shared/section-heading";
@@ -10,7 +9,7 @@ import { buildMetadata } from "@/lib/seo";
 export const metadata = buildMetadata({
   title: "About Us",
   description:
-    "Kavish Global is a leading Indian exporter and supply partner for premium ceramic tiles and sanitaryware, delivering world-class surfaces to 52+ countries.",
+    "Kavish Global is a leading Indian exporter and supply partner for premium ceramic tiles and sanitaryware, delivering world-class surfaces to international markets.",
   path: "/about",
 });
 
@@ -35,11 +34,11 @@ export default function AboutPage() {
           </div>
         </FadeIn>
 
-        <div className="mt-24 grid grid-cols-2 gap-x-8 gap-y-12 border-y border-border-subtle py-14 sm:grid-cols-3">
-          {company.allStats.map((stat) => (
-            <FadeIn key={stat.label}>
-              <AnimatedCounter value={stat.value} suffix={stat.suffix} />
-              <p className="mt-2 text-sm text-foreground/60">{stat.label}</p>
+        <div className="mt-24 grid grid-cols-1 gap-x-8 gap-y-10 border-y border-border-subtle py-14 sm:grid-cols-2 lg:grid-cols-4">
+          {company.strengths.map((s, i) => (
+            <FadeIn key={s.title} delay={i * 0.08}>
+              <p className="font-display text-2xl">{s.title}</p>
+              <p className="mt-2 text-sm leading-relaxed text-foreground/60">{s.detail}</p>
             </FadeIn>
           ))}
         </div>

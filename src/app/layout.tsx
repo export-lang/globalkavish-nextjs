@@ -5,6 +5,7 @@ import { AppProviders } from "@/components/providers/app-providers";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { AmbientLight } from "@/components/motion/ambient-light";
+import { AmbientTileField } from "@/components/motion/ambient-tile-field";
 import { WhatsAppButton } from "@/components/shared/whatsapp-button";
 import { CookieBanner } from "@/components/shared/cookie-banner";
 import { organizationJsonLd, siteUrl } from "@/lib/seo";
@@ -31,7 +32,7 @@ export const metadata: Metadata = {
     template: `%s | ${company.brandName}`,
   },
   description:
-    "Kavish Global exports premium ceramic tiles, GVT, large-format slabs and sanitaryware from Morbi, India to 52+ countries — engineered surfaces for architects, distributors and OEM partners.",
+    "Kavish Global exports premium ceramic tiles, GVT, large-format slabs and sanitaryware from Morbi, India to international markets — engineered surfaces for architects, distributors and OEM partners.",
   keywords: [
     "ceramic tiles exporter",
     "porcelain tiles India",
@@ -53,6 +54,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd()) }}
         />
         <AppProviders>
+          <AmbientTileField />
           <AmbientLight />
           <Navbar />
           <main className="relative z-[1] flex-1">{children}</main>

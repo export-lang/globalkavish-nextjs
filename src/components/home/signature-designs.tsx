@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils";
 
 export function SignatureDesigns() {
   return (
-    <section className="border-t border-border-subtle py-24 md:py-32">
+    <section className="relative z-[2] -mt-10 rounded-t-[2.5rem] bg-background/75 py-24 shadow-[0_-40px_90px_-50px_rgba(0,0,0,0.55)] backdrop-blur-md md:-mt-16 md:rounded-t-[3.5rem] md:py-32">
       <Container>
         <SectionHeading
           eyebrow="Signature Designs"

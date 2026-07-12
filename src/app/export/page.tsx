@@ -10,7 +10,7 @@ import { buildMetadata } from "@/lib/seo";
 export const metadata = buildMetadata({
   title: "Export Services",
   description:
-    "Kavish Global exports to 52+ countries with full documentation support — shipping bills, BRC, BL, OEM and private-label programs for ceramic tiles and sanitaryware.",
+    "Kavish Global exports to international markets with full documentation support — shipping bills, BRC, BL, OEM and private-label programs for ceramic tiles and sanitaryware.",
   path: "/export",
 });
 

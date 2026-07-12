@@ -9,7 +9,7 @@ import { buildMetadata } from "@/lib/seo";
 export const metadata = buildMetadata({
   title: "Kavish Global — Premium Ceramic Tiles & Sanitaryware Exports",
   description:
-    "Kavish Global exports premium ceramic tiles, GVT, large-format slabs and sanitaryware from Morbi, India to 52+ countries. Explore our collections, factory process and export services.",
+    "Kavish Global exports premium ceramic tiles, GVT, large-format slabs and sanitaryware from Morbi, India to international markets. Explore our collections, process and export services.",
   path: "/",
 });
 

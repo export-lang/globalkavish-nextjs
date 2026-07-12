@@ -5,24 +5,36 @@ Nothing here blocks the site; each item either improves it or needs your sign-of
 
 ## Needs your confirmation
 
-1. **Statistics** — currently displayed as you supplied them (52+ countries, 100+
-   containers/month, 350,000 sqm annual production, 1200+ customers, 15+ years,
-   1000+ collections, 10,000+ designs, 500+ dealers, 100,000 sqm factory area).
-   Confirm these remain accurate; any you don't want public will be removed.
-2. **Certifications — REMOVED from public display** per your instruction until
-   supporting evidence exists. Your supplied list (ISO 9001, ISO 14001, CE, BIS, SGS,
-   Intertek, Green Product Certification) is preserved here; send certificate copies
-   or numbers and they will be restored to the Quality page. "GVT" from your list was
-   treated as a product type, not a certificate — confirm. "Any Export
-   Certifications" — please name them specifically.
-2b. **"Factory Area: 100,000 sqm" — withheld from public display** because a factory
-   area figure implies direct factory ownership, and Kavish Global is positioned as
-   an export/supply partner. Confirm how you'd like this presented (e.g., "partner
-   production area") or that it should stay hidden.
-3. **Manufacturer vs exporter wording** — per your brief the site says
-   "Manufacturer & Exporter". Confirm this is the legally accurate description.
-4. **Manufacturing claims** — "Advanced Italian Machinery", "Digital Inkjet Printing",
-   "High Temperature Kilns" are shown as supplied in your brief. Confirm.
+1. **ALL NUMERIC STATISTICS — now REMOVED from public display** pending your
+   verified confirmation. These were withheld because they read as unverified
+   business claims on a live production site. Send confirmed figures and I will
+   restore them (as animated counters). Values you supplied, preserved for restore:
+   - Export Countries: **52+**
+   - Container Shipments: **100+ / month**
+   - Annual Production: **350,000 sqm**
+   - Customers Served: **1,200+**
+   - Years of Experience: **15+**
+   - Product Collections: **1,000+**
+   - Designs: **10,000+**
+   - Dealer Network: **500**
+   - Factory Area: **100,000 sqm** (also implies factory ownership — see #3)
+
+   In their place the site now shows qualitative strengths (global reach, curated
+   range, qualified production network, in-house documentation).
+2. **Certifications — REMOVED from public display** until supporting evidence
+   exists. Your supplied list (ISO 9001, ISO 14001, CE, BIS, SGS, Intertek, Green
+   Product Certification) is preserved here; send certificate copies or numbers and
+   they will be restored to the Quality page. "GVT" from your list was treated as a
+   product type, not a certificate — confirm. "Any Export Certifications" — please
+   name them specifically.
+3. **Factory-ownership language — softened.** "Advanced Italian Machinery",
+   "European pressing and finishing lines", "our factory floor", "Manufactured in
+   Morbi" and "Factory Area" all implied Kavish Global directly owns a factory. The
+   site now positions the company as an **exporter and supply partner with a
+   qualified, audited production network** in the Morbi cluster. If Kavish Global
+   does own/operate a factory, send proof and the stronger wording can return.
+4. **Manufacturer vs exporter wording** — your brief said "Manufacturer & Exporter";
+   the site now says "exporter and supply partner". Confirm which is legally accurate.
 5. **Social media URLs** — footer links to /globalkavish handles on Instagram,
    Facebook, LinkedIn and YouTube. Send the real profile URLs (or ask to remove icons).
 6. **Sheet data oddities (Kavish column)** — please check these rows in the

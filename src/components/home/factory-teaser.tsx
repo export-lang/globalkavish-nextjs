@@ -13,7 +13,7 @@ export function FactoryTeaser() {
   const scaleY = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
   return (
-    <section className="relative overflow-hidden border-t border-border-subtle bg-ink py-24 text-stone-50 md:py-32">
+    <section className="relative z-[2] -mt-10 overflow-hidden rounded-t-[2.5rem] bg-ink py-24 text-stone-50 shadow-[0_-40px_90px_-50px_rgba(0,0,0,0.75)] md:-mt-16 md:rounded-t-[3.5rem] md:py-32">
       <Container>
         <SectionHeading
           eyebrow="Manufacturing"

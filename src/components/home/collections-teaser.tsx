@@ -10,7 +10,7 @@ export function CollectionsTeaser() {
   const featured = getFeaturedProducts();
 
   return (
-    <section className="border-t border-border-subtle py-24 md:py-32">
+    <section className="relative py-24 md:py-32">
       <Container>
         <div className="flex flex-col items-start justify-between gap-8 md:flex-row md:items-end">
           <SectionHeading

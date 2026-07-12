@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 
 export function Cta() {
   return (
-    <section className="border-t border-border-subtle py-28 md:py-40">
+    <section className="relative z-[2] -mt-10 rounded-t-[2.5rem] bg-background/75 py-28 shadow-[0_-40px_90px_-50px_rgba(0,0,0,0.55)] backdrop-blur-md md:-mt-16 md:rounded-t-[3.5rem] md:py-40">
       <Container className="text-center">
         <FadeIn>
           <p className="text-xs font-medium uppercase tracking-[0.3em] text-gold-500">Start an Export Enquiry</p>

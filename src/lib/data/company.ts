@@ -43,30 +43,23 @@ export const company = {
       "Continuous Improvement",
     ],
   },
-  // Headline stats for the homepage counters.
-  stats: [
-    { label: "Export Countries", value: 52, suffix: "+" },
-    { label: "Containers Shipped / Month", value: 100, suffix: "+" },
-    { label: "Years of Experience", value: 15, suffix: "+" },
-    { label: "Customers Served", value: 1200, suffix: "+" },
-  ],
-  // Full stats grid for About / Why Us. "Factory Area" withheld from public
-  // display pending clarification (implies direct factory ownership) — see
-  // CONTENT_REQUIRED.md.
-  allStats: [
-    { label: "Export Countries", value: 52, suffix: "+" },
-    { label: "Containers / Month", value: 100, suffix: "+" },
-    { label: "Annual Production", value: 350000, suffix: " sqm" },
-    { label: "Customers Served", value: 1200, suffix: "+" },
-    { label: "Years of Experience", value: 15, suffix: "+" },
-    { label: "Product Collections", value: 1000, suffix: "+" },
-    { label: "Designs", value: 10000, suffix: "+" },
-    { label: "Dealer Network", value: 500, suffix: "+" },
+  // NUMERIC STATISTICS (52+ countries, 100+ containers/month, 350,000 sqm,
+  // 1200+ customers, 15+ years, 1000+ collections, 10,000+ designs, 500
+  // dealers, 100,000 sqm factory) are WITHHELD from public display pending
+  // your confirmation of verified figures — see CONTENT_REQUIRED.md. They are
+  // NOT rendered anywhere on the public site.
+
+  // Qualitative strengths shown in place of unverified numbers.
+  strengths: [
+    { title: "Global Export Reach", detail: "Serving distributors, retailers and importers across international markets." },
+    { title: "Curated Product Range", detail: "Ceramic, porcelain, GVT, large-format slabs and sanitaryware in one catalogue." },
+    { title: "Qualified Production Network", detail: "We select and audit the factories we source from across the Morbi cluster." },
+    { title: "Export Documentation", detail: "Full paperwork handled in-house — invoice, packing list, BL, certificate of origin." },
   ],
   // Certifications intentionally not displayed publicly until supporting
   // documents are supplied — see CONTENT_REQUIRED.md.
   manufacturing: [
-    { title: "Advanced Italian Machinery", detail: "Our qualified production partners run advanced Italian lines; we select and audit every factory we buy from." },
+    { title: "Modern Production Partners", detail: "We source from factories running modern pressing, glazing and finishing lines, and audit each one we buy from." },
     { title: "Digital Inkjet Printing", detail: "High-definition digital glazing across our network for detailed, repeat-free surface designs." },
     { title: "High Temperature Kilns", detail: "High-temperature firing vitrifies each tile into a dense, durable body." },
     { title: "Strict Quality Inspection", detail: "Our team checks every batch for size, shade and surface quality before packing." },
@@ -101,42 +94,24 @@ export const company = {
   ],
 } as const;
 
+/**
+ * Only the export markets Kavish Global explicitly stated. No invented
+ * countries and no total count are shown — the map is a conceptual reach
+ * visual built strictly from these confirmed markets.
+ */
 export const exportCountries: Country[] = [
   { code: "US", name: "United States", region: "Americas" },
   { code: "CA", name: "Canada", region: "Americas" },
   { code: "MX", name: "Mexico", region: "Americas" },
-  { code: "BR", name: "Brazil", region: "Americas" },
-  { code: "PA", name: "Panama", region: "Americas" },
   { code: "GB", name: "United Kingdom", region: "Europe" },
   { code: "DE", name: "Germany", region: "Europe" },
   { code: "FR", name: "France", region: "Europe" },
-  { code: "NL", name: "Netherlands", region: "Europe" },
-  { code: "ES", name: "Spain", region: "Europe" },
-  { code: "IT", name: "Italy", region: "Europe" },
-  { code: "PL", name: "Poland", region: "Europe" },
-  { code: "AE", name: "United Arab Emirates", region: "Middle East" },
-  { code: "SA", name: "Saudi Arabia", region: "Middle East" },
-  { code: "QA", name: "Qatar", region: "Middle East" },
-  { code: "OM", name: "Oman", region: "Middle East" },
-  { code: "KW", name: "Kuwait", region: "Middle East" },
-  { code: "BH", name: "Bahrain", region: "Middle East" },
-  { code: "IQ", name: "Iraq", region: "Middle East" },
-  { code: "JO", name: "Jordan", region: "Middle East" },
   { code: "ZA", name: "South Africa", region: "Africa" },
-  { code: "NG", name: "Nigeria", region: "Africa" },
-  { code: "KE", name: "Kenya", region: "Africa" },
-  { code: "TZ", name: "Tanzania", region: "Africa" },
-  { code: "GH", name: "Ghana", region: "Africa" },
-  { code: "EG", name: "Egypt", region: "Africa" },
-  { code: "DZ", name: "Algeria", region: "Africa" },
   { code: "AU", name: "Australia", region: "Oceania" },
   { code: "NZ", name: "New Zealand", region: "Oceania" },
-  { code: "MY", name: "Malaysia", region: "Asia" },
-  { code: "SG", name: "Singapore", region: "Asia" },
-  { code: "PH", name: "Philippines", region: "Asia" },
-  { code: "VN", name: "Vietnam", region: "Asia" },
-  { code: "BD", name: "Bangladesh", region: "Asia" },
-  { code: "LK", name: "Sri Lanka", region: "Asia" },
-  { code: "NP", name: "Nepal", region: "Asia" },
+  // "Middle East" and "Latin America" are stated as regions — represented
+  // by an anchor point each, not specific unconfirmed countries.
+  { code: "AE", name: "Middle East", region: "Middle East" },
+  { code: "BR", name: "Latin America", region: "Americas" },
 ];
 

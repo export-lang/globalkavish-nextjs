@@ -14,9 +14,11 @@ export function AnimatedCounter({
 }) {
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true });
-  const motionValue = useMotionValue(0);
+  const motionValue = useMotionValue(value);
   const rounded = useTransform(motionValue, (latest) => Math.round(latest).toLocaleString("en-US"));
-  const [display, setDisplay] = useState("0");
+  // Render the real figure from the first paint (SSR included) — a statistic
+  // must never be visible as "0". The count-up only runs once in view.
+  const [display, setDisplay] = useState(value.toLocaleString("en-US"));
 
   useEffect(() => {
     if (!inView) return;
@@ -24,8 +26,9 @@ export function AnimatedCounter({
       motionValue.set(value);
       return;
     }
+    motionValue.set(0);
     const controls = animate(motionValue, value, { duration, ease: [0.16, 1, 0.3, 1] });
-    // Safety net: never leave a real statistic stuck at "0".
+    // Safety net: never leave a real statistic stuck below its true value.
     const settle = window.setTimeout(() => motionValue.set(value), (duration + 1) * 1000);
     return () => {
       controls.stop();

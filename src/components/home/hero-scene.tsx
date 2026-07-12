@@ -91,13 +91,14 @@ function CeramicTile({ progress, interactive }: { progress: MotionValue<number>;
       g.rotation.y = THREE.MathUtils.lerp(g.rotation.y, 0.18, 0.04);
     }
 
-    // Scroll formation: raw body → glazed finished surface.
-    const scale = THREE.MathUtils.lerp(0.6, 1, p);
+    // Scroll formation: the slab is already clearly present and floating on
+    // load (progress 0), then refines to a glazed finished surface.
+    const scale = THREE.MathUtils.lerp(0.78, 1, p);
     m.scale.setScalar(scale);
     const face = materials[4] as THREE.MeshPhysicalMaterial;
-    face.roughness = THREE.MathUtils.lerp(0.85, 0.16, p);
-    face.clearcoat = THREE.MathUtils.lerp(0, 0.9, p);
-    const opacity = THREE.MathUtils.clamp(0.25 + p * 1.4, 0.25, 1);
+    face.roughness = THREE.MathUtils.lerp(0.62, 0.16, p);
+    face.clearcoat = THREE.MathUtils.lerp(0.2, 0.95, p);
+    const opacity = THREE.MathUtils.clamp(0.6 + p * 0.7, 0.6, 1);
     materials.forEach((mat) => {
       mat.opacity = opacity;
     });

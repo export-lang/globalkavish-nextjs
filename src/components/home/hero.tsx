@@ -1,5 +1,7 @@
 "use client";
 
+/* eslint-disable @next/next/no-img-element -- decorative CSS-transform slab planes, not content images */
+
 import {
   motion,
   useMotionValue,
@@ -13,9 +15,7 @@ import { useRef } from "react";
 
 import { Container } from "@/components/shared/container";
 import { MagneticButton } from "@/components/shared/magnetic-button";
-import { TileImage } from "@/components/shared/tile-image";
 import { Button } from "@/components/ui/button";
-import { tileDesigns } from "@/lib/data/designs";
 
 const STAGES = [
   { range: [0, 0.28], label: "Ceramic, refined.", sub: "Premium porcelain surfaces, floating in studio light." },
@@ -23,9 +23,11 @@ const STAGES = [
   { range: [0.58, 1], label: "Kavish Global.", sub: "Premium ceramic surfaces, exported to the world." },
 ];
 
-const MAIN = tileDesigns[1]; // Armani Rich Bianco — 600x1200 portrait slab
-const FOREGROUND = tileDesigns[3]; // Rome Black — 600x1200 portrait
-const BACKGROUND = tileDesigns[0]; // Gaios — 600x600
+// Local, production-reliable slab textures (public/media). Swap any of these
+// files for a real Kavish product photo — same path, no code change needed.
+const MAIN_SRC = "/media/kavish-slab-white.svg";
+const FOREGROUND_SRC = "/media/kavish-slab-dark.svg";
+const BACKGROUND_SRC = "/media/kavish-slab-beige.svg";
 
 export function Hero() {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -76,33 +78,32 @@ export function Hero() {
         {/* BACKGROUND tile plane — distant, blurred */}
         <motion.div
           style={{ y: bgY, x: bgX }}
-          className="pointer-events-none absolute left-[5%] top-[14%] z-[1] hidden h-[34vh] w-[17vh] rotate-[-6deg] md:block"
+          className="pointer-events-none absolute left-[4%] top-[12%] z-[1] hidden h-[38vh] w-[38vh] rotate-[-6deg] md:block"
         >
           <div className="h-full w-full overflow-hidden rounded-2xl opacity-35 blur-[3px]">
-            <TileImage imageId={BACKGROUND.imageIds[0]} alt="" fallbackSeed={BACKGROUND.slug} width={500} />
+            <img src={BACKGROUND_SRC} alt="" className="h-full w-full object-cover" />
           </div>
         </motion.div>
 
-        {/* MAIN Kavish slab — right-centre, face clearly visible */}
+        {/* MAIN Kavish slab — dominant, left of centre, face clearly visible */}
         <motion.div
           style={{ y: mainY, x: mainX, scale: mainScale }}
-          className="pointer-events-none absolute right-[-14%] top-1/2 z-[2] h-[40vh] w-[20vh] -translate-y-1/2 sm:right-[-4%] md:right-[7%] md:h-[46vh] md:w-[23vh]"
+          className="pointer-events-none absolute right-[-4%] top-1/2 z-[2] h-[52vh] w-[26vh] -translate-y-1/2 sm:right-[4%] md:right-[15%] md:h-[62vh] md:w-[31vh]"
         >
           <motion.div
-            animate={prefersReduced ? undefined : { y: [0, -10, 0] }}
+            animate={prefersReduced ? undefined : { y: [0, -12, 0] }}
             transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
-            style={{ perspective: 1100 }}
+            style={{ perspective: 1200 }}
             className="h-full w-full"
           >
             <motion.div
               style={{ rotateX: mainRotateX, rotateY: mainRotateY, transformStyle: "preserve-3d" }}
               className="ceramic-slab relative h-full w-full overflow-hidden rounded-[10px]"
             >
-              <TileImage
-                imageId={MAIN.imageIds[0]}
+              <img
+                src={MAIN_SRC}
                 alt="Kavish Global premium porcelain slab"
-                fallbackSeed={MAIN.slug}
-                width={900}
+                className="h-full w-full object-cover"
               />
               {/* rim light + sheen */}
               <div className="pointer-events-none absolute inset-0 rounded-[10px] bg-gradient-to-br from-white/20 via-transparent to-black/30" />
@@ -113,9 +114,9 @@ export function Hero() {
         {/* FOREGROUND tile — large, cropped by the bottom-right edge */}
         <motion.div
           style={{ y: fgY, x: fgX }}
-          className="pointer-events-none absolute -bottom-[22%] -right-[8%] z-[3] hidden h-[64vh] w-[32vh] rotate-[5deg] overflow-hidden rounded-[14px] opacity-90 blur-[2px] shadow-[0_-30px_80px_-20px_rgba(0,0,0,0.6)] md:block"
+          className="pointer-events-none absolute -bottom-[22%] -right-[8%] z-[3] hidden h-[64vh] w-[32vh] rotate-[5deg] overflow-hidden rounded-[14px] opacity-95 blur-[1.5px] shadow-[0_-30px_80px_-20px_rgba(0,0,0,0.6)] md:block"
         >
-          <TileImage imageId={FOREGROUND.imageIds[0]} alt="" fallbackSeed={FOREGROUND.slug} width={700} />
+          <img src={FOREGROUND_SRC} alt="" className="h-full w-full object-cover" />
         </motion.div>
 
         {/* Content — heading floats in the foreground, over the slab's left edge */}

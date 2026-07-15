@@ -25,12 +25,12 @@ const STAGES = [
   { range: [0.58, 1], label: "Kavish Global.", sub: "Premium ceramic surfaces, exported to the world." },
 ];
 
-// Real Kavish product: Luxe Calacatta Golden — three distinct production
-// faces served locally from public/media (the fourth remains in
-// public/media, unused in this composition).
+// Real Kavish product: Luxe Calacatta Golden — all four production faces,
+// each permanently visible on its own suspended plane.
 const MAIN_SRC = "/media/kavish-calacatta-golden-1.jpg";
 const FOREGROUND_SRC = "/media/kavish-calacatta-golden-3.jpg";
 const DISTANT_SRC = "/media/kavish-calacatta-golden-2.jpg";
+const TOP_SRC = "/media/kavish-calacatta-golden-4.jpg";
 
 export function Hero() {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -63,6 +63,7 @@ export function Hero() {
   const mainScale = useTransform(scrollYProgress, [0, 0.55], [1, 1.14]);
   const fgY = useTransform(scrollYProgress, [0, 1], [0, 230]);
   const distantY = useTransform(scrollYProgress, [0, 1], [0, -30]);
+  const topY = useTransform(scrollYProgress, [0, 1], [0, -70]);
 
   // Pointer-driven tilt. Main stays within an 8°–12° band — visible face,
   // never edge-on.
@@ -74,7 +75,10 @@ export function Hero() {
   const fgRotateX = useTransform(sy, [-1, 1], [2, 5]);
   const fgX = useTransform(sx, [-1, 1], [-16, 16]);
 
-  const distantX = useTransform(sx, [-1, 1], [4, -4]);
+  // Mouse parallax scales with depth: nearest (foreground) moves most,
+  // farthest (background) moves least.
+  const distantX = useTransform(sx, [-1, 1], [4, -4]); // farthest
+  const topX = useTransform(sx, [-1, 1], [6, -6]);
 
   return (
     <section ref={sectionRef} className="relative h-[300vh]">
@@ -91,41 +95,59 @@ export function Hero() {
           style={{ zIndex: 1 }}
         />
 
-        {/* Distant background slab — one only, ~20% visible, heavy blur, very slow */}
+        {/* Background tile — farthest, ~20% visible, heavy blur, slow float + ±1° drift */}
         <FloatingSlab
           src={DISTANT_SRC}
           alt=""
           wrapStyle={{ y: distantY, x: distantX }}
-          className="left-[36%] -top-[76%] hidden h-[62vh] w-[20vh] rotate-[4deg] md:block"
-          floatDuration={16}
-          floatAmplitude={4}
+          className="left-[36%] -top-[76%] hidden h-[62vh] w-[20vh] md:block"
+          floatDuration={12}
+          floatDelay={2.4}
+          floatAmplitude={12}
+          rotateBase={4}
+          rotateAmplitude={1}
           opacity={0.4}
           blurPx={7}
           z={1}
         />
 
-        {/* MAIN Kavish slab — the hero object: large, left-shifted, face clear */}
+        {/* Top tile — new suspended plane, gentle vertical drift only */}
+        <FloatingSlab
+          src={TOP_SRC}
+          alt=""
+          wrapStyle={{ y: topY, x: topX }}
+          className="right-[16%] -top-[7%] hidden h-[26vh] w-[16vh] rotate-[-3deg] md:right-[24%] md:block"
+          floatDuration={14}
+          floatDelay={5.2}
+          floatAmplitude={9}
+          opacity={0.82}
+          blurPx={2}
+          z={2}
+        />
+
+        {/* Hero tile — the main slab: large, left-shifted, almost stationary */}
         <FloatingSlab
           src={MAIN_SRC}
           alt="Kavish Global Luxe Calacatta Golden porcelain slab"
           wrapStyle={{ y: mainY, x: mainX, scale: mainScale, rotateY: mainRotateY, rotateX: mainRotateX }}
           className="right-[2%] top-1/2 h-[54vh] w-[27vh] -translate-y-1/2 sm:right-[10%] md:right-[30%] md:h-[78vh] md:w-[39vh]"
           floatDuration={8}
-          floatAmplitude={10}
+          floatAmplitude={6}
           opacity={1}
           sheen
           z={3}
         />
 
-        {/* Foreground accent — reduced, cropped by the bottom-right edge */}
+        {/* Foreground tile — nearest, cropped by the bottom-right edge, drifts sideways */}
         <FloatingSlab
           src={FOREGROUND_SRC}
           alt=""
           wrapStyle={{ y: fgY, x: fgX, rotateY: fgRotateY, rotateX: fgRotateX }}
           className="-bottom-[16%] -right-[5%] h-[28vh] w-[14vh] rotate-[6deg] md:-bottom-[17%] md:h-[35vh] md:w-[17vh]"
-          floatDuration={9}
+          floatDuration={10}
           floatDelay={1.2}
-          floatAmplitude={8}
+          floatAmplitude={10}
+          driftX={6}
           opacity={0.96}
           z={4}
         />
@@ -176,6 +198,9 @@ function FloatingSlab({
   floatDuration,
   floatDelay = 0,
   floatAmplitude,
+  driftX,
+  rotateBase,
+  rotateAmplitude,
   opacity,
   blurPx = 0,
   sheen = false,
@@ -188,6 +213,9 @@ function FloatingSlab({
   floatDuration: number;
   floatDelay?: number;
   floatAmplitude: number;
+  driftX?: number;
+  rotateBase?: number;
+  rotateAmplitude?: number;
   opacity: number;
   blurPx?: number;
   sheen?: boolean;
@@ -195,13 +223,19 @@ function FloatingSlab({
 }) {
   const prefersReduced = useReducedMotion();
 
+  const idleAnimate: Record<string, number[]> = { y: [0, -floatAmplitude, 0] };
+  if (driftX) idleAnimate.x = [0, driftX, 0];
+  if (rotateBase !== undefined && rotateAmplitude) {
+    idleAnimate.rotate = [rotateBase - rotateAmplitude, rotateBase + rotateAmplitude, rotateBase - rotateAmplitude];
+  }
+
   return (
     <motion.div
       style={{ ...wrapStyle, zIndex: z }}
       className={`pointer-events-none absolute overflow-hidden rounded-[10px] ${className}`}
     >
       <motion.div
-        animate={prefersReduced ? undefined : { y: [0, -floatAmplitude, 0] }}
+        animate={prefersReduced ? undefined : idleAnimate}
         transition={{ duration: floatDuration, repeat: Infinity, ease: "easeInOut", delay: floatDelay }}
         className="h-full w-full"
       >

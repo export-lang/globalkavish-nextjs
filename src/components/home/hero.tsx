@@ -65,20 +65,26 @@ export function Hero() {
   const distantY = useTransform(scrollYProgress, [0, 1], [0, -30]);
   const topY = useTransform(scrollYProgress, [0, 1], [0, -70]);
 
-  // Pointer-driven tilt. Main stays within an 8°–12° band — visible face,
-  // never edge-on.
+  // Pointer-driven tilt — the primary "follow the cursor" effect. Main stays
+  // within an 8°–12° band (visible face, never edge-on); the other three
+  // tiles now tilt too, so all four clearly react to mouse movement.
   const mainRotateY = useTransform(sx, [-1, 1], [-12, -8]);
-  const mainRotateX = useTransform(sy, [-1, 1], [3, -3]);
-  const mainX = useTransform(sx, [-1, 1], [10, -10]);
+  const mainRotateX = useTransform(sy, [-1, 1], [5, -5]);
+  const mainX = useTransform(sx, [-1, 1], [30, -30]);
 
-  const fgRotateY = useTransform(sx, [-1, 1], [-6, -3]);
-  const fgRotateX = useTransform(sy, [-1, 1], [2, 5]);
-  const fgX = useTransform(sx, [-1, 1], [-16, 16]);
+  const fgRotateY = useTransform(sx, [-1, 1], [-10, -1]);
+  const fgRotateX = useTransform(sy, [-1, 1], [1, 8]);
+  const fgX = useTransform(sx, [-1, 1], [-42, 42]);
 
-  // Mouse parallax scales with depth: nearest (foreground) moves most,
-  // farthest (background) moves least.
-  const distantX = useTransform(sx, [-1, 1], [4, -4]); // farthest
-  const topX = useTransform(sx, [-1, 1], [6, -6]);
+  const topRotateY = useTransform(sx, [-1, 1], [3, 9]);
+  const topRotateX = useTransform(sy, [-1, 1], [-5, 2]);
+  const topX = useTransform(sx, [-1, 1], [24, -24]);
+
+  const distantRotateY = useTransform(sx, [-1, 1], [2, 6]);
+  const distantRotateX = useTransform(sy, [-1, 1], [-3, 1]);
+  // Mouse parallax still scales with depth: nearest (foreground) moves most,
+  // farthest (background) moves least — but every tile now visibly moves.
+  const distantX = useTransform(sx, [-1, 1], [16, -16]); // farthest
 
   return (
     <section ref={sectionRef} className="relative h-[300vh]">
@@ -99,7 +105,7 @@ export function Hero() {
         <FloatingSlab
           src={DISTANT_SRC}
           alt=""
-          wrapStyle={{ y: distantY, x: distantX }}
+          wrapStyle={{ y: distantY, x: distantX, rotateY: distantRotateY, rotateX: distantRotateX }}
           className="left-[36%] -top-[76%] hidden h-[62vh] w-[20vh] md:block"
           floatDuration={12}
           floatDelay={2.4}
@@ -115,8 +121,8 @@ export function Hero() {
         <FloatingSlab
           src={TOP_SRC}
           alt=""
-          wrapStyle={{ y: topY, x: topX }}
-          className="right-[16%] -top-[7%] hidden h-[26vh] w-[16vh] rotate-[-3deg] md:right-[24%] md:block"
+          wrapStyle={{ y: topY, x: topX, rotateY: topRotateY, rotateX: topRotateX }}
+          className="right-[16%] -top-[7%] hidden h-[26vh] w-[16vh] md:right-[24%] md:block"
           floatDuration={14}
           floatDelay={5.2}
           floatAmplitude={9}

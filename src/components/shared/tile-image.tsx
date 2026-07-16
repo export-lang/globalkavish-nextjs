@@ -1,5 +1,6 @@
 "use client";
 
+import { ImageIcon } from "lucide-react";
 import { useState } from "react";
 
 import { ProductSwatch } from "@/components/shared/product-swatch";
@@ -8,8 +9,9 @@ import { cn } from "@/lib/utils";
 
 /**
  * Renders a real tile photo from the shared Google Drive folder. The
- * generated swatch sits underneath as a placeholder while the photo loads,
- * and remains if the image ever becomes unavailable.
+ * generated swatch sits underneath as a placeholder while the photo loads;
+ * if the photo ever fails to load, an explicit "Image coming soon" label
+ * replaces it so a Drive outage never reads as a blank or broken card.
  */
 export function TileImage({
   imageId,
@@ -29,7 +31,7 @@ export function TileImage({
 
   return (
     <div className={cn("relative h-full w-full overflow-hidden", className)}>
-      <ProductSwatch seed={fallbackSeed} className="absolute inset-0 h-full w-full" />
+      {!failed && <ProductSwatch seed={fallbackSeed} className="absolute inset-0 h-full w-full" />}
       {!failed && (
         // eslint-disable-next-line @next/next/no-img-element
         <img
@@ -44,6 +46,12 @@ export function TileImage({
             loaded ? "opacity-100" : "opacity-0"
           )}
         />
+      )}
+      {failed && (
+        <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-gradient-to-br from-stone-100 to-stone-200 text-stone-400 dark:from-stone-800 dark:to-stone-900">
+          <ImageIcon className="h-6 w-6 opacity-40" aria-hidden />
+          <span className="text-xs uppercase tracking-[0.2em]">Image coming soon</span>
+        </div>
       )}
     </div>
   );

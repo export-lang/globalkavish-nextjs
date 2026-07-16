@@ -4,20 +4,23 @@ import * as Dialog from "@radix-ui/react-dialog";
 import { Maximize2, X } from "lucide-react";
 import { useState } from "react";
 
-import { ProductSwatch } from "@/components/shared/product-swatch";
+import { ProductImage } from "@/components/shared/product-image";
+import { getProductImages } from "@/lib/data/product-images";
 
 /**
- * Product visual. No real per-product photography exists yet, so this shows
- * a single clearly-labelled representative visual with a working zoom —
- * no fake 360° viewers, angle thumbnails or room visualisers.
+ * Product visual: the verified local cover photo plus any matching
+ * production faces, or a clearly-labelled placeholder when no genuine
+ * per-product photo exists yet — no fake angles, room scenes or 360° views.
  */
 export function Gallery({ slug, name }: { slug: string; name: string }) {
   const [lightbox, setLightbox] = useState(false);
+  const { cover, gallery } = getProductImages(slug);
+  const faces = [cover, ...gallery].filter((src): src is string => Boolean(src));
 
   return (
     <div>
       <div className="relative aspect-square overflow-hidden rounded-3xl">
-        <ProductSwatch seed={slug} className="h-full w-full" />
+        <ProductImage src={cover} alt={name} priority />
         <button
           onClick={() => setLightbox(true)}
           className="absolute bottom-4 left-4 flex items-center gap-2 rounded-full bg-black/50 px-4 py-2 text-xs text-white backdrop-blur transition-colors hover:bg-black/70"
@@ -26,9 +29,20 @@ export function Gallery({ slug, name }: { slug: string; name: string }) {
           Zoom
         </button>
       </div>
-      <p className="mt-3 text-xs text-foreground/40">
-        Representative visual — actual designs are shown in the Kavish catalogue, available on request.
-      </p>
+      {faces.length > 1 && (
+        <div className="mt-3 grid grid-cols-4 gap-3">
+          {faces.slice(1).map((src, i) => (
+            <div key={src} className="relative aspect-square overflow-hidden rounded-xl">
+              <ProductImage src={src} alt={`${name} — face ${i + 2}`} />
+            </div>
+          ))}
+        </div>
+      )}
+      {faces.length === 0 && (
+        <p className="mt-3 text-xs text-foreground/40">
+          Product photo pending — full Kavish catalogue available on request.
+        </p>
+      )}
 
       <Dialog.Root open={lightbox} onOpenChange={setLightbox}>
         <Dialog.Portal>
@@ -38,7 +52,9 @@ export function Gallery({ slug, name }: { slug: string; name: string }) {
             <Dialog.Close className="absolute right-6 top-6 grid h-11 w-11 place-items-center rounded-full bg-white/10 text-white hover:bg-white/20">
               <X className="h-5 w-5" />
             </Dialog.Close>
-            <ProductSwatch seed={slug} className="aspect-square w-full max-w-3xl rounded-2xl" />
+            <div className="relative aspect-square w-full max-w-3xl overflow-hidden rounded-2xl">
+              <ProductImage src={cover} alt={name} fit="contain" />
+            </div>
           </Dialog.Content>
         </Dialog.Portal>
       </Dialog.Root>

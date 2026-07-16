@@ -4,8 +4,9 @@ import { Heart, Scale } from "lucide-react";
 import Link from "next/link";
 
 import { DepthCard } from "@/components/motion/depth-card";
-import { ProductSwatch } from "@/components/shared/product-swatch";
+import { ProductImage } from "@/components/shared/product-image";
 import { getCategory } from "@/lib/data/categories";
+import { getProductImages } from "@/lib/data/product-images";
 import { useCollections } from "@/lib/store";
 import type { Product } from "@/lib/types";
 import { cn } from "@/lib/utils";
@@ -20,11 +21,16 @@ export function ProductCard({
   driftDelay?: number;
 }) {
   const { toggleWishlist, toggleCompare, isWishlisted, isCompared } = useCollections();
+  const { cover } = getProductImages(product.slug);
 
   return (
     <DepthCard driftDelay={driftDelay} className={cn("group relative flex flex-col", className)}>
       <Link href={`/products/${product.slug}`} className="relative block aspect-[4/5] overflow-hidden rounded-2xl">
-        <ProductSwatch seed={product.slug} className="h-full w-full transition-transform duration-700 ease-out group-hover:scale-105" />
+        <ProductImage
+          src={cover}
+          alt={`${product.name}${product.sizes.length ? ` — ${product.sizes.join(", ")} mm` : ""}`}
+          className="transition-transform duration-700 ease-out group-hover:scale-105"
+        />
         <div className="absolute inset-x-0 bottom-0 p-5">
           <p className="text-xs uppercase tracking-[0.2em] text-white/70">{product.sizes[0]}</p>
         </div>

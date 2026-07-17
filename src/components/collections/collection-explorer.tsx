@@ -5,11 +5,11 @@ import { useMemo, useState } from "react";
 
 import { ProductCard } from "@/components/shared/product-card";
 import { categories } from "@/lib/data/categories";
-import { allApplications, allFinishes, allSizes, products } from "@/lib/data/products";
-import type { Application } from "@/lib/types";
+import { allApplications, allFinishes, allSizes, getProductsByCategory, products } from "@/lib/data/products";
 import { cn } from "@/lib/utils";
 
 type FilterKey = "category" | "size" | "finish" | "application";
+type FilterOption = { value: string; label: string };
 
 function FilterGroup({
   title,
@@ -18,7 +18,7 @@ function FilterGroup({
   onToggle,
 }: {
   title: string;
-  options: string[];
+  options: FilterOption[];
   active: string[];
   onToggle: (value: string) => void;
 }) {
@@ -28,16 +28,16 @@ function FilterGroup({
       <div className="mt-3 flex flex-wrap gap-2">
         {options.map((opt) => (
           <button
-            key={opt}
-            onClick={() => onToggle(opt)}
+            key={opt.value}
+            onClick={() => onToggle(opt.value)}
             className={cn(
               "rounded-full border px-3 py-1.5 text-xs transition-colors",
-              active.includes(opt)
+              active.includes(opt.value)
                 ? "border-gold-500 bg-gold-500 text-black"
                 : "border-border-subtle text-foreground/70 hover:border-foreground/40"
             )}
           >
-            {opt}
+            {opt.label}
           </button>
         ))}
       </div>
@@ -63,11 +63,43 @@ export function CollectionExplorer({ initialCategory }: { initialCategory?: stri
   }
 
   function clearAll() {
-    setActive({ category: [], size: [], finish: [], application: [] });
+    setActive({
+      category: initialCategory ? [initialCategory] : [],
+      size: [],
+      finish: [],
+      application: [],
+    });
     setQuery("");
   }
 
-  const activeCount = Object.values(active).flat().length;
+  const activeCount = active.size.length + active.finish.length + active.application.length + (initialCategory ? 0 : active.category.length);
+
+  const categoryProducts = useMemo(
+    () => (initialCategory ? getProductsByCategory(initialCategory) : products),
+    [initialCategory]
+  );
+  const sizeOptions = useMemo(
+    () =>
+      (initialCategory ? Array.from(new Set(categoryProducts.flatMap((p) => p.sizes))).sort() : allSizes).map(
+        (s) => ({ value: s, label: `${s.replace("x", "×")} mm` })
+      ),
+    [initialCategory, categoryProducts]
+  );
+  const finishOptions = useMemo(
+    () =>
+      (initialCategory ? Array.from(new Set(categoryProducts.flatMap((p) => p.finish))).sort() : allFinishes).map(
+        (f) => ({ value: f, label: f })
+      ),
+    [initialCategory, categoryProducts]
+  );
+  const applicationOptions = useMemo(
+    () =>
+      (initialCategory
+        ? Array.from(new Set(categoryProducts.flatMap((p) => p.application)))
+        : allApplications
+      ).map((a) => ({ value: a, label: a })) as FilterOption[],
+    [initialCategory, categoryProducts]
+  );
 
   const filtered = useMemo(() => {
     return products.filter((p) => {
@@ -92,15 +124,33 @@ export function CollectionExplorer({ initialCategory }: { initialCategory?: stri
               </button>
             )}
           </div>
-          <FilterGroup
-            title="Category"
-            options={categories.map((c) => c.slug)}
-            active={active.category}
-            onToggle={(v) => toggle("category", v)}
-          />
-          <FilterGroup title="Application" options={allApplications as Application[]} active={active.application} onToggle={(v) => toggle("application", v)} />
-          <FilterGroup title="Size" options={allSizes} active={active.size} onToggle={(v) => toggle("size", v)} />
-          <FilterGroup title="Finish" options={allFinishes} active={active.finish} onToggle={(v) => toggle("finish", v)} />
+          {!initialCategory && (
+            <FilterGroup
+              title="Category"
+              options={categories.map((c) => ({ value: c.slug, label: c.name }))}
+              active={active.category}
+              onToggle={(v) => toggle("category", v)}
+            />
+          )}
+          {applicationOptions.length > 0 && (
+            <FilterGroup
+              title="Application"
+              options={applicationOptions}
+              active={active.application}
+              onToggle={(v) => toggle("application", v)}
+            />
+          )}
+          {sizeOptions.length > 0 && (
+            <FilterGroup title="Size" options={sizeOptions} active={active.size} onToggle={(v) => toggle("size", v)} />
+          )}
+          {finishOptions.length > 0 && (
+            <FilterGroup
+              title="Finish"
+              options={finishOptions}
+              active={active.finish}
+              onToggle={(v) => toggle("finish", v)}
+            />
+          )}
         </div>
       </aside>
 

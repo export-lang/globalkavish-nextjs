@@ -1,6 +1,7 @@
 import { CollectionExplorer } from "@/components/collections/collection-explorer";
 import { Container } from "@/components/shared/container";
 import { SectionHeading } from "@/components/shared/section-heading";
+import { products } from "@/lib/data/products";
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata = buildMetadata({
@@ -17,7 +18,7 @@ export default function CollectionsPage() {
         <SectionHeading
           eyebrow="Full Catalogue"
           title="Every collection, filtered your way."
-          description="40+ collections across ceramic, porcelain, GVT and large-format slab ranges — live-filtered by size, finish, application and colour."
+          description={`${products.length} collections across ceramic, porcelain, GVT and large-format slab ranges — live-filtered by size, finish and application.`}
         />
         <div className="mt-16">
           <CollectionExplorer />

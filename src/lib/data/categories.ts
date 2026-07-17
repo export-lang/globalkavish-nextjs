@@ -33,7 +33,7 @@ export const categories: Category[] = [
     name: "Full Body Porcelain Floor Tiles",
     shortName: "Full Body Porcelain",
     description:
-      "Uniform colour body porcelain that reveals the same material through its entire thickness — chip-resistant by design.",
+      "Uniform colour body porcelain with consistent material through its thickness.",
     application: ["Floor", "Outdoor"],
     heroNote: "Consistent to the core.",
   },

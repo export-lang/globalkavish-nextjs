@@ -1,6 +1,6 @@
 "use client";
 
-import { Heart, Scale } from "lucide-react";
+import { ArrowUpRight, Heart, Scale } from "lucide-react";
 import Link from "next/link";
 
 import { DepthCard } from "@/components/motion/depth-card";
@@ -29,10 +29,13 @@ export function ProductCard({
         <ProductImage
           src={cover}
           alt={`${product.name}${product.sizes.length ? ` — ${product.sizes.join(", ")} mm` : ""}`}
-          className="transition-transform duration-700 ease-out group-hover:scale-105"
+          className="transition-transform duration-700 ease-out group-hover:scale-[1.03]"
         />
-        <div className="absolute inset-x-0 bottom-0 p-5">
-          <p className="text-xs uppercase tracking-[0.2em] text-white/70">{product.sizes[0]}</p>
+        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent p-5">
+          <p className="text-xs uppercase tracking-[0.2em] text-white/70">
+            {product.sizes.map((s) => s.replace("x", "×")).join(" · ")}
+            {product.sizes.length > 0 && " mm"}
+          </p>
         </div>
       </Link>
       <div className="absolute right-3 top-3 flex gap-2 opacity-0 transition-opacity group-hover:opacity-100">
@@ -63,7 +66,7 @@ export function ProductCard({
           <Scale className="h-4 w-4" />
         </button>
       </div>
-      <div className="mt-4 flex items-start justify-between gap-2">
+      <Link href={`/products/${product.slug}`} className="mt-4 flex items-start justify-between gap-2">
         <div>
           <h3 className="font-display text-xl">{product.name}</h3>
           <p className="mt-1 text-sm text-foreground/50">
@@ -71,7 +74,11 @@ export function ProductCard({
             {product.finish.length > 0 && ` · ${product.finish.join(" · ")}`}
           </p>
         </div>
-      </div>
+        <span className="mt-1 flex shrink-0 items-center gap-1 text-xs uppercase tracking-[0.15em] text-foreground/50 transition-colors group-hover:text-gold-500">
+          View Collection
+          <ArrowUpRight className="h-3.5 w-3.5" />
+        </span>
+      </Link>
     </DepthCard>
   );
 }

@@ -358,14 +358,24 @@ export function getFeaturedProducts() {
   return products.filter((p) => p.featured);
 }
 
-export function getRelatedProducts(product: Product, limit = 4) {
+/** Relevance score: same product type ranks highest, then shared size, then shared finish, then just shared category. */
+function relatedScore(a: Product, b: Product) {
+  let score = 0;
+  if (a.productType === b.productType) score += 4;
+  if (a.sizes.some((s) => b.sizes.includes(s))) score += 2;
+  if (a.finish.some((f) => b.finish.includes(f))) score += 1;
+  if (a.categorySlugs.some((c) => b.categorySlugs.includes(c))) score += 0.5;
+  return score;
+}
+
+export function getRelatedProducts(product: Product, limit = 6) {
   return products
-    .filter(
-      (p) =>
-        p.slug !== product.slug &&
-        p.categorySlugs.some((c) => product.categorySlugs.includes(c))
-    )
-    .slice(0, limit);
+    .filter((p) => p.slug !== product.slug)
+    .map((p) => ({ p, score: relatedScore(p, product) }))
+    .filter(({ score }) => score > 0)
+    .sort((a, b) => b.score - a.score)
+    .slice(0, limit)
+    .map(({ p }) => p);
 }
 
 export const allSizes = Array.from(new Set(products.flatMap((p) => p.sizes))).sort();

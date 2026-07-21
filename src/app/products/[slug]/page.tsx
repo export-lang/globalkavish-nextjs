@@ -7,12 +7,10 @@ import { FadeIn } from "@/components/shared/reveal-text";
 import { ProductCard } from "@/components/shared/product-card";
 import { Gallery } from "@/components/product/gallery";
 import { SpecTable } from "@/components/product/spec-table";
-import { Downloads } from "@/components/product/downloads";
+import { EnquiryPanel } from "@/components/product/enquiry-panel";
 import { EnquiryForm } from "@/components/product/enquiry-form";
 import { TrackRecentlyViewed } from "@/components/product/track-recently-viewed";
-import { Button } from "@/components/ui/button";
 import { getCategory } from "@/lib/data/categories";
-import { company } from "@/lib/data/company";
 import { getProduct, getRelatedProducts, products } from "@/lib/data/products";
 import { breadcrumbJsonLd, buildMetadata, productJsonLd, siteUrl } from "@/lib/seo";
 
@@ -38,9 +36,6 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
 
   const related = getRelatedProducts(product);
   const primaryCategory = getCategory(product.categorySlugs[0]);
-  const whatsappHref = `https://wa.me/${company.whatsapp.replace(/\D/g, "")}?text=${encodeURIComponent(
-    `Hello Kavish, I'm interested in ${product.name} (${product.sizes.join(", ")}). Could you share pricing and MOQ?`
-  )}`;
 
   return (
     <div className="pt-32 pb-24 md:pt-40 md:pb-32">
@@ -109,33 +104,19 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
               <div className="mt-8 flex flex-wrap gap-2">
                 {product.sizes.map((size) => (
                   <span key={size} className="rounded-full border border-border-subtle px-4 py-2 text-sm">
-                    {size} mm
+                    {size.replace("x", "×")} mm
                   </span>
                 ))}
               </div>
             )}
 
-            <div className="mt-10 flex flex-wrap gap-4">
-              <Button asChild size="lg">
-                <a href={`mailto:${company.email}?subject=${encodeURIComponent(`Quote request — ${product.name}`)}`}>
-                  Request a Quote
-                </a>
-              </Button>
-              <Button asChild size="lg" variant="outline">
-                <a href={whatsappHref} target="_blank" rel="noreferrer">
-                  WhatsApp Enquiry
-                </a>
-              </Button>
-            </div>
-
-            <div className="mt-12 rounded-2xl border border-border-subtle bg-background/60 p-6 shadow-xl shadow-black/5 backdrop-blur-sm md:p-8">
-              <p className="mb-4 font-display text-xl">Technical Specifications</p>
-              <SpecTable product={product} />
-            </div>
-
             <div className="mt-10">
-              <p className="mb-4 font-display text-xl">Downloads</p>
-              <Downloads product={product} />
+              <EnquiryPanel product={product} />
+            </div>
+
+            <div className="mt-10 rounded-2xl border border-border-subtle bg-background/60 p-6 shadow-xl shadow-black/5 backdrop-blur-sm md:p-8">
+              <p className="mb-6 font-display text-xl">Technical Specifications</p>
+              <SpecTable product={product} />
             </div>
           </FadeIn>
         </div>

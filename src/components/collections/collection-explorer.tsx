@@ -4,7 +4,7 @@ import { Search, SlidersHorizontal, X } from "lucide-react";
 import { useMemo, useState } from "react";
 
 import { ProductCard } from "@/components/shared/product-card";
-import { categories } from "@/lib/data/categories";
+import { categories, categoryFilterLabel } from "@/lib/data/categories";
 import { allApplications, allFinishes, allSizes, getProductsByCategory, products } from "@/lib/data/products";
 import { cn } from "@/lib/utils";
 
@@ -127,7 +127,7 @@ export function CollectionExplorer({ initialCategory }: { initialCategory?: stri
           {!initialCategory && (
             <FilterGroup
               title="Category"
-              options={categories.map((c) => ({ value: c.slug, label: c.name }))}
+              options={categories.map((c) => ({ value: c.slug, label: categoryFilterLabel(c.slug) }))}
               active={active.category}
               onToggle={(v) => toggle("category", v)}
             />

@@ -33,7 +33,7 @@ export const categories: Category[] = [
     name: "Full Body Porcelain Floor Tiles",
     shortName: "Full Body Porcelain",
     description:
-      "Uniform colour body porcelain with consistent material through its thickness.",
+      "Uniform colour-body porcelain with consistent material through its thickness.",
     application: ["Floor", "Outdoor"],
     heroNote: "Consistent to the core.",
   },
@@ -101,4 +101,17 @@ export const categories: Category[] = [
 
 export function getCategory(slug: string) {
   return categories.find((c) => c.slug === slug);
+}
+
+/** Short, reader-facing overrides for filter chips where shortName reads too technical or too terse. */
+const filterLabelOverrides: Record<string, string> = {
+  "full-body-porcelain-floor-tiles": "Full Body Porcelain",
+  "glazed-porcelain-floor-tiles-gvt": "Glazed Porcelain Tiles (GVT)",
+  "soluble-salt-nano-polished": "Nano Polished / Soluble Salt",
+  "bathroom-cabinets": "Bathroom Cabinets",
+};
+
+/** Single formatter for any category slug shown as a public label (filter chips, breadcrumbs, etc). */
+export function categoryFilterLabel(slug: string) {
+  return filterLabelOverrides[slug] ?? getCategory(slug)?.shortName ?? slug;
 }

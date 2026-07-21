@@ -5,6 +5,7 @@ import { FacebookIcon, InstagramIcon, LinkedinIcon, YoutubeIcon } from "@/compon
 import { Container } from "@/components/shared/container";
 import { company } from "@/lib/data/company";
 import { categories } from "@/lib/data/categories";
+import { buildHash } from "@/lib/build-info";
 
 export function Footer() {
   return (
@@ -90,9 +91,7 @@ export function Footer() {
         <p>© {new Date().getFullYear()} {company.legalName}. All rights reserved.</p>
         <p>
           Designed &amp; engineered for global export.
-          {process.env.VERCEL_GIT_COMMIT_SHA && (
-            <span className="ml-2 opacity-60">build {process.env.VERCEL_GIT_COMMIT_SHA.slice(0, 7)}</span>
-          )}
+          {buildHash && <span className="ml-2 opacity-60">build {buildHash}</span>}
         </p>
       </Container>
     </footer>

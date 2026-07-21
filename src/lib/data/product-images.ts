@@ -10,9 +10,7 @@
  * product/design match, (2) exact finish match, (3) representative image
  * from the same finish folder (permitted — these are all approved Kavish
  * designs, not invented ones), (4) no image (renders "Image coming soon"
- * via <ProductImage>). Non-tile products (acrylic sheets, bathroom
- * cabinets) intentionally stay unmapped — none of the uploaded photos
- * depict those items.
+ * via <ProductImage>).
  */
 
 import { products } from "@/lib/data/products";
@@ -22,7 +20,7 @@ export type ProductImageSet = {
   gallery: string[];
 };
 
-export type FinishFolder = "CARVING" | "DECOR" | "GLOSSY" | "HIGH GLOSSY" | "MATT" | "WOOD";
+export type FinishFolder = "CARVING" | "DECOR" | "GLOSSY" | "HIGH GLOSSY" | "MATT" | "WOOD" | "Cabinet & acralic sheet";
 
 export interface Design {
   slug: string;
@@ -96,6 +94,11 @@ export const DESIGN_LIBRARY: Design[] = [
   design("bark-brown", "Bark Brown", "WOOD", ["WOOD/BARK BROWN P1.jpg"]),
   design("bottega-brown", "Bottega Brown", "WOOD", ["WOOD/BOTTEGA BROWN  R1.jpg"]),
   design("ducale-wood-cedar", "Ducale Wood Cedar", "WOOD", ["WOOD/DUCALE WOOD CEDAR_R1.jpg"]),
+  // Cabinet & acrylic sheet
+  design("bathroom-cabinet", "Bathroom Cabinet", "Cabinet & acralic sheet", ["Cabinet & acralic sheet/cabinet.jpeg"]),
+  design("acrylic-sheet", "Acrylic Sheet", "Cabinet & acralic sheet", [
+    "Cabinet & acralic sheet/acralic sheet.jpeg",
+  ]),
 ];
 
 function bySlug(slug: string): Design {
@@ -112,8 +115,6 @@ function toSet(designSlug: string): ProductImageSet {
 /**
  * Product slug -> representative design. Each design is used on exactly one
  * product card (no repeats), chosen for a plausible finish/format fit.
- * Acrylic Sheets and Bathroom Cabinets are intentionally omitted — no
- * uploaded photo depicts those product categories.
  */
 const productDesigns: Record<string, string> = {
   "ceramic-floor-tile-300x300": "cantoni-beige",
@@ -142,6 +143,8 @@ const productDesigns: Record<string, string> = {
   "porcelain-wall-tile-300x600": "apricot-wood-beige",
   "large-format-slab-800x2400": "ducale-wood-cedar",
   "nano-polished-600x600": "tauras-aqua",
+  "acrylic-solid-surface-sheets": "acrylic-sheet",
+  "bathroom-cabinets": "bathroom-cabinet",
 };
 
 export const PRODUCT_IMAGE_MAP: Record<string, ProductImageSet> = Object.fromEntries(

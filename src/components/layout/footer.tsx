@@ -13,7 +13,7 @@ export function Footer() {
         <div className="lg:col-span-2">
           <span className="font-display text-2xl tracking-[0.15em]">KAVISH GLOBAL</span>
           <p className="mt-6 max-w-sm text-sm leading-relaxed text-foreground/60">
-            {company.tagline} Sourced from {company.founded} and exported to international markets.
+            Ceramic tiles, surfaces and sanitaryware supplied from Morbi, Gujarat, India for international buyers.
           </p>
           <div className="mt-8 flex gap-3">
             {[

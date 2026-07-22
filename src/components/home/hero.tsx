@@ -20,9 +20,10 @@ import { MagneticButton } from "@/components/shared/magnetic-button";
 import { Button } from "@/components/ui/button";
 
 const STAGES = [
-  { range: [0, 0.28], label: "Ceramic, refined.", sub: "Premium porcelain surfaces, floating in studio light." },
-  { range: [0.28, 0.58], label: "A single dense body.", sub: "Pressed, calibrated, glazed and fired." },
-  { range: [0.58, 1], label: "Kavish Global.", sub: "Premium ceramic surfaces, exported to the world." },
+  { range: [0, 0.22], label: "Selected ceramic surfaces.", sub: "Chosen from qualified production partners in Morbi, India." },
+  { range: [0.22, 0.44], label: "Reviewed for your requirement.", sub: "Product, finish, quantity and packaging coordinated against approved order details." },
+  { range: [0.44, 0.66], label: "Prepared for international supply.", sub: "Export packaging, documentation and shipment coordination for global buyers." },
+  { range: [0.66, 1], label: "Kavish Global.", sub: "Ceramic export and supply partner — Morbi, India." },
 ];
 
 // Real Kavish product: Luxe Calacatta Golden — all four production faces,

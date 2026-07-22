@@ -5,7 +5,15 @@ import { useRef } from "react";
 
 import { Container } from "@/components/shared/container";
 import { SectionHeading } from "@/components/shared/section-heading";
-import { company } from "@/lib/data/company";
+
+const supplySteps = [
+  { title: "Product Selection", detail: "Matching designs are shortlisted from the Kavish catalogue for your requirement." },
+  { title: "Requirement Confirmation", detail: "Product, size, finish and quantity are confirmed before production begins." },
+  { title: "Production Coordination", detail: "Order specifications are coordinated with the production partner from confirmation onward." },
+  { title: "Pre-Shipment Inspection", detail: "Every batch is checked for size, shade and surface quality before packing." },
+  { title: "Export Packaging", detail: "Reinforced, moisture-safe packaging with clear batch labelling for international transit." },
+  { title: "Documentation & Loading Coordination", detail: "Container-wise loading plans plus invoice, packing list, BL and certificate of origin." },
+];
 
 export function FactoryTeaser() {
   const ref = useRef<HTMLDivElement>(null);
@@ -16,8 +24,8 @@ export function FactoryTeaser() {
     <section className="relative z-[2] -mt-10 overflow-hidden rounded-t-[2.5rem] bg-ink py-24 text-stone-50 shadow-[0_-40px_90px_-50px_rgba(0,0,0,0.75)] md:-mt-16 md:rounded-t-[3.5rem] md:py-32">
       <Container>
         <SectionHeading
-          eyebrow="Manufacturing"
-          title="How our surfaces are made."
+          eyebrow="Supply Coordination"
+          title="How we support each order."
           description="Six commitments that run through every Kavish Global shipment."
           className="[&_p]:text-stone-300"
         />
@@ -26,7 +34,7 @@ export function FactoryTeaser() {
           <div className="absolute left-[7px] top-2 hidden h-full w-px bg-white/10 md:block">
             <motion.div style={{ scaleY }} className="h-full w-full origin-top bg-gold-400" />
           </div>
-          {company.manufacturing.map((item, i) => (
+          {supplySteps.map((item, i) => (
             <motion.div
               key={item.title}
               initial={{ opacity: 0, y: 30 }}

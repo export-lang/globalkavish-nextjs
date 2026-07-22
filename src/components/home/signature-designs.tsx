@@ -18,8 +18,8 @@ export function SignatureDesigns() {
       <Container>
         <SectionHeading
           eyebrow="Signature Designs"
-          title="Real surfaces, from our production network."
-          description="A selection of current Kavish designs — real photography, not renders."
+          title="Selected surfaces from the Kavish collection."
+          description="A selection of available Kavish surface designs — real photography, not renders."
         />
 
         <div className="mt-16 grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-6">

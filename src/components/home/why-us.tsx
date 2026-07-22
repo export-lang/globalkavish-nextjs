@@ -4,21 +4,22 @@ import { SectionHeading } from "@/components/shared/section-heading";
 import { WorldMap } from "@/components/shared/world-map";
 import { company, exportCountries } from "@/lib/data/company";
 
+const capabilities = ["Product Selection", "Quality Coordination", "Export Packaging", "Documentation Support"];
+
 export function WhyUs() {
   return (
     <section className="relative py-24 md:py-32">
       <Container>
         <SectionHeading
           eyebrow="Why Kavish Global"
-          title="An export partner built for scale."
-          description={company.story.whoWeAre}
+          title="Product choice, quality coordination and export support."
+          description="Kavish Global supports international buyers with ceramic product selection, production coordination, pre-shipment inspection, export packaging and documentation support through a qualified manufacturing network in Morbi, India."
         />
 
         <div className="mt-16 grid grid-cols-1 gap-8 border-y border-border-subtle py-12 sm:grid-cols-2 lg:grid-cols-4">
-          {company.strengths.map((s, i) => (
-            <FadeIn key={s.title} delay={i * 0.08}>
-              <p className="font-display text-2xl">{s.title}</p>
-              <p className="mt-2 text-sm leading-relaxed text-foreground/60">{s.detail}</p>
+          {capabilities.map((title, i) => (
+            <FadeIn key={title} delay={i * 0.08}>
+              <p className="font-display text-2xl">{title}</p>
             </FadeIn>
           ))}
         </div>

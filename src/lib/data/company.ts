@@ -53,7 +53,7 @@ export const company = {
   strengths: [
     { title: "Global Export Reach", detail: "Serving distributors, retailers and importers across international markets." },
     { title: "Curated Product Range", detail: "Ceramic, porcelain, GVT, large-format slabs and sanitaryware in one catalogue." },
-    { title: "Qualified Production Network", detail: "We select and audit the factories we source from across the Morbi cluster." },
+    { title: "In-House Manufacturing", detail: "Ceramic tiles and surfaces are manufactured and quality-checked at our facility in Morbi." },
     { title: "Export Documentation", detail: "Full paperwork handled in-house — invoice, packing list, BL, certificate of origin." },
   ],
   // Certifications intentionally not displayed publicly until supporting

@@ -11,7 +11,7 @@ import { buildMetadata } from "@/lib/seo";
 export const metadata = buildMetadata({
   title: "About Us",
   description:
-    "Kavish Global is a ceramic export and supply partner based in Morbi, India, coordinating premium tile and sanitaryware production through a qualified manufacturing network.",
+    "Kavish Global manufactures and exports premium ceramic tiles, porcelain surfaces and sanitaryware from Morbi, India to international markets.",
   path: "/about",
 });
 
@@ -20,7 +20,7 @@ const coreValues = ["Quality", "Integrity", "Reliability", "Transparency", "Long
 const howWeWork = [
   { title: "Understand Buyer Requirements", detail: "We start with your product type, size, finish, quantity and destination market." },
   { title: "Select Suitable Products", detail: "Matching designs are shortlisted from the Kavish catalogue for your requirement." },
-  { title: "Coordinate Production", detail: "Specifications are coordinated with the production partner from confirmation onward." },
+  { title: "Coordinate Production", detail: "Specifications are confirmed and production begins at our facility in Morbi." },
   { title: "Inspect Quality", detail: "Every batch is checked for size, shade and surface quality before packing." },
   { title: "Arrange Export Packaging", detail: "Reinforced, moisture-safe packaging with clear batch labelling for international transit." },
   { title: "Support Shipment Documentation", detail: "Commercial invoice, packing list, bill of lading and certificate of origin handled in-house." },
@@ -36,8 +36,8 @@ export default function AboutPage() {
       <Container>
         <SectionHeading
           eyebrow="About Kavish Global"
-          title="Your ceramic export and supply partner."
-          description="Based in Morbi, India, we help international buyers source premium ceramic, porcelain and sanitaryware surfaces — coordinating production through a qualified manufacturing network, with quality inspection, export packaging and documentation handled in-house."
+          title="Manufacturer and exporter of premium ceramic surfaces."
+          description="Based in Morbi, India, Kavish Global manufactures and exports premium ceramic tiles, porcelain surfaces and sanitaryware for international markets. From production and quality inspection to export packaging, documentation and shipment coordination, every order is managed with care and consistency."
         />
 
         <FadeIn className="mt-12 max-w-3xl">
@@ -127,7 +127,7 @@ export default function AboutPage() {
         </div>
 
         <div className="mt-32">
-          <p className="mb-14 font-display text-3xl md:text-4xl">Our Production Network</p>
+          <p className="mb-14 font-display text-3xl md:text-4xl">Manufacturing &amp; Quality Standards</p>
           <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {company.manufacturing.map((item, i) => (
               <FadeIn key={item.title} delay={i * 0.05} className="rounded-2xl border border-border-subtle p-8">

@@ -5,7 +5,6 @@ import { FacebookIcon, InstagramIcon, LinkedinIcon, YoutubeIcon } from "@/compon
 import { Container } from "@/components/shared/container";
 import { company } from "@/lib/data/company";
 import { categories } from "@/lib/data/categories";
-import { buildHash } from "@/lib/build-info";
 
 export function Footer() {
   return (
@@ -89,10 +88,7 @@ export function Footer() {
 
       <Container className="flex flex-col items-center justify-between gap-4 border-t border-border-subtle py-8 text-xs text-foreground/40 md:flex-row">
         <p>© {new Date().getFullYear()} {company.legalName}. All rights reserved.</p>
-        <p>
-          Designed &amp; engineered for global export.
-          {buildHash && <span className="ml-2 opacity-60">build {buildHash}</span>}
-        </p>
+        <p>Designed &amp; engineered for global export.</p>
       </Container>
     </footer>
   );

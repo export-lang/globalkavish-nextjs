@@ -2,10 +2,15 @@ import { DepthCard } from "@/components/motion/depth-card";
 import { ScrollFloat } from "@/components/motion/scroll-float";
 import { Container } from "@/components/shared/container";
 import { FadeIn } from "@/components/shared/reveal-text";
+import { ProductImage } from "@/components/shared/product-image";
 import { SectionHeading } from "@/components/shared/section-heading";
-import { TileImage } from "@/components/shared/tile-image";
-import { tileDesigns } from "@/lib/data/designs";
+import { DESIGN_LIBRARY } from "@/lib/data/product-images";
 import { cn } from "@/lib/utils";
+
+const FEATURED_SLUGS = ["malabar-gold", "vega-grey", "florence-miele-pearl", "torrento-onyx-beige"];
+const featured = FEATURED_SLUGS.map((slug) => DESIGN_LIBRARY.find((d) => d.slug === slug)).filter(
+  (d): d is NonNullable<typeof d> => Boolean(d)
+);
 
 export function SignatureDesigns() {
   return (
@@ -13,27 +18,23 @@ export function SignatureDesigns() {
       <Container>
         <SectionHeading
           eyebrow="Signature Designs"
-          title="Real surfaces, straight from production."
-          description="A selection of current designs from our production network — photographed from actual production tiles."
+          title="Real surfaces, from our production network."
+          description="A selection of current Kavish designs — real photography, not renders."
         />
 
         <div className="mt-16 grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-6">
-          {tileDesigns.slice(0, 4).map((design, i) => (
+          {featured.map((design, i) => (
             <ScrollFloat key={design.slug} depth={i % 2 === 0 ? 0.4 : -0.3} className={cn(i % 2 === 1 && "md:mt-12")}>
               <FadeIn delay={i * 0.08}>
                 <DepthCard driftDelay={i * 0.7}>
-                  <div className="group relative aspect-[3/4] overflow-hidden rounded-2xl">
-                    <TileImage
-                      imageId={design.imageIds[0]}
-                      alt={`${design.name} — ${design.size}mm tile design`}
-                      fallbackSeed={design.slug}
-                      className="transition-transform duration-700 ease-out group-hover:scale-105"
+                  <div className="ceramic-slab group relative aspect-[3/4] overflow-hidden rounded-2xl">
+                    <ProductImage
+                      src={design.faces[0]}
+                      alt={`${design.name} tile surface`}
+                      className="transition-transform duration-700 ease-out group-hover:scale-[1.03]"
                     />
                     <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-5 pt-14">
                       <p className="font-display text-lg text-white">{design.name}</p>
-                      <p className="text-xs uppercase tracking-[0.2em] text-white/70">
-                        {design.size} mm{design.finish ? ` · ${design.finish}` : ""}
-                      </p>
                     </div>
                   </div>
                 </DepthCard>
@@ -41,25 +42,6 @@ export function SignatureDesigns() {
             </ScrollFloat>
           ))}
         </div>
-
-        <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-5 md:gap-6">
-          {tileDesigns[4].imageIds.slice(0, 5).map((imageId, i) => (
-            <FadeIn key={imageId} delay={i * 0.06}>
-              <div className="group relative aspect-square overflow-hidden rounded-xl">
-                <TileImage
-                  imageId={imageId}
-                  alt={`Electra Almond Beige 800x800mm — face ${i + 1}`}
-                  fallbackSeed={`electra-${i}`}
-                  width={800}
-                  className="transition-transform duration-700 ease-out group-hover:scale-105"
-                />
-              </div>
-            </FadeIn>
-          ))}
-        </div>
-        <p className="mt-4 text-xs text-foreground/40">
-          Electra Almond Beige · 800x800 mm — five of ten production faces, showing natural pattern variation.
-        </p>
       </Container>
     </section>
   );

@@ -81,7 +81,7 @@ export default function ContactPage() {
               {company.address.factory && (
                 <FadeIn delay={0.1} className="rounded-2xl border border-border-subtle p-6">
                   <MapPin className="h-5 w-5 text-gold-500" />
-                  <p className="mt-4 font-display text-lg">Factory</p>
+                  <p className="mt-4 font-display text-lg">Morbi Location</p>
                   <p className="mt-1 text-sm text-foreground/60">{company.address.factory}</p>
                 </FadeIn>
               )}
@@ -106,7 +106,7 @@ export default function ContactPage() {
 
             <div className="mt-8 aspect-video overflow-hidden rounded-2xl border border-border-subtle">
               <iframe
-                title="Kavish Global factory location"
+                title="Kavish Global — Morbi location"
                 src="https://www.google.com/maps?q=Nichi+Mandal,+Morbi,+Gujarat+363642,+India&output=embed"
                 className="h-full w-full grayscale"
                 loading="lazy"

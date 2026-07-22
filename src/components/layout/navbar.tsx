@@ -45,6 +45,15 @@ export function Navbar() {
     setCollectionsOpen(false);
   }, []);
 
+  useEffect(() => {
+    if (!menuOpen) return;
+    function onKey(e: KeyboardEvent) {
+      if (e.key === "Escape") setMenuOpen(false);
+    }
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [menuOpen]);
+
   const results =
     query.trim().length > 0
       ? products.filter((p) => p.name.toLowerCase().includes(query.toLowerCase())).slice(0, 8)

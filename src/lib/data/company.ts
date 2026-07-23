@@ -59,7 +59,7 @@ export const company = {
   // Certifications intentionally not displayed publicly until supporting
   // documents are supplied — see CONTENT_REQUIRED.md.
   manufacturing: [
-    { title: "Modern Production Partners", detail: "We source from factories running modern pressing, glazing and finishing lines, and audit each one we buy from." },
+    { title: "In-House Manufacturing", detail: "Kavish Global manages ceramic and porcelain production in Morbi, India, with quality checks, packaging coordination and export preparation handled for international orders." },
     { title: "Digital Inkjet Printing", detail: "High-definition digital glazing across our network for detailed, repeat-free surface designs." },
     { title: "High Temperature Kilns", detail: "High-temperature firing vitrifies each tile into a dense, durable body." },
     { title: "Strict Quality Inspection", detail: "Our team checks every batch for size, shade and surface quality before packing." },

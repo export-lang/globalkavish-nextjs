@@ -2,6 +2,7 @@ import Link from "next/link";
 
 import { FacebookIcon, InstagramIcon, LinkedinIcon, YoutubeIcon } from "@/components/shared/social-icons";
 
+import { BrandMark } from "@/components/shared/brand-mark";
 import { Container } from "@/components/shared/container";
 import { company } from "@/lib/data/company";
 import { categories } from "@/lib/data/categories";
@@ -11,7 +12,7 @@ export function Footer() {
     <footer className="relative z-[1] border-t border-border-subtle bg-surface">
       <Container className="grid grid-cols-1 gap-12 py-20 md:grid-cols-2 lg:grid-cols-5 lg:py-28">
         <div className="lg:col-span-2">
-          <span className="font-display text-2xl tracking-[0.15em]">KAVISH GLOBAL</span>
+          <BrandMark link={false} logoClassName="h-10 md:h-10" textClassName="text-2xl" />
           <p className="mt-6 max-w-sm text-sm leading-relaxed text-foreground/60">
             Ceramic tiles, surfaces and sanitaryware supplied from Morbi, Gujarat, India for international buyers.
           </p>

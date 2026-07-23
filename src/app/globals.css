@@ -117,6 +117,12 @@ body {
   font-family: var(--font-display);
 }
 
+/* Brand logo PNG is black; invert to white on the site's actual dark theme
+   (data-theme attribute — next-themes here isn't tied to prefers-color-scheme). */
+[data-theme="dark"] .brand-logo {
+  filter: invert(1);
+}
+
 .text-balance {
   text-wrap: balance;
 }

@@ -7,6 +7,7 @@ import Link from "next/link";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 
+import { BrandMark } from "@/components/shared/brand-mark";
 import { Container } from "@/components/shared/container";
 import { categories } from "@/lib/data/categories";
 import { products } from "@/lib/data/products";
@@ -77,9 +78,7 @@ export function Navbar() {
           )}
         >
         <Container className={cn("flex items-center justify-between transition-all duration-500", scrolled ? "h-14 md:h-16" : "h-16 md:h-20")}>
-          <Link href="/" className="font-display text-xl tracking-[0.15em] md:text-2xl">
-            KAVISH GLOBAL
-          </Link>
+          <BrandMark textClassName="text-xl md:text-2xl" />
 
           <nav className="hidden items-center gap-10 lg:flex">
             <div
@@ -195,7 +194,7 @@ export function Navbar() {
             className="fixed inset-0 z-[60] bg-background lg:hidden"
           >
             <Container className="flex h-20 items-center justify-between">
-              <span className="font-display text-xl tracking-[0.15em]">KAVISH GLOBAL</span>
+              <BrandMark link={false} textClassName="text-xl" />
               <button
                 aria-label="Close menu"
                 onClick={() => setMenuOpen(false)}

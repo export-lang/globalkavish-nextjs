@@ -78,7 +78,7 @@ export function Navbar() {
           )}
         >
         <Container className={cn("flex items-center justify-between transition-all duration-500", scrolled ? "h-14 md:h-16" : "h-16 md:h-20")}>
-          <BrandMark textClassName="text-xl md:text-2xl" />
+          <BrandMark />
 
           <nav className="hidden items-center gap-10 lg:flex">
             <div
@@ -194,7 +194,7 @@ export function Navbar() {
             className="fixed inset-0 z-[60] bg-background lg:hidden"
           >
             <Container className="flex h-20 items-center justify-between">
-              <BrandMark link={false} textClassName="text-xl" />
+              <BrandMark link={false} />
               <button
                 aria-label="Close menu"
                 onClick={() => setMenuOpen(false)}

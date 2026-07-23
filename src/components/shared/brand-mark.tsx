@@ -29,7 +29,7 @@ export function BrandMark({
       width={3376}
       height={976}
       priority
-      className={cn("brand-logo h-9 w-auto shrink-0 object-contain md:h-12", logoClassName)}
+      className={cn("brand-logo h-[42px] w-auto shrink-0 object-contain md:h-14", logoClassName)}
     />
   );
 

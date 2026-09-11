@@ -16,6 +16,7 @@ export default function CollectionsPage() {
     <div className="pt-32 pb-24 md:pt-40 md:pb-32">
       <Container>
         <SectionHeading
+          as="h1"
           eyebrow="Full Catalogue"
           title="Every collection, filtered your way."
           description={`${products.length} collections across ceramic, porcelain, GVT and large-format slab ranges — live-filtered by size, finish and application.`}

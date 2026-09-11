@@ -18,6 +18,7 @@ export default function MediaPage() {
     <div className="pt-36 pb-24 md:pt-44 md:pb-32">
       <Container>
         <SectionHeading
+          as="h1"
           eyebrow="Media"
           title="Surfaces, photographed in production."
           description="Every image below is a real tile face from our current Kavish designs — no renders, no stock walls."

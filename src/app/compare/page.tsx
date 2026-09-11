@@ -25,6 +25,7 @@ export default function ComparePage() {
     <div className="pt-32 pb-24 md:pt-40 md:pb-32">
       <Container>
         <SectionHeading
+          as="h1"
           eyebrow="Compare"
           title="Compare Collections"
           description="Add up to four collections to compare specifications side by side."

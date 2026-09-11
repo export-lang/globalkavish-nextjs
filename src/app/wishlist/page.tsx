@@ -16,7 +16,7 @@ export default function WishlistPage() {
   return (
     <div className="pt-32 pb-24 md:pt-40 md:pb-32">
       <Container>
-        <SectionHeading eyebrow="Saved" title="Your Wishlist" description="Collections you've saved for later." />
+        <SectionHeading as="h1" eyebrow="Saved" title="Your Wishlist" description="Collections you've saved for later." />
         <div className="mt-16">
           {items.length > 0 ? (
             <div className="grid grid-cols-1 gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-4">

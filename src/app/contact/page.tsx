@@ -37,6 +37,7 @@ export default function ContactPage() {
     <div className="pt-32 pb-24 md:pt-40 md:pb-32">
       <Container>
         <SectionHeading
+          as="h1"
           eyebrow="Contact"
           title="Discuss your tile requirement."
           description="Ceramic sourcing and export enquiries — Kavish Global, Morbi, India. Reach our team by email, WhatsApp, or the form below."

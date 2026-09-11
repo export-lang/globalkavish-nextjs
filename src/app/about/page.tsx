@@ -35,6 +35,7 @@ export default function AboutPage() {
     <div className="pt-32 pb-24 md:pt-40 md:pb-32">
       <Container>
         <SectionHeading
+          as="h1"
           eyebrow="About Kavish Global"
           title="Manufacturer and exporter of premium ceramic surfaces."
           description="Based in Morbi, India, Kavish Global manufactures and exports premium ceramic tiles, porcelain surfaces and sanitaryware for international markets. From production and quality inspection to export packaging, documentation and shipment coordination, every order is managed with care and consistency."

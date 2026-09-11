@@ -38,7 +38,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
   return (
     <div className="pt-32 pb-24 md:pt-40 md:pb-32">
       <Container>
-        <SectionHeading eyebrow={cat.heroNote} title={cat.name} description={cat.description} />
+        <SectionHeading as="h1" eyebrow={cat.heroNote} title={cat.name} description={cat.description} />
 
         <div className="mt-10 flex flex-wrap items-center gap-x-10 gap-y-5 rounded-2xl border border-border-subtle p-6 text-sm">
           {sizes.length > 0 && (

@@ -54,6 +54,7 @@ export default function ExportPage() {
     <div className="pt-32 pb-24 md:pt-40 md:pb-32">
       <Container>
         <SectionHeading
+          as="h1"
           eyebrow="Export"
           title="Your ceramic export and supply partner."
           description="Kavish Global sources, inspects and ships premium ceramic and porcelain surfaces from Morbi, India — with full container documentation handled in-house."

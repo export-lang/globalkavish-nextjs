@@ -17,7 +17,7 @@ export function buildMetadata({
   const fullTitle = title === company.brandName ? title : `${title} | ${company.brandName}`;
 
   return {
-    title: fullTitle,
+    title: { absolute: fullTitle },
     description,
     alternates: { canonical: url },
     openGraph: {
@@ -27,11 +27,20 @@ export function buildMetadata({
       siteName: company.brandName,
       locale: "en_US",
       type: "website",
+      images: [
+        {
+          url: `${siteUrl}/opengraph-image`,
+          width: 1200,
+          height: 630,
+          alt: `${company.brandName} ceramic tiles and sanitaryware`,
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
       title: fullTitle,
       description,
+      images: [`${siteUrl}/opengraph-image`],
     },
   };
 }

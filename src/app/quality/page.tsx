@@ -81,6 +81,7 @@ export default function QualityPage() {
     <div className="pt-32 pb-24 md:pt-40 md:pb-32">
       <Container>
         <SectionHeading
+          as="h1"
           eyebrow="Quality"
           title="Checked against your approved order, before it ships."
           description="Every Kavish Global order is coordinated, verified and inspected against the product, size, finish, quantity and packaging you've approved — with any concern resolved before dispatch, not after."

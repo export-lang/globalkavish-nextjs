@@ -17,6 +17,12 @@
 // under a different slug (`large-format-slab-800x2400`) — that slug
 // is used here instead of creating a duplicate page for the same
 // product.
+//
+// 2026-09-13: merged in packing-additions.ts — 6 more slugs that were
+// missed the first time (gvt-600x600, gvt-300x600, gvt-200x1200,
+// gvt-1000x1000, nano-polished-600x600, porcelain-wall-tile-300x600),
+// all already-live pages that had no spec table at all. That file is
+// deleted; this is the only source of truth now.
 // ═════════════════════════════════════════════════════════════
 
 export type Variant = {
@@ -139,6 +145,34 @@ export const PRODUCTS: Product[] = [
     boxes20:[308,308], sqm20:[739.20,739.20], rows:42 }]},
 
 /* ── GVT ────────────────────────────────────────────────────── */
+{ slug:'gvt-200x1200', name:'200 × 1200 mm Glazed Vitrified Plank Tile',
+  sizeMm:[200,1200], body:'Glazed vitrified (GVT)', waterAbsorption:VIT,
+  finishes:['Matt','Wood finish','Carving'], application:['Wood-look floors','Feature walls','Decking'],
+  hsCode:'6907.21', live:true, variants:[
+  { thickness:'9 mm', pcsPerBox:5, sqmPerBox:1.20, kgPerBox:[24.5,26.9],
+    boxes20:[1092,1134], sqm20:[1310.40,1360.80], rows:3 }]},
+
+{ slug:'gvt-300x600', name:'300 × 600 mm Glazed Vitrified Tile (GVT)',
+  sizeMm:[300,600], body:'Glazed vitrified (GVT)', waterAbsorption:VIT,
+  finishes:['Glossy','Matt','Sugar'], application:['Interior floors','Walls','Bathrooms'],
+  hsCode:'6907.21', live:true, variants:[
+  { thickness:'8 mm', pcsPerBox:5, sqmPerBox:0.90, kgPerBox:[17.2,18.3],
+    boxes20:[1536,1600], sqm20:[1382.40,1440.00], rows:10 }]},
+
+{ slug:'gvt-600x600', name:'600 × 600 mm Glazed Vitrified Tile (GVT)',
+  sizeMm:[600,600], body:'Glazed vitrified (GVT)', waterAbsorption:VIT,
+  finishes:['Glossy','Matt','Carving','Sugar'], application:['Interior floors','Commercial floors','Walls'],
+  hsCode:'6907.21', live:true, variants:[
+  { thickness:'7 mm', pcsPerBox:4, sqmPerBox:1.44, kgPerBox:[25.0,25.5],
+    boxes20:[1056,1100], sqm20:[1520.64,1584.00], rows:11 },
+  { thickness:'8 mm', pcsPerBox:4, sqmPerBox:1.44, kgPerBox:[26.0,27.0],
+    boxes20:[1053,1056], sqm20:[1516.32,1520.64], rows:20, note:'Most common.' },
+  { thickness:'9 mm', pcsPerBox:4, sqmPerBox:1.44, kgPerBox:[29.5,29.5],
+    boxes20:[924,924],   sqm20:[1330.56,1330.56], rows:1 }]},
+  // ⚠️ Five rows show 2 pcs at 1.44 m², which is arithmetically impossible for
+  //    600×600 (0.36 m² per piece → 4 pcs = 1.44 m²). Data-entry error in the
+  //    sheet. Excluded. Worth correcting at source.
+
 { slug:'gvt-600x1200', name:'600 × 1200 mm Glazed Vitrified Tile (GVT)',
   sizeMm:[600,1200], body:'Glazed vitrified (GVT)', waterAbsorption:VIT,
   finishes:['Glossy','Matt','Carving','Sugar'], application:['Floors','Walls','Commercial interiors'],
@@ -161,6 +195,13 @@ export const PRODUCTS: Product[] = [
   hsCode:'6907.21', live:true, variants:[
   { thickness:'9 mm', pcsPerBox:2, sqmPerBox:2.56, kgPerBox:[52.0,52.0],
     boxes20:[528,528], sqm20:[1351.68,1351.68], rows:7 }]},
+
+{ slug:'gvt-1000x1000', name:'1000 × 1000 mm Glazed Vitrified Tile (GVT)',
+  sizeMm:[1000,1000], body:'Glazed vitrified (GVT)', waterAbsorption:VIT,
+  finishes:['Glossy','Matt'], application:['Interior floors','Showrooms','Lobbies'],
+  hsCode:'6907.21', live:true, variants:[
+  { thickness:'8 mm', pcsPerBox:2, sqmPerBox:2.00, kgPerBox:[40.0,40.0],
+    boxes20:[690,690], sqm20:[1380.00,1380.00], rows:5 }]},
 
 { slug:'gvt-1200x1200', name:'1200 × 1200 mm Glazed Porcelain Tile',
   sizeMm:[1200,1200], body:'Glazed vitrified (GVT)', waterAbsorption:VIT,
@@ -204,6 +245,26 @@ export const PRODUCTS: Product[] = [
   { thickness:'9 mm', pcsPerBox:1, sqmPerBox:5.12, kgPerBox:[146.0,146.0],
     boxes20:[180,180], sqm20:[921.60,921.60], rows:2 }]},
 
+/* ── Nano polished ──────────────────────────────────────────── */
+{ slug:'nano-polished-600x600', name:'600 × 600 mm Soluble Salt Nano Polished Tile',
+  sizeMm:[600,600], body:'Soluble salt nano polished vitrified', waterAbsorption:VIT,
+  finishes:['Nano polished','High gloss'], application:['Interior floors','Showrooms','Lobbies'],
+  hsCode:'6907.21', live:true, variants:[
+  { thickness:'6 mm', pcsPerBox:4, sqmPerBox:1.44, kgPerBox:[21.1,21.5],
+    boxes20:[1300,1344], sqm20:[1872.00,1935.36], rows:3 }]},
+
+/* ── Porcelain wall ─────────────────────────────────────────── */
+{ slug:'porcelain-wall-tile-300x600', name:'300 × 600 mm Glazed Porcelain Wall Tile',
+  sizeMm:[300,600], body:'Glazed porcelain', waterAbsorption:VIT,
+  finishes:['Glossy','Matt','Sugar','Highlighter'], application:['Interior walls','Bathrooms','Kitchens'],
+  hsCode:'6907.22', live:true, variants:[
+  { thickness:'6 mm', pcsPerBox:5, sqmPerBox:0.90, kgPerBox:[13.1,14.0],
+    boxes20:[1920,2112], sqm20:[1728.00,1900.80], rows:3 },
+  { thickness:'8 mm', pcsPerBox:5, sqmPerBox:0.90, kgPerBox:[17.2,17.2],
+    boxes20:[1600,1600], sqm20:[1440.00,1440.00], rows:2 },
+  { thickness:'8 mm (6-piece pack)', pcsPerBox:6, sqmPerBox:1.08, kgPerBox:[20.3,21.5],
+    boxes20:[1288,1288], sqm20:[1391.04,1391.04], rows:3 }]},
+
 /* ── Outdoor porcelain ──────────────────────────────────────── */
 { slug:'outdoor-porcelain-600', name:'600 × 600 mm Outdoor Porcelain Paver',
   sizeMm:[600,600], body:'Porcelain', waterAbsorption:VIT,
@@ -232,5 +293,13 @@ export function getPacking(slug: string) {
   return PRODUCTS.find((p) => p.slug === slug)
 }
 
-/* Pages live on the site with no data anywhere in the price list. */
-export const NO_DATA = ['double-charge-tile-600x1200']
+/* Pages live on the site with no data anywhere in the price list.
+   Do not invent numbers for these — leave them without a spec table. */
+export const NO_DATA = [
+  'double-charge-tile-600x1200',
+  'gvt-1600x1600',
+  'outdoor-porcelain-500x500',
+  'full-body-porcelain-slab',
+  'acrylic-solid-surface-sheets',
+  'bathroom-cabinets',
+]

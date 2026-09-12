@@ -17,7 +17,7 @@ import { buildMetadata, faqJsonLd } from "@/lib/seo";
 export const metadata = buildMetadata({
   title: "Export Services",
   description:
-    "Kavish Global is a ceramic export and supply partner based in Morbi, India — sourcing, quality inspection, export-standard packaging and full documentation for international buyers.",
+    "Kavish Global is a ceramic export and supply partner based in Morbi, India — sourcing, inspection, packaging and documentation for buyers.",
   path: "/export",
 });
 

@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: { params: Promise<{ category:
   if (!cat) return buildMetadata({ title: "Collection", description: "Collection not found." });
   return buildMetadata({
     title: cat.name,
-    description: `${cat.description} Explore sizes, finishes and technical specifications, and request an export quote.`,
+    description: `${cat.description} Request a quote.`,
     path: `/collections/${cat.slug}`,
   });
 }

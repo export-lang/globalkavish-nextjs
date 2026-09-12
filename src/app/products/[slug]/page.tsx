@@ -16,7 +16,7 @@ import { getCategory } from "@/lib/data/categories";
 import { getProduct, getRelatedProducts, products } from "@/lib/data/products";
 import { getPacking } from "@/lib/data/packing";
 import { PRODUCT_DETAIL_CONTENT } from "@/lib/data/product-detail-content";
-import { breadcrumbJsonLd, buildMetadata, faqJsonLd, productJsonLd, siteUrl } from "@/lib/seo";
+import { breadcrumbJsonLd, buildMetadata, faqJsonLd, packingProductJsonLd, productJsonLd, siteUrl } from "@/lib/seo";
 
 export function generateStaticParams() {
   return products.map((p) => ({ slug: p.slug }));
@@ -44,23 +44,29 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
   const packing = getPacking(slug);
   const detail = PRODUCT_DETAIL_CONTENT[slug];
   const productUrl = `${siteUrl}/products/${product.slug}`;
+  const productSchema = packing
+    ? packingProductJsonLd({
+        name: product.name,
+        description: product.description,
+        url: productUrl,
+        image: `${siteUrl}/opengraph-image`,
+        slug: product.slug,
+        packing,
+      })
+    : productJsonLd({
+        name: product.name,
+        description: product.description,
+        sizes: product.sizes,
+        material: product.material,
+        url: productUrl,
+        image: `${siteUrl}/opengraph-image`,
+      });
 
   return (
     <div className="pt-32 pb-24 md:pt-40 md:pb-32">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(
-            productJsonLd({
-              name: product.name,
-              description: product.description,
-              sizes: product.sizes,
-              material: product.material,
-              url: productUrl,
-              image: `${siteUrl}/opengraph-image`,
-            })
-          ),
-        }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
       />
       <script
         type="application/ld+json"

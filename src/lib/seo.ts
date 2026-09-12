@@ -1,8 +1,17 @@
 import type { Metadata } from "next";
 
 import { company } from "@/lib/data/company";
+import type { Product as PackingProduct } from "@/lib/data/packing";
 
 export const siteUrl = "https://www.globalkavish.com";
+
+/** "9 mm" -> { value: 9 } · "8–9 mm" -> { minValue: 8, maxValue: 9 } */
+function parseThicknessMm(thickness: string) {
+  const nums = thickness.match(/\d+(\.\d+)?/g)?.map(Number) ?? [];
+  if (nums.length === 0) return undefined;
+  if (nums.length === 1) return { "@type": "QuantitativeValue", value: nums[0], unitCode: "MMT" };
+  return { "@type": "QuantitativeValue", minValue: nums[0], maxValue: nums[nums.length - 1], unitCode: "MMT" };
+}
 
 export function buildMetadata({
   title,
@@ -104,6 +113,62 @@ export function productJsonLd(params: {
       name: "Size",
       value: size,
     })),
+    // No public price exists for this B2B catalogue — availability plus a
+    // quote-request URL is published instead of an invented price.
+    offers: {
+      "@type": "Offer",
+      url: params.url,
+      availability: "https://schema.org/InStock",
+      itemCondition: "https://schema.org/NewCondition",
+      businessFunction: "http://purl.org/goodrelations/v1#Sell",
+      seller: { "@type": "Organization", name: company.legalName },
+    },
+  };
+}
+
+/**
+ * Richer Product schema for pages backed by verified packing.ts data: adds
+ * sku, depth (from the first thickness variant) and the full thickness range
+ * in additionalProperty. sku is derived from the public slug (e.g.
+ * "KG-GVT-1600X3200") — not a real internal Kavish code, since none is public
+ * (see CONTENT_REQUIRED.md item 16), but a stable, machine-readable identifier
+ * schema.org's sku property expects.
+ */
+export function packingProductJsonLd(params: {
+  name: string;
+  description: string;
+  url: string;
+  image: string;
+  slug: string;
+  packing: PackingProduct;
+}) {
+  const { packing } = params;
+  const [widthMm, heightMm] = packing.sizeMm;
+  const depth = parseThicknessMm(packing.variants[0].thickness);
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: params.name,
+    description: params.description,
+    url: params.url,
+    image: params.image,
+    sku: `KG-${params.slug.toUpperCase()}`,
+    brand: { "@type": "Brand", name: company.brandName },
+    manufacturer: { "@type": "Organization", name: company.legalName },
+    material: packing.body,
+    width: { "@type": "QuantitativeValue", value: widthMm, unitCode: "MMT" },
+    height: { "@type": "QuantitativeValue", value: heightMm, unitCode: "MMT" },
+    ...(depth && { depth }),
+    additionalProperty: [
+      { "@type": "PropertyValue", name: "Water absorption", value: packing.waterAbsorption },
+      { "@type": "PropertyValue", name: "HS code", value: packing.hsCode },
+      ...packing.variants.map((v) => ({
+        "@type": "PropertyValue",
+        name: "Available thickness",
+        value: v.thickness,
+      })),
+    ],
     // No public price exists for this B2B catalogue — availability plus a
     // quote-request URL is published instead of an invented price.
     offers: {

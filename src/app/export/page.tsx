@@ -8,9 +8,11 @@ import { MagneticButton } from "@/components/shared/magnetic-button";
 import { SectionHeading } from "@/components/shared/section-heading";
 import { WorldMap } from "@/components/shared/world-map";
 import { ContainerLoadAnimation } from "@/components/export/container-load-animation";
+import { FaqAccordion, type FaqItem } from "@/components/export/faq-accordion";
 import { Button } from "@/components/ui/button";
+import { categories } from "@/lib/data/categories";
 import { company, exportCountries } from "@/lib/data/company";
-import { buildMetadata } from "@/lib/seo";
+import { buildMetadata, faqJsonLd } from "@/lib/seo";
 
 export const metadata = buildMetadata({
   title: "Export Services",
@@ -18,6 +20,48 @@ export const metadata = buildMetadata({
     "Kavish Global is a ceramic export and supply partner based in Morbi, India — sourcing, quality inspection, export-standard packaging and full documentation for international buyers.",
   path: "/export",
 });
+
+const exportFaqs: FaqItem[] = [
+  {
+    question: "What is your minimum order quantity for tile exports?",
+    answer:
+      "Minimum order quantity depends on the product type, size and your destination container mix. Share your product and shipping port with our export team and we'll confirm the MOQ for your specific order.",
+  },
+  {
+    question: "Which sizes and finishes can you supply from Morbi?",
+    answer: `We supply ${categories.map((c) => c.shortName).join(", ")} from Morbi, in sizes ranging from small-format ceramic tiles up to large-format 1600×3200 mm GVT and porcelain slabs, plus bathroom sanitaryware.`,
+  },
+  {
+    question: "How many square metres fit in a 20-foot and a 40-foot HQ container?",
+    answer:
+      "Container coverage depends on the product size and box packing specification, which vary by format. Confirm your product and size and our export team will share the exact loading calculation for a 20-foot or 40-foot HQ container.",
+  },
+  {
+    question: "What are your payment terms for a first-time buyer?",
+    answer:
+      "Payment terms are agreed per order and destination. Contact our export team with your requirement and we'll confirm the terms available to first-time buyers.",
+  },
+  {
+    question: "How long from order confirmation to loading?",
+    answer:
+      "Lead time depends on the product, order quantity and current production schedule. Share your requirement and we'll confirm a production and loading timeline before you commit to the order.",
+  },
+  {
+    question: "Can you supply samples before an order, and who pays freight?",
+    answer:
+      "Samples can be arranged for qualified enquiries. Sample and freight terms are confirmed per request — contact our export team to arrange samples for your shortlisted products.",
+  },
+  {
+    question: "Which certifications do your tiles carry for EU and GCC markets?",
+    answer:
+      "Certification requirements vary by product and destination market. Our export team will confirm which certificates apply to your specific order and share supporting documentation on request.",
+  },
+  {
+    question: "Which ports do you ship from, and can you quote CIF?",
+    answer:
+      "We coordinate export shipment from Indian ports serving your destination and can prepare a CIF quote once your product, quantity and destination port are confirmed.",
+  },
+];
 
 const exportServices = [
   { title: "Product Sourcing & Selection", detail: "We identify and select the right designs, sizes and finishes for your market from our qualified production network." },
@@ -52,6 +96,14 @@ export default function ExportPage() {
 
   return (
     <div className="pt-32 pb-24 md:pt-40 md:pb-32">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            faqJsonLd(exportFaqs.map((item) => ({ question: item.question, answer: item.answer })))
+          ),
+        }}
+      />
       <Container>
         <SectionHeading
           as="h1"
@@ -138,6 +190,14 @@ export default function ExportPage() {
               ))}
             </ul>
           </div>
+        </div>
+
+        <div className="mt-32">
+          <p className="mb-3 font-display text-3xl">Frequently Asked Questions</p>
+          <p className="mb-10 max-w-2xl text-sm text-foreground/60">
+            Answers to what international buyers ask us most before placing a tile export order.
+          </p>
+          <FaqAccordion items={exportFaqs} />
         </div>
 
         <div className="mt-32 rounded-3xl border border-border-subtle p-8 md:p-14">

@@ -45,7 +45,7 @@ Nothing here blocks the site; each item either improves it or needs your sign-of
    - Outdoor 500×500, Outdoor 600×900, Outdoor 600×1200 and the second Nano 600×600
      row have no distinct verified Kavish code.
 
-## Needed for product schema and spec tables (SEO pass)
+## Needed for product schema, spec tables and the /export FAQ (SEO pass)
 
 15. **Product thickness (mm) per size** — not stored anywhere in the data
     model. Without it, Product JSON-LD and the spec table cannot publish a
@@ -61,8 +61,17 @@ Nothing here blocks the site; each item either improves it or needs your sign-of
     container, box weight. Needed for the spec table and to answer the
     export FAQ container-capacity question with a real number instead of
     "contact us."
+18. **Payment terms for first-time buyers**, **typical lead time from order
+    confirmation to loading**, and **sample/freight policy** — needed to
+    replace the honest-but-generic FAQ answers on /export with real,
+    rankable numbers.
 19. **HS code(s)** per product type/absorption class, and **packing
     method** (pallet/crate) — for the product spec table.
+20. **Ports shipped from** — needed to answer the export FAQ's ports/CIF
+    question with real port names instead of a generic answer.
+
+(Certifications for EU/GCC markets are already tracked in item 2 — the
+export FAQ answer stays generic until those documents exist.)
 
 ## Needs files / assets
 

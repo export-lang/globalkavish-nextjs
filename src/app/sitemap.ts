@@ -8,7 +8,16 @@ import { siteUrl } from "@/lib/seo";
 // is omitted rather than stamped with one identical, fake date across every
 // URL. changeFrequency and priority are dropped too — Google ignores both.
 export default function sitemap(): MetadataRoute.Sitemap {
-  const staticRoutes = ["", "/about", "/collections", "/export", "/quality", "/media", "/contact"].map((path) => ({
+  const staticRoutes = [
+    "",
+    "/about",
+    "/collections",
+    "/export",
+    "/quality",
+    "/media",
+    "/contact",
+    "/terms-of-service",
+  ].map((path) => ({
     url: `${siteUrl}${path}`,
   }));
 

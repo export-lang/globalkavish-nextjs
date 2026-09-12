@@ -172,7 +172,7 @@ export function Hero() {
 
           <div className="relative min-h-[220px] max-w-3xl pointer-events-none">
             {STAGES.map((stage, i) => (
-              <StageText key={i} stage={stage} progress={scrollYProgress} />
+              <StageText key={i} stage={stage} progress={scrollYProgress} isH1={i === 0} />
             ))}
           </div>
 
@@ -267,9 +267,11 @@ function FloatingSlab({
 function StageText({
   stage,
   progress,
+  isH1,
 }: {
   stage: (typeof STAGES)[number];
   progress: MotionValue<number>;
+  isH1: boolean;
 }) {
   const [start, end] = stage.range;
   const isFirst = start === 0;
@@ -287,10 +289,11 @@ function StageText({
     return 0;
   });
   const y = useTransform(progress, [start, end], [24, -24]);
+  const Tag = isH1 ? "h1" : "h2";
 
   return (
     <motion.div style={{ opacity, y }} className="absolute inset-x-0 top-0">
-      <h1 className="font-display text-balance text-5xl leading-[1.05] md:text-7xl">{stage.label}</h1>
+      <Tag className="font-display text-balance text-5xl leading-[1.05] md:text-7xl">{stage.label}</Tag>
       <p className="mt-4 max-w-md text-base text-stone-300 md:text-lg">{stage.sub}</p>
     </motion.div>
   );

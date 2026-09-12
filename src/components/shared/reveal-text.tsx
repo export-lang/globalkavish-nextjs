@@ -19,8 +19,7 @@ export function RevealText({
     <div className="overflow-hidden">
       <motion.div
         initial={{ y: "110%", opacity: 0 }}
-        whileInView={{ y: "0%", opacity: 1 }}
-        viewport={{ once: true, margin: "-10% 0px" }}
+        animate={{ y: "0%", opacity: 1 }}
         transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay }}
       >
         <Tag className={cn(className)}>{children}</Tag>

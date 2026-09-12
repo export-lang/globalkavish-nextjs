@@ -16,6 +16,7 @@ import { getCategory } from "@/lib/data/categories";
 import { getProduct, getRelatedProducts, products } from "@/lib/data/products";
 import { getPacking } from "@/lib/data/packing";
 import { PRODUCT_DETAIL_CONTENT } from "@/lib/data/product-detail-content";
+import { buildStandardFaq } from "@/lib/data/product-faq";
 import { breadcrumbJsonLd, buildMetadata, faqJsonLd, packingProductJsonLd, productJsonLd, siteUrl } from "@/lib/seo";
 
 export function generateStaticParams() {
@@ -43,6 +44,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
   const primaryCategory = getCategory(product.categorySlugs[0]);
   const packing = getPacking(slug);
   const detail = PRODUCT_DETAIL_CONTENT[slug];
+  const faq = packing ? buildStandardFaq(product.name, packing) : undefined;
   const productUrl = `${siteUrl}/products/${product.slug}`;
   const productSchema = packing
     ? packingProductJsonLd({
@@ -82,10 +84,10 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
           ),
         }}
       />
-      {detail && (
+      {faq && (
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd(detail.faq)) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd(faq)) }}
         />
       )}
       <TrackRecentlyViewed slug={product.slug} />
@@ -179,13 +181,13 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
           </div>
         )}
 
-        {detail && (
+        {faq && (
           <div className="mt-32">
             <p className="mb-3 font-display text-3xl">Frequently Asked Questions</p>
             <p className="mb-10 max-w-2xl text-sm text-foreground/60">
               Answers to what international buyers ask us most about {product.name}.
             </p>
-            <FaqAccordion items={detail.faq} />
+            <FaqAccordion items={faq} />
           </div>
         )}
 

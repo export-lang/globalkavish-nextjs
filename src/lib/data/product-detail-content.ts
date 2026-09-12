@@ -1,8 +1,12 @@
 // ─────────────────────────────────────────────────────────────
 // Extended editorial content for the packing.ts-driven product
-// pages: opening copy, one differentiator/application section,
-// and an FAQ. Only for slugs that get this fuller treatment —
-// every number here traces back to src/lib/data/packing.ts.
+// pages: opening copy and one differentiator/application section.
+// Only for slugs that get this fuller treatment — every number
+// here traces back to src/lib/data/packing.ts.
+//
+// FAQ used to be hand-written per entry here; it's now generated
+// for every page with a spec table by buildStandardFaq() in
+// product-faq.ts, so it's no longer part of this type.
 // ─────────────────────────────────────────────────────────────
 
 export type DetailSection = {
@@ -15,7 +19,6 @@ export type ProductDetailContent = {
   metaDescription: string;
   opening: string[];
   section: DetailSection;
-  faq: { question: string; answer: string }[];
 };
 
 export const PRODUCT_DETAIL_CONTENT: Record<string, ProductDetailContent> = {
@@ -37,28 +40,6 @@ export const PRODUCT_DETAIL_CONTENT: Record<string, ProductDetailContent> = {
         { title: "It takes heavy traffic.", detail: "The wear layer is the whole slab, so surface abrasion does not change the appearance." },
       ],
     },
-    faq: [
-      {
-        question: "What is the minimum order for 800 × 2400 full body porcelain?",
-        answer: "One full 20′ container, which is 336–360 slabs or roughly 645–691 m². Mixed containers combining this size with other formats are possible — tell us the split you need and we will confirm whether it loads.",
-      },
-      {
-        question: "How many square metres fit in a 20-foot container?",
-        answer: "645.12 to 691.20 m², depending on crate configuration and the weight limit on your route. Weight, not volume, is the binding constraint on this size.",
-      },
-      {
-        question: "Can you supply samples before an order?",
-        answer: "Yes. Full-size slabs are impractical to airfreight, so we send cut samples showing the true surface and body colour. Sample cost and courier are on the buyer's account and are credited against the first order.",
-      },
-      {
-        question: "What surface finishes are available?",
-        answer: "Polished, matt and structured. Finish affects slip rating, so tell us the application — a hotel lobby and a pool surround need different surfaces.",
-      },
-      {
-        question: "Which ports do you ship from?",
-        answer: "Mundra and Kandla are the usual load ports for Morbi production. We quote FOB by default and CIF on request.",
-      },
-    ],
   },
 
   "full-body-porcelain-800x3000": {
@@ -76,28 +57,6 @@ export const PRODUCT_DETAIL_CONTENT: Record<string, ProductDetailContent> = {
         { title: "Weight-limited loading.", detail: "308 boxes is the confirmed 20′ container figure for this size — coverage is capped by axle weight limits before the container is visually full." },
       ],
     },
-    faq: [
-      {
-        question: "How many slabs fit in a 20-foot container?",
-        answer: "308 boxes (one slab per box), covering 739.20 m². This figure is set by the container's weight limit, not by physical space.",
-      },
-      {
-        question: "What is the minimum order quantity?",
-        answer: "One full 20′ container is the standard minimum for this size — 308 slabs. Contact us if you need a smaller trial quantity combined with another format.",
-      },
-      {
-        question: "Can this size be cut on site?",
-        answer: "Yes — because the colour runs through the full 15 mm body, edges, cuts and profiled details show the same material as the face, unlike a glazed tile.",
-      },
-      {
-        question: "Which finishes are available in this size?",
-        answer: "Polished, matt and structured. Tell us the application so we can advise on the right slip rating.",
-      },
-      {
-        question: "How long from order confirmation to loading?",
-        answer: "Contact our export team with your quantity and destination for a production and loading timeline — lead time depends on current production schedule.",
-      },
-    ],
   },
 
   "gvt-1200x1800": {
@@ -114,24 +73,6 @@ export const PRODUCT_DETAIL_CONTENT: Record<string, ProductDetailContent> = {
         { title: "Feature wall cladding.", detail: "The glazed surface carries high-definition marble and stone visuals at a scale standard tile sizes can't cover in one piece." },
       ],
     },
-    faq: [
-      {
-        question: "How many pieces fit in a 20-foot container?",
-        answer: "306 boxes, one piece per box, covering 1,321.92 m² total.",
-      },
-      {
-        question: "What is the minimum order quantity?",
-        answer: "One full 20′ container — 306 pieces. Contact us if you need to combine this size with another format in a mixed container.",
-      },
-      {
-        question: "What finishes are available?",
-        answer: "Glossy and matt.",
-      },
-      {
-        question: "Can this size be used on walls as well as floors?",
-        answer: "Yes — it's specified for both floors and wall cladding, where fewer joints at this scale suit feature surfaces.",
-      },
-    ],
   },
 
   "gvt-1200x2800": {
@@ -149,24 +90,6 @@ export const PRODUCT_DETAIL_CONTENT: Record<string, ProductDetailContent> = {
         { title: "40′ HQ shipping available.", detail: "Confirmed 40′ HQ figures exist for this size in addition to 20′, useful for larger cladding or furniture-manufacturing orders." },
       ],
     },
-    faq: [
-      {
-        question: "How many pieces fit in a 20-foot container versus a 40-foot HQ?",
-        answer: "276 boxes / 927.36 m² in a 20′ container, or 552 boxes / 1,854.72 m² in a 40′ HQ — one piece per box in both cases.",
-      },
-      {
-        question: "Is this size suitable for flooring?",
-        answer: "It's specified for wall cladding, façades and furniture surfaces rather than floors — for large-format flooring, see our 1200 × 2400 mm or 1600 × 3200 mm GVT slabs.",
-      },
-      {
-        question: "What finishes are available?",
-        answer: "Polished and matt.",
-      },
-      {
-        question: "What is the minimum order quantity?",
-        answer: "One full 20′ container (276 pieces) or 40′ HQ (552 pieces). Tell us your project quantity and we'll confirm the right container mix.",
-      },
-    ],
   },
 
   "outdoor-porcelain-600x1200": {
@@ -184,23 +107,5 @@ export const PRODUCT_DETAIL_CONTENT: Record<string, ProductDetailContent> = {
         { title: "20 mm — driveways and parking.", detail: "The thickest option, specified where vehicles cross the paved surface." },
       ],
     },
-    faq: [
-      {
-        question: "Which thickness do I need for a driveway?",
-        answer: "20 mm is the structural option in this size, specified for driveways and parking where vehicle loads apply.",
-      },
-      {
-        question: "How many pieces fit in a 20-foot container?",
-        answer: "It depends on thickness: 986 boxes (9 mm), 1,078 boxes (16 mm), or 810–903 boxes (20 mm), each box holding 1–2 pieces depending on thickness.",
-      },
-      {
-        question: "Is this paver anti-skid?",
-        answer: "Yes — anti-skid, rough and structured finishes are available, standard for outdoor pedestrian and vehicular surfaces.",
-      },
-      {
-        question: "What is the minimum order quantity?",
-        answer: "One full 20′ container. Contact us with your required thickness and we'll confirm the exact piece count for that container.",
-      },
-    ],
   },
 };

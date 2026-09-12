@@ -45,6 +45,19 @@ Nothing here blocks the site; each item either improves it or needs your sign-of
    - Outdoor 500×500, Outdoor 600×900, Outdoor 600×1200 and the second Nano 600×600
      row have no distinct verified Kavish code.
 
+## Needed for product schema (SEO pass)
+
+15. **Product thickness (mm) per size** — not stored anywhere in the data
+    model. Without it, Product JSON-LD and the spec table cannot publish a
+    `depth` value. Share thickness options per product type/size (e.g.
+    "9 mm / 12 mm") and they'll be added — no thickness is currently shown or
+    claimed.
+16. **A public, non-factory-linked SKU/reference code scheme** — the sheet's
+    catalogue codes are internal-only (see item 2 above), so Product JSON-LD
+    currently omits `sku`. If you want a public SKU in search results, define
+    a neutral code format (e.g. `KG-{type}-{size}`) and confirm it's safe to
+    publish.
+
 ## Needs files / assets
 
 7. **Kavish catalogue PDFs** — no public PDF files are linked in the sheet, so all

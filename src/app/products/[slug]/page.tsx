@@ -47,6 +47,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
               name: product.name,
               description: product.description,
               sizes: product.sizes,
+              material: product.material,
               url: `${siteUrl}/products/${product.slug}`,
               image: `${siteUrl}/opengraph-image`,
             })

@@ -8,7 +8,7 @@ import { SectionHeading } from "@/components/shared/section-heading";
 import { Button } from "@/components/ui/button";
 import { categories, getCategory } from "@/lib/data/categories";
 import { getProductsByCategory } from "@/lib/data/products";
-import { buildMetadata } from "@/lib/seo";
+import { breadcrumbJsonLd, buildMetadata, collectionJsonLd, siteUrl } from "@/lib/seo";
 
 export function generateStaticParams() {
   return categories.map((c) => ({ category: c.slug }));
@@ -35,8 +35,34 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
   const finishes = Array.from(new Set(categoryProducts.flatMap((p) => p.finish))).sort();
   const applications = Array.from(new Set(categoryProducts.flatMap((p) => p.application))).sort();
 
+  const categoryUrl = `${siteUrl}/collections/${cat.slug}`;
+
   return (
     <div className="pt-32 pb-24 md:pt-40 md:pb-32">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            collectionJsonLd({
+              name: cat.name,
+              description: cat.description,
+              url: categoryUrl,
+              products: categoryProducts.map((p) => ({ name: p.name, url: `${siteUrl}/products/${p.slug}` })),
+            })
+          ),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            breadcrumbJsonLd([
+              { name: "Collections", url: `${siteUrl}/collections` },
+              { name: cat.name, url: categoryUrl },
+            ])
+          ),
+        }}
+      />
       <Container>
         <SectionHeading as="h1" eyebrow={cat.heroNote} title={cat.name} description={cat.description} />
 

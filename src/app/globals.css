@@ -281,3 +281,9 @@ body {
     transform: translate3d(2vw, -5vh, 0) rotate(6deg) scale(1.05);
   }
 }
+
+/* Product packing tables (40′ HQ columns) scroll horizontally instead of
+   breaking the page layout on narrow viewports. */
+.table-scroll {
+  overflow-x: auto;
+}

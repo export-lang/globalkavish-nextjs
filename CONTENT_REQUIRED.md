@@ -45,7 +45,7 @@ Nothing here blocks the site; each item either improves it or needs your sign-of
    - Outdoor 500×500, Outdoor 600×900, Outdoor 600×1200 and the second Nano 600×600
      row have no distinct verified Kavish code.
 
-## Needed for product schema (SEO pass)
+## Needed for product schema and spec tables (SEO pass)
 
 15. **Product thickness (mm) per size** — not stored anywhere in the data
     model. Without it, Product JSON-LD and the spec table cannot publish a
@@ -57,6 +57,12 @@ Nothing here blocks the site; each item either improves it or needs your sign-of
     currently omits `sku`. If you want a public SKU in search results, define
     a neutral code format (e.g. `KG-{type}-{size}`) and confirm it's safe to
     publish.
+17. **Container loading figures** — sqm per box, boxes per 20'/40'HQ
+    container, box weight. Needed for the spec table and to answer the
+    export FAQ container-capacity question with a real number instead of
+    "contact us."
+19. **HS code(s)** per product type/absorption class, and **packing
+    method** (pallet/crate) — for the product spec table.
 
 ## Needs files / assets
 

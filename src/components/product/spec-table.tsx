@@ -17,8 +17,12 @@ export function SpecTable({ product }: { product: Product }) {
   const categoryNames = product.categorySlugs.map((c) => getCategory(c)?.name).filter(Boolean).join(", ");
 
   const rows: { label: string; value: string }[] = [{ label: "Material", value: product.material }];
+  if (product.sizes.length) {
+    rows.push({ label: "Available Sizes", value: product.sizes.map((s) => `${s.replace("x", "×")} mm`).join(" · ") });
+  }
   if (categoryNames) rows.push({ label: "Category", value: categoryNames });
   if (product.application.length) rows.push({ label: "Application", value: product.application.join(" · ") });
+  rows.push({ label: "Origin", value: "Morbi, Gujarat, India" });
   if (product.kavishCatalogueCount > 0) {
     rows.push({
       label: "Kavish Catalogues",

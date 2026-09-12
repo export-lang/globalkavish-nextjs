@@ -7,11 +7,13 @@ import { FadeIn } from "@/components/shared/reveal-text";
 import { ProductCard } from "@/components/shared/product-card";
 import { Gallery } from "@/components/product/gallery";
 import { SpecTable } from "@/components/product/spec-table";
+import { PackingSpecTable } from "@/components/product/packing-spec-table";
 import { EnquiryPanel } from "@/components/product/enquiry-panel";
 import { EnquiryForm } from "@/components/product/enquiry-form";
 import { TrackRecentlyViewed } from "@/components/product/track-recently-viewed";
 import { getCategory } from "@/lib/data/categories";
 import { getProduct, getRelatedProducts, products } from "@/lib/data/products";
+import { getPacking } from "@/lib/data/packing";
 import { breadcrumbJsonLd, buildMetadata, productJsonLd, siteUrl } from "@/lib/seo";
 
 export function generateStaticParams() {
@@ -36,6 +38,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
 
   const related = getRelatedProducts(product);
   const primaryCategory = getCategory(product.categorySlugs[0]);
+  const packing = getPacking(slug);
 
   return (
     <div className="pt-32 pb-24 md:pt-40 md:pb-32">
@@ -121,6 +124,12 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
             </div>
           </FadeIn>
         </div>
+
+        {packing && (
+          <div className="mt-16 rounded-2xl border border-border-subtle bg-background/60 p-6 shadow-xl shadow-black/5 backdrop-blur-sm md:p-8">
+            <PackingSpecTable product={packing} />
+          </div>
+        )}
 
         {related.length > 0 && (
           <div className="mt-32">

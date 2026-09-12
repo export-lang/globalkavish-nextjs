@@ -91,7 +91,7 @@ export function Footer() {
         <p>© {new Date().getFullYear()} {company.legalName}. All rights reserved.</p>
         <div className="flex items-center gap-6">
           <Link href="/terms-of-service" className="transition-colors hover:text-gold-500">
-            Terms of Service
+            Privacy Policy
           </Link>
           <p>Designed &amp; engineered for global export.</p>
         </div>

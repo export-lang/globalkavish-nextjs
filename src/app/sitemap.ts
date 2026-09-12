@@ -17,6 +17,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/media",
     "/contact",
     "/terms-of-service",
+    "/privacy-policy",
   ].map((path) => ({
     url: `${siteUrl}${path}`,
   }));

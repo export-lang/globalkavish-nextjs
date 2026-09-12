@@ -90,8 +90,11 @@ export function Footer() {
       <Container className="flex flex-col items-center justify-between gap-4 border-t border-border-subtle py-8 text-xs text-foreground/40 md:flex-row">
         <p>© {new Date().getFullYear()} {company.legalName}. All rights reserved.</p>
         <div className="flex items-center gap-6">
-          <Link href="/terms-of-service" className="transition-colors hover:text-gold-500">
+          <Link href="/privacy-policy" className="transition-colors hover:text-gold-500">
             Privacy Policy
+          </Link>
+          <Link href="/terms-of-service" className="transition-colors hover:text-gold-500">
+            Terms of Service
           </Link>
           <p>Designed &amp; engineered for global export.</p>
         </div>

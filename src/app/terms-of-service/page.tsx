@@ -6,7 +6,7 @@ import { company } from "@/lib/data/company";
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata = buildMetadata({
-  title: "Privacy Policy",
+  title: "Terms of Service",
   description:
     "Terms of Service governing the use of the Kavish Global website, digital services and company-operated online tools.",
   path: "/terms-of-service",
@@ -16,7 +16,7 @@ export default function TermsOfServicePage() {
   return (
     <div className="pt-32 pb-24 md:pt-40 md:pb-32">
       <Container className="max-w-3xl">
-        <SectionHeading as="h1" eyebrow="Legal" title="Privacy Policy" />
+        <SectionHeading as="h1" eyebrow="Legal" title="Terms of Service" />
         <p className="mt-2 text-sm text-foreground/50">Effective Date: 12 September 2026</p>
 
         <div className="mt-16 space-y-12 text-sm leading-relaxed text-foreground/70">

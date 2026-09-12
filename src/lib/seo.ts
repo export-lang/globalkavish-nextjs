@@ -14,7 +14,14 @@ export function buildMetadata({
   path?: string;
 }): Metadata {
   const url = `${siteUrl}${path}`;
-  const fullTitle = title === company.brandName ? title : `${title} | ${company.brandName}`;
+  // Safety net: strip the brand if a page title includes it by habit, so it
+  // is never appended twice regardless of how the title is written.
+  const brand = company.brandName;
+  const cleanTitle = title
+    .replace(new RegExp(`^\\s*${brand}\\s*[—–|-]\\s*`, "i"), "")
+    .replace(new RegExp(`\\s*[—–|-]\\s*${brand}\\s*$`, "i"), "")
+    .trim();
+  const fullTitle = cleanTitle === "" || cleanTitle === brand ? brand : `${cleanTitle} | ${brand}`;
 
   return {
     title: { absolute: fullTitle },

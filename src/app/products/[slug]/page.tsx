@@ -11,10 +11,12 @@ import { PackingSpecTable } from "@/components/product/packing-spec-table";
 import { EnquiryPanel } from "@/components/product/enquiry-panel";
 import { EnquiryForm } from "@/components/product/enquiry-form";
 import { TrackRecentlyViewed } from "@/components/product/track-recently-viewed";
+import { FaqAccordion } from "@/components/export/faq-accordion";
 import { getCategory } from "@/lib/data/categories";
 import { getProduct, getRelatedProducts, products } from "@/lib/data/products";
 import { getPacking } from "@/lib/data/packing";
-import { breadcrumbJsonLd, buildMetadata, productJsonLd, siteUrl } from "@/lib/seo";
+import { PRODUCT_DETAIL_CONTENT } from "@/lib/data/product-detail-content";
+import { breadcrumbJsonLd, buildMetadata, faqJsonLd, productJsonLd, siteUrl } from "@/lib/seo";
 
 export function generateStaticParams() {
   return products.map((p) => ({ slug: p.slug }));
@@ -24,9 +26,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const product = getProduct(slug);
   if (!product) return buildMetadata({ title: "Collection", description: "Collection not found." });
+  const detail = PRODUCT_DETAIL_CONTENT[slug];
   return buildMetadata({
     title: product.name,
-    description: `${product.description} Request an export quote from Kavish Global.`,
+    description: detail?.metaDescription ?? `${product.description} Request an export quote from Kavish Global.`,
     path: `/products/${product.slug}`,
   });
 }
@@ -39,6 +42,8 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
   const related = getRelatedProducts(product);
   const primaryCategory = getCategory(product.categorySlugs[0]);
   const packing = getPacking(slug);
+  const detail = PRODUCT_DETAIL_CONTENT[slug];
+  const productUrl = `${siteUrl}/products/${product.slug}`;
 
   return (
     <div className="pt-32 pb-24 md:pt-40 md:pb-32">
@@ -51,7 +56,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
               description: product.description,
               sizes: product.sizes,
               material: product.material,
-              url: `${siteUrl}/products/${product.slug}`,
+              url: productUrl,
               image: `${siteUrl}/opengraph-image`,
             })
           ),
@@ -66,11 +71,17 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
               ...(primaryCategory
                 ? [{ name: primaryCategory.name, url: `${siteUrl}/collections/${primaryCategory.slug}` }]
                 : []),
-              { name: product.name, url: `${siteUrl}/products/${product.slug}` },
+              { name: product.name, url: productUrl },
             ])
           ),
         }}
       />
+      {detail && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd(detail.faq)) }}
+        />
+      )}
       <TrackRecentlyViewed slug={product.slug} />
 
       <Container>
@@ -125,9 +136,50 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
           </FadeIn>
         </div>
 
+        {detail && (
+          <div className="mt-32 max-w-3xl">
+            {detail.opening.map((p, i) => (
+              <p key={i} className="mb-6 text-lg leading-relaxed text-foreground/70">
+                {p}
+              </p>
+            ))}
+          </div>
+        )}
+
         {packing && (
           <div className="mt-16 rounded-2xl border border-border-subtle bg-background/60 p-6 shadow-xl shadow-black/5 backdrop-blur-sm md:p-8">
             <PackingSpecTable product={packing} />
+          </div>
+        )}
+
+        {detail && (
+          <div className="mt-32 max-w-3xl">
+            <p className="mb-6 font-display text-3xl">{detail.section.heading}</p>
+            {detail.section.paragraphs?.map((p, i) => (
+              <p key={i} className="mb-6 text-sm leading-relaxed text-foreground/70">
+                {p}
+              </p>
+            ))}
+            {detail.section.list && (
+              <ul className="space-y-4">
+                {detail.section.list.map((item) => (
+                  <li key={item.title} className="rounded-xl border border-border-subtle px-5 py-4 text-sm">
+                    <span className="font-medium">{item.title}</span>{" "}
+                    <span className="text-foreground/60">{item.detail}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+        )}
+
+        {detail && (
+          <div className="mt-32">
+            <p className="mb-3 font-display text-3xl">Frequently Asked Questions</p>
+            <p className="mb-10 max-w-2xl text-sm text-foreground/60">
+              Answers to what international buyers ask us most about {product.name}.
+            </p>
+            <FaqAccordion items={detail.faq} />
           </div>
         )}
 
